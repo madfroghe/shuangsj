@@ -4,14 +4,15 @@
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 	id="WebApp_ID" version="2.5">
 
-	<display-name>jflyfox</display-name>
+	<display-name>shuangsj</display-name>
 
 	<welcome-file-list>
-		<welcome-file>login.jsp</welcome-file>
+		<welcome-file>admin.html</welcome-file>
+		<welcome-file>admin.jsp</welcome-file>
 	</welcome-file-list>
 
 	<filter>
-		<filter-name>jfinal</filter-name>
+		<filter-name>shuangsj</filter-name>
 		<filter-class>com.jfinal.core.JFinalFilter</filter-class>
 		<init-param>
 			<param-name>configClass</param-name>
@@ -20,7 +21,7 @@
 	</filter>
 
 	<filter-mapping>
-		<filter-name>jfinal</filter-name>
+		<filter-name>shuangsj</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
 
