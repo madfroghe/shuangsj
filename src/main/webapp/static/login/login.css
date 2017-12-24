@@ -126,9 +126,19 @@ iframe,.iframe {
 	border: 0
 }
 
+
+.main {
+	width: 1200px;
+	height: 820px;
+    margin: auto;
+    background-image: url(bg/ssj.png);
+	background-size: cover;
+	background-repeat: no-repeat;
+}
+
 .login {
-	width: 220px;
-	padding: 0 31px 0 33px;
+	width: 290px;
+	padding: 0 16px 0 16px;
 	position: relative;
 	overflow: hidden;
 	border: 1px solid #a7a7a7
@@ -153,9 +163,9 @@ iframe,.iframe {
 }
 
 .login-position {
-position: absolute;
-right: 200px;
-top: 150px;
+position: relative;
+left:800px;
+top: 263px;
 }
 
 .ui-form {
@@ -180,7 +190,7 @@ top: 150px;
 	font-weight: 500;
 	font-weight: bold\0; *
 	font-weight: 700;
-	padding: 26px 0 16px;
+	padding: 13px 0 12px;
 	width: 100%;
 	color: #4d4d4d
 }
@@ -202,13 +212,13 @@ top: 150px;
 }
 
 .ui-form-item {
-	padding: 0 0 10px;
+	padding: 0 0 10px 40px;
 	zoom: 1;
 	position: relative
 }
 
 .ui-form-item-30pd {
-	padding-bottom: 28px
+	padding-bottom: 11px
 }
 
 .ui-form-item input {
@@ -260,6 +270,7 @@ top: 150px;
 	height: 18px;
 	font-size: 14px;
 	padding-bottom: 10px;
+	padding-left:40px;
 	color: #4d4d4d;
 	zoom: 1
 }
