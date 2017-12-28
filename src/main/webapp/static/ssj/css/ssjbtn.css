@@ -1,0 +1,28 @@
+.btn{
+    width:115px;
+    height:40px;
+    border-radius: 25px 12px 12px 25px;
+    float:left;
+    /*background: #b4b4b4;*/
+    font-size:16px;
+    text-shadow: 5px 2px 6px #8a8a8a;
+    color:#ffffff;
+    display: block;
+    padding:5px 0;
+    margin-top:5px;
+    margin-right:10px;
+    background: -moz-linear-gradient(top, rgb(206,206,206) 0%, rgb(175,175,175) 50%, rgb(147, 147, 147) 100%);
+    background: -webkit-linear-gradient(top, rgb(206,206,206) 0%, rgb(175,175,175) 50%, rgb(147, 147, 147) 100%);
+    background: linear-gradient(to bottom, rgb(206,206,206) 0%, rgb(175,175,175) 50%, rgb(147, 147, 147) 100%);
+}
+.btn img{
+    vertical-align: middle;
+    margin-left:8px;
+    float:left;
+}
+.btn p{
+    width: 75px;
+    line-height:30px;
+    float: right;
+    text-align: center;
+}

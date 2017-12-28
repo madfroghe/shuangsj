@@ -1,0 +1,130 @@
+.change-box{
+    height: 50px;
+    padding: 10px 0;
+    /*line-height: 30px;*/
+}
+.change-box:after{
+    clear: both;
+}
+.change-box span{
+    height: 30px;
+    display: block;
+    float: left;
+    line-height: 30px;
+    font-size: 14px;
+    padding-right: 15px;
+    font-size: 16px;
+}
+.select-box{
+    float: left;
+     position: relative;
+    margin-right: 40px;
+ }
+.select-box:after{
+    clear: both;
+}
+.select-box .select-content{
+    float: left;
+    height: 30px;
+    line-height: 30px;
+    padding-left: 10px;
+    width: 100px;
+    border: 1px solid rgb(182,187,193);
+    -moz-box-shadow: 1px 2px 3px 1px #E0E0E0 inset;
+    -webkit-box-shadow: 1px 2px 3px 1px #E0E0E0 inset;
+    /*box-shadow: -4px -4px 4px 2px #DBDBDB inset, 4px -4px 2px #DBDBDB inset, 4px 4px 2px #DBDBDB inset;, -4px 4px 2px #DBDBDB inset;*/
+    box-shadow: 1px 2px 3px 1px #E0E0E0 inset;
+}
+.select-box .drop{
+    float: left;
+    height: 30px;
+    width: 36px;
+    border-bottom-right-radius: 3px;
+    border-top-right-radius: 3px;
+    background: -moz-linear-gradient(top, rgb(111,119,130) 0%, rgb(98,106,116) 50%, rgb(83, 92, 101) 100%);
+    background: -webkit-linear-gradient(top, rgb(111,119,130) 0%, rgb(98,106,116) 50%, rgb(83, 92, 101) 100%);
+    background: linear-gradient(to bottom, rgb(111,119,130) 0%, rgb(98,106,116) 50%, rgb(83, 92, 101) 100%);
+    position: relative;
+}
+.select-box .drop.down:before{
+    content: "";
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    position: absolute;
+    background-image: url("../images/select_down.png");
+    background-repeat: no-repeat;
+    background-position: center 6px;
+    background-size: 16px 16px;
+}
+.select-box .drop.up:before{
+    content: "";
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    position: absolute;
+    background-image: url("../images/select_up.png");
+    background-repeat: no-repeat;
+    background-position: center 5px;
+    background-size: 16px 16px;
+}
+.select-box .down-box{
+    z-index: 999;
+    position: absolute;
+    top: 31px;
+    left: 0;
+    height: 200px;
+    width: 100%;
+    border: 1px solid rgb(182,187,193);
+    padding: 5px 0;
+    overflow: auto;
+    background-color: white;
+    display: none;
+}
+.select-box .down-box div{
+    height: 30px;
+    line-height: 30px;
+    padding-left: 10px;
+    border-bottom: 1px solid #EAEAEA;
+
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    -khtml-user-select: none;
+    user-select: none;
+}
+.select-box .down-box div:hover{
+    background-color: #DBDBDB;
+}
+
+.content-input{
+    float: left;
+    height: 30px;
+    line-height: 30px;
+    padding-left: 10px;
+    width: 100px;
+    border: 1px solid rgb(182,187,193);
+    -moz-box-shadow: 1px 2px 3px 1px #E0E0E0 inset;
+    -webkit-box-shadow: 1px 2px 3px 1px #E0E0E0 inset;
+    /*box-shadow: -4px -4px 4px 2px #DBDBDB inset, 4px -4px 2px #DBDBDB inset, 4px 4px 2px #DBDBDB inset;, -4px 4px 2px #DBDBDB inset;*/
+    box-shadow: 1px 2px 3px 1px #E0E0E0 inset;
+    margin-right: 8px;
+
+}
+.select-box .choic-box{
+    width:120px;
+}
+.select-box .choic-box li{
+    width:60px;
+    float:left;
+    line-height: 30px;
+}
+.select-box .choic-box li input{
+    margin-right: 10px;
+}
+.change-box:last-child{
+    height: 50px;
+    border-bottom: 1px dashed red!important;
+}
