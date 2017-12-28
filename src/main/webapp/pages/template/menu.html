@@ -7,7 +7,7 @@ body { padding-top: 51px; }
 	function showMenu(id){
 		$("#"+id).addClass('active');
 		if($("#"+id).parent().is('.treeviewssj-menu')){
-			$("#"+id).parent().parent().addClass('active');
+			$("#"+id).parent().parent().children('a').addClass('active');
 			$("#"+id).parent().removeClass('hide');
 		}
 	}
@@ -41,14 +41,13 @@ body { padding-top: 51px; }
 							  		 		
 				  		<li class="treeviewssj" id="page_${item.urlkey}">
 		                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-		                        <i class="fa"><img src="static/ssj/images/left_menu_one1.png"></i>
+		                        <i class="fa"><img src="static/ssj/images/page_${item.urlkey}.png"></i>
 		                        <span>${item.name}</span>
 		                    </a>
 		                    <ul class="hide treeviewssj-menu">
 		                    	<%  for(item2 in session.menu[item.id]) { %>
 		                    		<li id="page_${item2.urlkey}">
 			                            <a href="${item2.url}">
-			                                <i class="fa"><img src="static/ssj/images/left_menu_one1.png"></i>
 			                                <span>${item2.name}</span>
 			                            </a>
 			                        </li>
@@ -61,7 +60,7 @@ body { padding-top: 51px; }
 					<% } else { %>
 						<li class="treeviewssj" id="page_${item.urlkey}">
 		                    <a href="${item.url}">
-		                        <i class="fa"><img src="static/ssj/images/left_menu_one1.png"></i>
+		                        <i class="fa"><img src="static/ssj/images/page_${item.urlkey}.png"></i>
 		                        <span>${item.name}</span>
 		                    </a>
 		                </li>

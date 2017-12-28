@@ -53,15 +53,23 @@ a{
 .left-body .sidebar .sidebar-menu ul li a{
     text-decoration: none;
     color:#ffffff;
-    padding: 17px 37px 17px 52px;
+    padding: 10px 37px 10px 52px;
     display: block;
     position: relative;
-    height: 66px;
+    height: 46px;
     line-height: 34px;
     text-align: center;
 }
 
 .left-body .sidebar .sidebar-menu ul li .active{
+    color: #fff;
+    border-left: 3px solid transparent;
+    border-left-color: #3c8dbc;
+    background: #302a2a;
+}
+
+
+.left-body .sidebar .sidebar-menu ul li ul .active{
     color: #fff;
     border-left: 3px solid transparent;
     border-left-color: #3c8dbc;
@@ -76,7 +84,7 @@ a{
     vertical-align: middle;
     position: absolute;
     left: 20px;
-    top: 17px;
+    top: 10px;
     height: 32px;
     display: table-cell!important;
 }

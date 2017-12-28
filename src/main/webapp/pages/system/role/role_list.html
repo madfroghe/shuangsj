@@ -66,6 +66,36 @@ var bodyContent = {
 		<!-- 菜单 -->
 		<% include("/pages/template/menu.html"){} %>
 
+
+<!--右侧部分布局开始-->
+<div class="right-body">
+    <!--右侧部分上部分布局开始-->
+    <div class="head">
+        <div class="head_one">
+            <div class="navbar-custom-menu">
+                <div class="nav-left">
+                    <a href="admin/person"><img src="static/ssj/images/user_img.png" class="user-image"><span>${session.session_user.realname!session.session_user.username }</span></a>
+                </div>
+                <div class="nav-right"><a role="menuitem"  href="admin/logout"><img src="static/ssj/images/msg.png" class="user-image"></a></div>
+            </div>
+        </div>
+        <div class="head_two">
+            <!--<div class="nav-bar">旅游市场秩序监管“双随机”抽查系统</div>-->
+            <div class="nav-bar-left"></div>
+            <div class="nav-bar-right">
+                <ul>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--右侧部分上部分布局结束-->
+
+    <!--右侧部分下部分布局开始-->
+    <div class="main">
+
 		<div class="tableSearch">
 			<%  //查询列表 %>
 						<div class="form-group">
@@ -148,6 +178,11 @@ var bodyContent = {
 			</tbody>
 		</table>
 		<%include("/pages/includes/paginator.html"){} %>
+
+	</div>
+    <!--右侧部分下部分布局结束-->
+</div>		
+		
 	</form>
 <%}; %>
 
