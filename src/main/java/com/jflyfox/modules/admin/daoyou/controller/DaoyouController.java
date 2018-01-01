@@ -11,6 +11,7 @@ import com.jflyfox.jfinal.base.BaseController;
 import com.jflyfox.jfinal.component.annotation.ControllerBind;
 import com.jflyfox.jfinal.component.db.SQLUtils;
 import com.jflyfox.modules.admin.lingdui.model.TbZdyld;
+import com.jflyfox.modules.admin.lvxingshe.model.TbZyichang;
 import com.jflyfox.modules.admin.site.TbSite;
 import com.jflyfox.system.config.ConfigCache;
 import com.jflyfox.system.file.util.FileUploadUtils;
@@ -78,6 +79,30 @@ public class DaoyouController extends BaseProjectController {
 	public void save() {
 		Integer pid = getParaToInt();
 		TbZdyld model = getModel(TbZdyld.class);
+		if (pid != null && pid > 0) { // 更新
+			model.update();
+		} else { // 新增
+			model.remove("id");
+			model.put("create_id", getSessionUser().getUserid());
+			model.put("create_time", getNow());
+			model.save();
+		}
+		renderMessage("保存成功");
+	}
+	
+	public void yichang() {
+		Integer yichang=getParaToInt();
+		setAttr("yichang", "DA_"+yichang);
+		render(path + "yichang.html");
+	}
+	
+	public void dimport() {
+		render(path + "import.html");
+	}
+	
+	public void ycsave() {
+		Integer pid = getParaToInt();
+		TbZyichang model = getModel(TbZyichang.class);
 		if (pid != null && pid > 0) { // 更新
 			model.update();
 		} else { // 新增

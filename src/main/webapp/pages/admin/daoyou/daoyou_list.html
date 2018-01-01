@@ -39,6 +39,16 @@
 					form1.action = url;
 					form1.submit();
 				});
+			},
+			yichang : function(id) {
+				var url = 'admin/daoyou/yichang/'+id;
+				var title = '异常记录增加';
+				Iframe(url, this.width, this.height, title);
+			},
+			dimport : function() {
+				var url = 'admin/daoyou/dimport';
+				var title = '数据导入';
+				Iframe(url, this.width, this.height, title);
 			}
 		};
 		//显示Menu索引
@@ -106,14 +116,14 @@ var bodyContent = {
                     <span>导游管理</span>
                     <div class="ssj-btn ssj-btn-active" onclick="oper.add();"><img src="static/ssj/images/add_one.png"><p>新增</p></div>
                     <!-- <div class="ssj-btn"><img src="static/ssj/images/del_btn_one.png"><p>删除</p></div> -->
-                    <div class="ssj-btn ssj-btn-active"><img src="static/ssj/images/error_btn_one.png"><p>异常记录</p></div>
+                    <!-- <div class="ssj-btn ssj-btn-active"><img src="static/ssj/images/error_btn_one.png"><p>异常记录</p></div> -->
                     <div class="search-right">
                         <div class="search">
                             <input type="text" name="attr.name" value="${attr.name!''}" placeholder="请输入导游名称" />
                             <div class="search-btn" onclick="oper.list();"></div>
                             <button class="search-btn" onclick="oper.list();" name="search" hidden="hidden"></button>
                         </div>
-                        <div class="book_add"></div>
+                        <div class="book_add" onclick="oper.dimport();"></div>
                     </div>
 
                 </div>
@@ -150,6 +160,7 @@ var bodyContent = {
 								<a href="javascript:void(0);" class="btn btn-sm btn-success" onclick="oper.view(${item.id});">查看</a> 
 								<a href="javascript:void(0);" class="btn btn-sm btn-primary" onclick="oper.edit(${item.id});">修改</a> 
 								<a href="javascript:void(0);" class="btn btn-sm btn-danger" onclick="oper.del(${item.id});">删除</a>
+								<a href="javascript:void(0);" class="btn btn-sm btn-danger" onclick="oper.yichang(${item.id});">异常记录</a>
 								</td>
 								</tr>
 							<% } %>
