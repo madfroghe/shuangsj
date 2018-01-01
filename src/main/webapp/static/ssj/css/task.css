@@ -9,7 +9,7 @@
     float: left;
     position: relative;
 }
-.task_right li span{
+.task_right li .task_right{
     position: absolute;
     z-index: 10;
     height: 100%;
@@ -19,13 +19,11 @@
     margin-right: 8px;
     /*border-top-left-radius: 20px;*/
     /*border-bottom-left-radius: 20px;*/
-    /*background: #00b8f7;*/
-    background: -moz-linear-gradient(top, rgb(0,189,252) 0%, rgb(0,168,227) 50%, rgb(2,149,203) 100%);
-    background: -webkit-linear-gradient(top, rgb(0,189,252) 0%, rgb(0,168,227) 40%, rgb(2,149,203) 100%);
-    background: linear-gradient(to bottom, rgb(0,189,252) 0%, rgb(0,168,227) 40%, rgb(2,149,203) 100%);
+    background: -moz-linear-gradient(top, rgb(206,206,206) 0%, rgb(175,175,175) 50%, rgb(147, 147, 147) 100%);
+    background: -webkit-linear-gradient(top, rgb(206,206,206) 0%, rgb(175,175,175) 50%, rgb(147, 147, 147) 100%);
+    background: linear-gradient(to bottom, rgb(206,206,206) 0%, rgb(175,175,175) 50%, rgb(147, 147, 147) 100%);
     color: #ffffff;
     font-size:16px;
-    text-shadow: 5px 2px 6px #0088b8;
 }
 /*.task_right li:last-child{*/
     /*height: 40px;*/
@@ -40,7 +38,7 @@
     /*text-shadow: 5px 2px 6px #0088b8;*/
     /*float: left;*/
 /*}*/
-.task_right li:before{
+.task_right li .task_right_before{
     z-index: 12;
     content: '';
     position: absolute;
@@ -49,15 +47,22 @@
     left: -20px;
     top: 0;
     /*border-color: #00b8f7;*/
+    background: -moz-linear-gradient(top, rgb(206,206,206) 0%, rgb(175,175,175) 50%, rgb(147, 147, 147) 100%);
+    background: -webkit-linear-gradient(top, rgb(206,206,206) 0%, rgb(175,175,175) 50%, rgb(147, 147, 147) 100%);
+    background: linear-gradient(to bottom, rgb(206,206,206) 0%, rgb(175,175,175) 50%, rgb(147, 147, 147) 100%);
     border-right-color: transparent;!important;
     border-top-left-radius: 20px;
     border-bottom-left-radius: 20px;
 
+}
+
+.task_right li .task_right-active{
     /*background: #00C3B0;*/
     background: -moz-linear-gradient(top, rgb(0,189,252) 0%, rgb(0,168,227) 50%, rgb(2,149,203) 100%);
     background: -webkit-linear-gradient(top, rgb(0,189,252) 0%, rgb(0,168,227) 40%, rgb(2,149,203) 100%);
     background: linear-gradient(to bottom, rgb(0,189,252) 0%, rgb(0,168,227) 40%, rgb(2,149,203) 100%);
 }
+
 .task_right li:after{
     z-index: 11;
     content: '';
