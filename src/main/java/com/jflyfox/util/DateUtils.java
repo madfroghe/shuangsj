@@ -54,6 +54,8 @@ public class DateUtils {
 	public static final String YMD = "yyyy-MM-dd";
 	/** 时间格式：HH:mm:ss */
 	public static final String HMS = "HH:mm:ss";
+	/** 时间格式：HH:mm:ss */
+	public static final String XINGQI = "EEEE";
 	
 	/**
 	 * 默认的日期格式 .
@@ -282,6 +284,16 @@ public class DateUtils {
 		ca.set(Calendar.MINUTE, 59);
 		ca.set(Calendar.SECOND, 59);
 		return format(ca.getTime(), "yyyy-MM-dd HH:mm:ss");
+	}
+	
+	/***
+	 * 获取指定时间星期几
+	 * 
+	 * @param date
+	 * @return
+	 */
+	public static String getCurrenDayXingQi() {
+		return format(getNowDate(), "EEEE");
 	}
 
 }

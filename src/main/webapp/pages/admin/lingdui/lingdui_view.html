@@ -1,0 +1,85 @@
+<% 
+var headContent = {
+	include("/pages/template/head.html"){}
+};
+
+var bodyContent = {
+%>
+<form name="form1" action="" method="post" class="form-horizontal" role="form">
+	<!-- 数据列表 -->
+	<table class="table">
+		<%  // 列表头部 %>
+						<tr>
+				<td>姓名</td>
+				<td>${model.name}</td>
+			</tr>
+						<tr>
+				<td>性别</td>
+				<td>${model.sex}</td>
+			</tr>
+						<tr>
+				<td>语种（普通话、粤语、闽南语、英语、日语、韩语、泰语、越南语、法语、意大利语、西班牙语、其他（可输入））</td>
+				<td>${model.language}</td>
+			</tr>
+						<tr>
+				<td>电子导游证号</td>
+				<td>${model.dy_code}</td>
+			</tr>
+						<tr>
+				<td>级别(初级、中级、高级、特级)</td>
+				<td>${model.dy_level}</td>
+			</tr>
+						<tr>
+				<td>是否备案领队(是</td>
+				<td>${model.dy_lingdui}</td>
+			</tr>
+						<tr>
+				<td>领队类别(出境、赴台)</td>
+				<td>${model.ld_type}</td>
+			</tr>
+						<tr>
+				<td>联系电话</td>
+				<td>${model.dy_phone}</td>
+			</tr>
+						<tr>
+				<td>所在旅行社</td>
+				<td>${model.dy_lxs}</td>
+			</tr>
+						<tr>
+				<td>备注</td>
+				<td>${model.dy_beizhu}</td>
+			</tr>
+						<tr>
+				<td>异常情况</td>
+				<td>${model.dy_yichang}</td>
+			</tr>
+						<tr>
+				<td>更新时间</td>
+				<td>${model.update_time}</td>
+			</tr>
+						<tr>
+				<td>更新人</td>
+				<td>${model.update_id}</td>
+			</tr>
+						<tr>
+				<td>创建时间</td>
+				<td>${model.create_time}</td>
+			</tr>
+						<tr>
+				<td>创建者</td>
+				<td>${model.create_id}</td>
+			</tr>
+		
+	</table>
+	
+	<div style="height: 50px;clear: both;">&nbsp;</div>
+	<nav class="navbar navbar-default navbar-fixed-bottom">
+	  <div class="container" style="padding: 5px 0px 5px 0px;text-align: center;">
+		<button class="btn btn-default" onclick="closeIframe();return false;">关 闭</button>
+	  </div>
+	</nav>
+</form>
+<%}; %>
+
+<% layout("/pages/template/_layout.html",{head:headContent,body:bodyContent}){ %>
+<%} %>

@@ -1,0 +1,177 @@
+<% 
+var headContent = {
+	include("/pages/template/head.html"){}
+};
+
+var bodyContent = {
+%>
+<form name="form1" action="" method="post" class="form-horizontal" role="form">
+	<!-- 数据列表 -->
+	<table class="table">
+		<%  // 列表头部 %>
+						<tr>
+				<td>名称</td>
+				<td>${model.name}</td>
+			</tr>
+						<tr>
+				<td>英文名称</td>
+				<td>${model.en_name}</td>
+			</tr>
+						<tr>
+				<td>经营许可证号</td>
+				<td>${model.code}</td>
+			</tr>
+						<tr>
+				<td>单位类型(法人单位、分社)</td>
+				<td>${model.lxs_type}</td>
+			</tr>
+						<tr>
+				<td>旅行社等级(五星、四星、三星、二星、一星、无星)</td>
+				<td>${model.lxs_level}</td>
+			</tr>
+						<tr>
+				<td>经营类别(国内社、出境社、赴台社)</td>
+				<td>${model.lxs_business}</td>
+			</tr>
+						<tr>
+				<td>法定代表人姓名</td>
+				<td>${model.faren}</td>
+			</tr>
+						<tr>
+				<td>法定代表人身份证号</td>
+				<td>${model.shenfz}</td>
+			</tr>
+						<tr>
+				<td>联系电话1</td>
+				<td>${model.phone_f}</td>
+			</tr>
+						<tr>
+				<td>联系电话2</td>
+				<td>${model.phone_s}</td>
+			</tr>
+						<tr>
+				<td>成立日期</td>
+				<td>${model.cl_time}</td>
+			</tr>
+						<tr>
+				<td>注册资本(以万元为单位)</td>
+				<td>${model.cl_money}</td>
+			</tr>
+						<tr>
+				<td>出资类型(内资、外资独资、中外合资)</td>
+				<td>${model.money_type}</td>
+			</tr>
+						<tr>
+				<td>企业类型(根据工商的分类)</td>
+				<td>${model.qiye_type}</td>
+			</tr>
+						<tr>
+				<td>统一社会信用代码(18位的代码)</td>
+				<td>${model.qiye_code}</td>
+			</tr>
+						<tr>
+				<td>工商注册登记号(15位的注册号)</td>
+				<td>${model.qiye_gongshang}</td>
+			</tr>
+						<tr>
+				<td>组织机构代码(10位的代码)</td>
+				<td>${model.qiye_zuzhi}</td>
+			</tr>
+						<tr>
+				<td>公司注册地址</td>
+				<td>${model.qiye_dizhi}</td>
+			</tr>
+						<tr>
+				<td>邮编</td>
+				<td>${model.qiye_youbian}</td>
+			</tr>
+						<tr>
+				<td>传真</td>
+				<td>${model.qiye_chuanzhen}</td>
+			</tr>
+						<tr>
+				<td>邮箱</td>
+				<td>${model.qiye_email}</td>
+			</tr>
+						<tr>
+				<td>注册地所属区域</td>
+				<td>${model.qiye_quyu}</td>
+			</tr>
+						<tr>
+				<td>公司办公地址</td>
+				<td>${model.qiye_bgdizhi}</td>
+			</tr>
+						<tr>
+				<td>办公地所属区域</td>
+				<td>${model.qiye_bgquyu}</td>
+			</tr>
+						<tr>
+				<td>员工人数</td>
+				<td>${model.qiye_renshu}</td>
+			</tr>
+						<tr>
+				<td>签订劳动合同员工人数</td>
+				<td>${model.qiye_htrenshu}</td>
+			</tr>
+						<tr>
+				<td>导游人数</td>
+				<td>${model.qiye_dyrenshu}</td>
+			</tr>
+						<tr>
+				<td>签订劳动合同导游人数</td>
+				<td>${model.qiye_htdyrenshu}</td>
+			</tr>
+						<tr>
+				<td>领队人数</td>
+				<td>${model.qiye_ldrenshu}</td>
+			</tr>
+						<tr>
+				<td>签订劳动合同领队人数</td>
+				<td>${model.qiye_htldrenshu}</td>
+			</tr>
+						<tr>
+				<td>备注</td>
+				<td>${model.beizhu}</td>
+			</tr>
+						<tr>
+				<td>曾接受检查情况</td>
+				<td>${model.jiancha}</td>
+			</tr>
+						<tr>
+				<td>历年经营规模</td>
+				<td>${model.jingyinggm}</td>
+			</tr>
+						<tr>
+				<td>异常情况记录</td>
+				<td>${model.yichang}</td>
+			</tr>
+						<tr>
+				<td>更新时间</td>
+				<td>${model.update_time}</td>
+			</tr>
+						<tr>
+				<td>更新人</td>
+				<td>${model.update_id}</td>
+			</tr>
+						<tr>
+				<td>创建时间</td>
+				<td>${model.create_time}</td>
+			</tr>
+						<tr>
+				<td>创建者</td>
+				<td>${model.create_id}</td>
+			</tr>
+		
+	</table>
+	
+	<div style="height: 50px;clear: both;">&nbsp;</div>
+	<nav class="navbar navbar-default navbar-fixed-bottom">
+	  <div class="container" style="padding: 5px 0px 5px 0px;text-align: center;">
+		<button class="btn btn-default" onclick="closeIframe();return false;">关 闭</button>
+	  </div>
+	</nav>
+</form>
+<%}; %>
+
+<% layout("/pages/template/_layout.html",{head:headContent,body:bodyContent}){ %>
+<%} %>

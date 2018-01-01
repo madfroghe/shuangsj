@@ -103,7 +103,7 @@ public class AdminController extends BaseProjectController {
 		setSessionUser(user);
 
 		// 第一个页面跳转
-		String tmpMainPage = setFirstPage();
+		String tmpMainPage = "/admin/home";
 
 		if (tmpMainPage == null) {
 			setAttr("msg", "没有权限，请联系管理员。");

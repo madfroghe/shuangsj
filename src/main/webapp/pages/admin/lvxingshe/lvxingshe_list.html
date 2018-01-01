@@ -1,0 +1,159 @@
+<% 
+	var headContent = {
+	include("/pages/template/head.html"){}
+%>
+
+<script type="text/javascript">
+		
+	var oper;
+	jQuery(function($) {
+		// 页面方法
+		oper = {
+			width : 400,
+			height : 500,
+			form : document.form1,
+			list : function() {
+				var url = 'admin/lvxingshe/list';
+				this.form.action = url;
+				this.form.submit();
+			},
+			view : function(id) {
+				var url = 'admin/lvxingshe/view/'+id;
+				var title = '查看';
+				Iframe(url, this.width, this.height, title, false, false, false, EmptyFunc);
+			},
+			add : function() {
+				var url = 'admin/lvxingshe/add';
+				var title = '添加';
+				Iframe(url, this.width, this.height, title, false, false, false, EmptyFunc);
+			},
+			edit : function(id) {
+				var url = 'admin/lvxingshe/edit/'+id;
+				var title = '修改';
+				Iframe(url, this.width, this.height, title, false, false, false, EmptyFunc);
+			},
+			del : function(id) {
+				var url = 'admin/lvxingshe/delete/'+id;
+				var title = '确认要删除该信息？';
+				Confirm(title, function() {
+					form1.action = url;
+					form1.submit();
+				});
+			}
+		};
+		//显示Menu索引
+		showMenu('page_ssj_lvxingshe');
+	});
+	
+	//分页
+	var paginator = function(page) {
+		oper.list();
+	};
+</script>
+
+<%
+};
+
+var bodyContent = {
+%>
+	
+		<!-- 菜单 -->
+		<% include("/pages/template/menu.html"){} %>
+
+<!--右侧部分布局开始-->
+<div class="right-body">
+    <!--右侧部分上部分布局开始-->
+    <div class="head">
+        <div class="head_one">
+            <div class="navbar-custom-menu">
+                <div class="nav-left">
+                    <a href="admin/person"><img src="static/ssj/images/user_img.png" class="user-image"><span>${session.session_user.realname!session.session_user.username }</span></a>
+                </div>
+                <div class="nav-right"><a role="menuitem"  href="admin/logout"><img src="static/ssj/images/msg.png" class="user-image"></a></div>
+            </div>
+        </div>
+        <div class="head_two">
+            <!--<div class="nav-bar">旅游市场秩序监管“双随机”抽查系统</div>-->
+            <div class="nav-bar-left"></div>
+            <div class="nav-bar-right">
+                <ul>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--右侧部分上部分布局结束-->
+
+    <!--右侧部分下部分布局开始-->
+    <div class="main">
+		
+		<div class="nav">
+            <div class="nav-left">
+                <img src="static/ssj/images/position.png">当前位置 : 市场主体管理
+            </div>
+            <div class="nav-right">${nowTime} ${xingQi}</div>
+        </div>
+		
+		<!--详细内容列表-->
+        <div class="content">
+            <div class="content-body">
+                <div class="content-body-head">
+                    <span>旅行社管理</span>
+                    <div class="btn btn-active"><img src="static/ssj/images/add_one.png"><p>新增</p></div>
+                    <div class="btn"><img src="static/ssj/images/del_btn_one.png"><p>删除</p></div>
+                    <div class="btn"><img src="static/ssj/images/error_btn_one.png"><p>异常记录</p></div>
+                    <div class="search-right">
+                        <div class="search">
+                            <input />
+                            <div class="search-btn"></div>
+                        </div>
+                        <div class="book_add"></div>
+                    </div>
+
+                </div>
+                <div class="box-body">
+                    <table class="table table-hover">
+                            <tr>
+                                <th>姓名</th>
+                                <th>性别</th>
+                                <th>语种</th>
+                                <th>领队类别</th>
+                                <th>领队证号</th>
+                                <th>所在旅行社</th>
+                                <th>是否异常</th>
+                                <th>操作</th>
+                            </tr>
+                            <tr>
+                                <td>王小楠</td>
+                                <td>男</td>
+                                <td>中文</td>
+                                <td>出境</td>
+                                <td>D-1100-335687</td>
+                                <td>宁波飞扬国际旅行社</td>
+                                <td>否</td>
+                                <td><a href="#">详情</a></td>
+                            </tr>
+                            
+                    </table>
+                    <%include("/pages/includes/paginator.html"){} %>
+                </div>
+
+                <!--分页-->
+                
+            </div>
+
+        </div>
+
+
+	</div>
+    <!--右侧部分下部分布局结束-->
+</div>		
+		
+	
+<%}; %>
+
+
+<% layout("/pages/template/_layout.html",{head:headContent,body:bodyContent}){ %>
+<%} %>

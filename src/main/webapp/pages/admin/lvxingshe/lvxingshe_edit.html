@@ -1,0 +1,273 @@
+<% 
+DIRECTIVE SAFE_OUTPUT_OPEN;
+var headContent = {
+	include("/pages/template/head.html"){}
+%>
+<% include("/pages/includes/my97.html"){} %>
+<script type="text/javascript">
+	var oper = {
+		save:function(id){
+			if(!validForm()) {
+				return false;
+			}
+			id = id || '0';
+			var url = 'admin/lvxingshe/save/'+id;
+			form1.action = url;
+			form1.submit();
+			return true;
+		}	
+	};
+</script>
+
+<%
+};
+var bodyContent = {
+%>
+<form name="form1" action="" method="post" class="form-horizontal"
+		role="form" >
+	<input type="hidden" name="model.id" value="${model.id}" />
+	<table class="table">
+		<%  // 列表头部%>
+								<tr>
+					<td>名称</td>
+					<td>
+					<input class="form-control" type="text" name="model.name" value="${model.name }"  valid='vtext' validname='名称'  />
+											</td>
+				</tr>
+								<tr>
+					<td>英文名称</td>
+					<td>
+					<input class="form-control" type="text" name="model.en_name" value="${model.en_name }"  valid='vtext' validname='英文名称'  />
+											</td>
+				</tr>
+								<tr>
+					<td>经营许可证号</td>
+					<td>
+					<input class="form-control" type="text" name="model.code" value="${model.code }"  valid='vtext' validname='经营许可证号'  />
+											</td>
+				</tr>
+								<tr>
+					<td>单位类型</td>
+					<td>
+					<select name="model.lxs_type" class="form-control" valid="vselect" validname='单位类型'>
+					<option value="-1">请选择单位类型</option>
+					${flyfox.dictSelect('ssj_dwlx' , model.lxs_type!'')  }
+					</select>
+											</td>
+				</tr>
+								<tr>
+					<td>旅行社等级</td>
+					<td>
+					<select name="model.lxs_level" class="form-control" valid="vselect" validname='旅行社等级'>
+					<option value="-1">请选择旅行社等级</option>
+					${flyfox.dictSelect('ssj_lxsdj' , model.lxs_level!'')  }
+					</select>
+											</td>
+				</tr>
+								<tr>
+					<td>经营类别</td>
+					<td>
+					<select name="model.lxs_business" class="form-control" valid="vselect" validname='经营类别'>
+					<option value="-1">请选择经营类别</option>
+					${flyfox.dictSelect('ssj_jylb' , model.lxs_business!'')  }
+					</select>
+											</td>
+				</tr>
+								<tr>
+					<td>法定代表人姓名</td>
+					<td>
+					<input class="form-control" type="text" name="model.faren" value="${model.faren }"  valid='vtext' validname='法定代表人姓名'  />
+											</td>
+				</tr>
+								<tr>
+					<td>法定代表人身份证号</td>
+					<td>
+					<input class="form-control" type="text" name="model.shenfz" value="${model.shenfz }"  valid='vtext' validname='法定代表人身份证号'  />
+											</td>
+				</tr>
+								<tr>
+					<td>联系电话1</td>
+					<td>
+					<input class="form-control" type="text" name="model.phone_f" value="${model.phone_f }"  valid='vtext' validname='联系电话1'  />
+											</td>
+				</tr>
+								<tr>
+					<td>联系电话2</td>
+					<td>
+					<input class="form-control" type="text" name="model.phone_s" value="${model.phone_s }"  valid='vtext' validname='联系电话2'  />
+											</td>
+				</tr>
+								<tr>
+					<td>成立日期</td>
+					<td>
+					<input class="form-control" type="text" name="model.cl_time" 
+						value="${model.cl_time}"  onfocus="WdatePicker({dateFmt:'yyyy-MM-dd'})" />
+											</td>
+				</tr>
+								<tr>
+					<td>注册资本(万元)</td>
+					<td>
+					<input class="form-control" type="text" name="model.cl_money" value="${model.cl_money }"  valid='vtext' validname='注册资本(万元)'  />
+											</td>
+				</tr>
+								<tr>
+					<td>出资类型</td>
+					<td>
+					<select name="model.money_type" class="form-control" valid="vselect" validname='出资类型'>
+					<option value="-1">请选择出资类型</option>
+					${flyfox.dictSelect('ssj_czlx' , model.money_type!'')  }
+					</select>
+											</td>
+				</tr>
+								<tr>
+					<td>企业类型</td>
+					<td>
+					<select name="model.qiye_type" class="form-control" valid="vselect" validname='企业类型'>
+					<option value="-1">请选择企业类型</option>
+					${flyfox.dictSelect('ssj_qylx' , model.qiye_type!'')  }
+					</select>
+											</td>
+				</tr>
+								<tr>
+					<td>统一社会信用代码</td>
+					<td>
+					<input class="form-control" type="text" name="model.qiye_code" value="${model.qiye_code }"  valid='vtext' validname='统一社会信用代码'  />
+											</td>
+				</tr>
+								<tr>
+					<td>工商注册登记号</td>
+					<td>
+					<input class="form-control" type="text" name="model.qiye_gongshang" value="${model.qiye_gongshang }"  valid='vtext' validname='工商注册登记号'  />
+											</td>
+				</tr>
+								<tr>
+					<td>组织机构代码</td>
+					<td>
+					<input class="form-control" type="text" name="model.qiye_zuzhi" value="${model.qiye_zuzhi }"  valid='vtext' validname='组织机构代码'  />
+											</td>
+				</tr>
+								<tr>
+					<td>公司注册地址</td>
+					<td>
+					<input class="form-control" type="text" name="model.qiye_dizhi" value="${model.qiye_dizhi }"  valid='vtext' validname='公司注册地址'  />
+											</td>
+				</tr>
+								<tr>
+					<td>邮编</td>
+					<td>
+					<input class="form-control" type="text" name="model.qiye_youbian" value="${model.qiye_youbian }"  valid='vtext' validname='邮编'  />
+											</td>
+				</tr>
+								<tr>
+					<td>传真</td>
+					<td>
+					<input class="form-control" type="text" name="model.qiye_chuanzhen" value="${model.qiye_chuanzhen }"  valid='vtext' validname='传真'  />
+											</td>
+				</tr>
+								<tr>
+					<td>邮箱</td>
+					<td>
+					<input class="form-control" type="text" name="model.qiye_email" value="${model.qiye_email }"  valid='vtext' validname='邮箱'  />
+											</td>
+				</tr>
+								<tr>
+					<td>注册地所属区域</td>
+					<td>
+					<select name="model.qiye_quyu" class="form-control" valid="vselect" validname='注册地所属区域'>
+					<option value="-1">请选择注册地所属区域</option>
+					${flyfox.dictSelect('ssj_zcdssqy' , model.qiye_quyu!'')  }
+					</select>
+											</td>
+				</tr>
+								<tr>
+					<td>公司办公地址</td>
+					<td>
+					<input class="form-control" type="text" name="model.qiye_bgdizhi" value="${model.qiye_bgdizhi }"  valid='vtext' validname='公司办公地址'  />
+											</td>
+				</tr>
+								<tr>
+					<td>办公地所属区域</td>
+					<td>
+					<select name="model.qiye_bgquyu" class="form-control" valid="vselect" validname='办公地所属区域'>
+					<option value="-1">请选择办公地所属区域</option>
+					${flyfox.dictSelect('ssj_zcdssqy' , model.qiye_bgquyu!'')  }
+					</select>
+											</td>
+				</tr>
+								<tr>
+					<td>员工人数</td>
+					<td>
+					<input class="form-control" type="text" name="model.qiye_renshu" value="${model.qiye_renshu }"  valid='vtext' validname='员工人数'  />
+											</td>
+				</tr>
+								<tr>
+					<td>签订劳动合同员工人数</td>
+					<td>
+					<input class="form-control" type="text" name="model.qiye_htrenshu" value="${model.qiye_htrenshu }"  valid='vtext' validname='签订劳动合同员工人数'  />
+											</td>
+				</tr>
+								<tr>
+					<td>导游人数</td>
+					<td>
+					<input class="form-control" type="text" name="model.qiye_dyrenshu" value="${model.qiye_dyrenshu }"  valid='vtext' validname='导游人数'  />
+											</td>
+				</tr>
+								<tr>
+					<td>签订劳动合同导游人数</td>
+					<td>
+					<input class="form-control" type="text" name="model.qiye_htdyrenshu" value="${model.qiye_htdyrenshu }"  valid='vtext' validname='签订劳动合同导游人数'  />
+											</td>
+				</tr>
+								<tr>
+					<td>领队人数</td>
+					<td>
+					<input class="form-control" type="text" name="model.qiye_ldrenshu" value="${model.qiye_ldrenshu }"  valid='vtext' validname='领队人数'  />
+											</td>
+				</tr>
+								<tr>
+					<td>签订劳动合同领队人数</td>
+					<td>
+					<input class="form-control" type="text" name="model.qiye_htldrenshu" value="${model.qiye_htldrenshu }"  valid='vtext' validname='签订劳动合同领队人数'  />
+											</td>
+				</tr>
+								<tr>
+					<td>备注</td>
+					<td>
+					<input class="form-control" type="text" name="model.beizhu" value="${model.beizhu }"  valid='vtext' validname='备注'  />
+											</td>
+				</tr>
+								<tr>
+					<td>曾接受检查情况</td>
+					<td>
+					<input class="form-control" type="text" name="model.jiancha" value="${model.jiancha }"  valid='vtext' validname='曾接受检查情况'  />
+											</td>
+				</tr>
+								<tr>
+					<td>历年经营规模</td>
+					<td>
+					<input class="form-control" type="text" name="model.jingyinggm" value="${model.jingyinggm }"  valid='vtext' validname='历年经营规模'  />
+											</td>
+				</tr>
+								<tr>
+					<td>异常情况记录</td>
+					<td>
+					<input class="form-control" type="text" name="model.yichang" value="${model.yichang }"  valid='vtext' validname='异常情况记录'  />
+											</td>
+				</tr>
+								
+	</table>
+	
+	<div style="height: 50px;clear: both;">&nbsp;</div>
+	<nav class="navbar navbar-default navbar-fixed-bottom">
+	  <div class="container" style="padding: 5px 0px 5px 0px;text-align: center;">
+		<button class="btn btn-primary" onclick="return oper.save(${model.id});">保 存</button>
+		<button class="btn btn-default" onclick="closeIframe();return false;">关 闭</button>
+	  </div>
+	</nav>
+</form>
+<%}; %>
+
+<% layout("/pages/template/_layout.html",{head:headContent,body:bodyContent}){ %>
+<%}
+DIRECTIVE SAFE_OUTPUT_CLOSE; 
+%>

@@ -1,0 +1,150 @@
+<% 
+	var headContent = {
+	include("/pages/template/head.html"){}
+%>
+
+<script type="text/javascript">
+		
+	var oper;
+	jQuery(function($) {
+		// 页面方法
+		oper = {
+			width : 400,
+			height : 500,
+			form : document.form1,
+			list : function() {
+				var url = 'admin/zhifa/list';
+				this.form.action = url;
+				this.form.submit();
+			},
+			view : function(id) {
+				var url = 'admin/zhifa/view/'+id;
+				var title = '查看';
+				Iframe(url, this.width, this.height, title, false, false, false, EmptyFunc);
+			},
+			add : function() {
+				var url = 'admin/zhifa/add';
+				var title = '添加';
+				Iframe(url, this.width, this.height, title);
+			},
+			edit : function(id) {
+				var url = 'admin/zhifa/edit/'+id;
+				var title = '修改';
+				Iframe(url, this.width, this.height, title);
+			},
+			del : function(id) {
+				var url = 'admin/zhifa/delete/'+id;
+				var title = '确认要删除该信息？';
+				Confirm(title, function() {
+					form1.action = url;
+					form1.submit();
+				});
+			}
+		};
+		//显示Menu索引
+		showMenu('page_ssj_zhifa');
+	});
+	
+	//分页
+	var paginator = function(page) {
+		oper.list();
+	};
+</script>
+
+<%
+};
+
+var bodyContent = {
+%>
+	<form name="form1" action="" method="post"  class="form-inline" role="form">
+		<!-- 菜单 -->
+		<% include("/pages/template/menu.html"){} %>
+
+<!--右侧部分布局开始-->
+<div class="right-body">
+    <!--右侧部分上部分布局开始-->
+    <div class="head">
+        <div class="head_one">
+            <div class="navbar-custom-menu">
+                <div class="nav-left">
+                    <a href="admin/person"><img src="static/ssj/images/user_img.png" class="user-image"><span>${session.session_user.realname!session.session_user.username }</span></a>
+                </div>
+                <div class="nav-right"><a role="menuitem"  href="admin/logout"><img src="static/ssj/images/msg.png" class="user-image"></a></div>
+            </div>
+        </div>
+        <div class="head_two">
+            <!--<div class="nav-bar">旅游市场秩序监管“双随机”抽查系统</div>-->
+            <div class="nav-bar-left"></div>
+            <div class="nav-bar-right">
+                <ul>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--右侧部分上部分布局结束-->
+
+    <!--右侧部分下部分布局开始-->
+    <div class="main">
+		<div class="tableSearch">
+			<%  //查询列表 %>
+			
+			<button type="button" class="btn btn-default" onclick="oper.list();" name="search">
+			 		<span class="glyphicon glyphicon-search"></span> 查 询
+			</button>
+			<button type="button" class="btn btn-default" onclick="resetForm();">
+			 		<span class="glyphicon glyphicon-refresh"></span> 重 置
+			</button>
+			<button type="button" class="btn btn-default" onclick="oper.add();">
+			 		<span class="glyphicon glyphicon-plus"></span> 新 增
+			</button>
+		</div>
+		
+		<!-- 数据列表 -->
+		<table class="table table-striped table-bordered table-hover">
+			<thead>
+				<tr>
+					<th>序号</th>
+					<%  // 列表头部 %>
+					<th>姓名</th>
+					<th>性别</th>
+					<th>身份证号</th>
+					<th>执法证号</th>
+					<th>就职部门</th>
+					<th>联系电话</th> 
+ 					<th>操作</th>
+				</tr>
+			</thead>
+			<tbody>
+			<% for(item in page.list){ %>
+				<tr>
+				<td>${itemLP.index }</td>
+					<%  // 列表内容 %>
+					<td>${item.name}</td> 
+ 					<td>${item.sex}</td>
+					<td>${item.sfzheng}</td> 
+					<td>${item.zfzheng}</td>
+					<td>${item.bumen}</td>  
+					<td>${item.phone}</td> 
+				<td>
+				<a href="javascript:void(0);" class="btn btn-sm btn-success" onclick="oper.view(${item.id});">查看</a> 
+				<a href="javascript:void(0);" class="btn btn-sm btn-primary" onclick="oper.edit(${item.id});">修改</a> 
+				<a href="javascript:void(0);" class="btn btn-sm btn-danger" onclick="oper.del(${item.id});">删除</a>
+				</td>
+				</tr>
+			<% } %>
+			</tbody>
+		</table>
+		<%include("/pages/includes/paginator.html"){} %>
+
+	</div>
+    <!--右侧部分下部分布局结束-->
+</div>
+	</form>
+<%}; %>
+
+
+<% layout("/pages/template/_layout.html",{head:headContent,body:bodyContent}){ %>
+<%} %>

@@ -1,0 +1,127 @@
+<% 
+DIRECTIVE SAFE_OUTPUT_OPEN;
+var headContent = {
+	include("/pages/template/head.html"){}
+%>
+<script type="text/javascript">
+	var oper = {
+		save:function(id){
+			if(!validForm()) {
+				return false;
+			}
+			id = id || '0';
+			var url = 'admin/lingdui/save/'+id;
+			form1.action = url;
+			form1.submit();
+			return true;
+		}	
+	};
+</script>
+
+<%
+};
+var bodyContent = {
+%>
+<form name="form1" action="" method="post" class="form-horizontal"
+		role="form" >
+	<input type="hidden" name="model.id" value="${model.id}" />
+	<table class="table">
+		<%  // 列表头部%>
+								<tr>
+					<td>姓名</td>
+					<td>
+					<input class="form-control" type="text" name="model.name" value="${model.name }"  valid='vtext' validname='姓名'  />
+											</td>
+				</tr>
+								<tr>
+					<td>性别</td>
+					<td>
+					<select name="model.sex" class="form-control" valid="vselect" validname='性别'>
+					<option value="-1">请选择性别</option>
+					${flyfox.dictSelect('ssj_xb' , model.lxs_type!'')  }
+					</select>
+											</td>
+				</tr>
+								<tr>
+					<td>语种</td>
+					<td>
+					<select name="model.language" class="form-control" valid="vselect" validname='语种'>
+					<option value="-1">请选择语种</option>
+					${flyfox.dictSelect('ssj_yz' , model.lxs_type!'')  }
+					</select>
+											</td>
+				</tr>
+								<tr>
+					<td>电子导游证号</td>
+					<td>
+					<input class="form-control" type="text" name="model.dy_code" value="${model.dy_code }"  valid='vtext' validname='电子导游证号'  />
+											</td>
+				</tr>
+								<tr>
+					<td>级别</td>
+					<td>
+					<select name="model.dy_level" class="form-control" valid="vselect" validname='级别'>
+					<option value="-1">请选择级别</option>
+					${flyfox.dictSelect('ssj_dyjb' , model.lxs_type!'')  }
+					</select>
+											</td>
+				</tr>
+								<tr>
+					<td>是否备案领队</td>
+					<td>
+					<select name="model.dy_lingdui" class="form-control" valid="vselect" validname='是否备案领队'>
+					<option value="-1">请选择是否备案领队</option>
+					${flyfox.dictSelect('ssj_sfba' , model.lxs_type!'')  }
+					</select>
+											</td>
+				</tr>
+								<tr>
+					<td>领队类别</td>
+					<td>
+					<select name="model.ld_type" class="form-control" valid="vselect" validname='领队类别'>
+					<option value="-1">请选择领队类别</option>
+					${flyfox.dictSelect('ssj_ldlb' , model.lxs_type!'')  }
+					</select>
+											</td>
+				</tr>
+								<tr>
+					<td>联系电话</td>
+					<td>
+					<input class="form-control" type="text" name="model.dy_phone" value="${model.dy_phone }"  valid='vtext' validname='联系电话'  />
+											</td>
+				</tr>
+								<tr>
+					<td>所在旅行社</td>
+					<td>
+					<input class="form-control" type="text" name="model.dy_lxs" value="${model.dy_lxs }"  valid='vtext' validname='所在旅行社'  />
+											</td>
+				</tr>
+								<tr>
+					<td>备注</td>
+					<td>
+					<input class="form-control" type="text" name="model.dy_beizhu" value="${model.dy_beizhu }"  valid='vtext' validname='备注'  />
+											</td>
+				</tr>
+								<tr>
+					<td>异常情况</td>
+					<td>
+					<input class="form-control" type="text" name="model.dy_yichang" value="${model.dy_yichang }"  valid='vtext' validname='异常情况'  />
+											</td>
+				</tr>
+								
+	</table>
+	
+	<div style="height: 50px;clear: both;">&nbsp;</div>
+	<nav class="navbar navbar-default navbar-fixed-bottom">
+	  <div class="container" style="padding: 5px 0px 5px 0px;text-align: center;">
+		<button class="btn btn-primary" onclick="return oper.save(${model.id});">保 存</button>
+		<button class="btn btn-default" onclick="closeIframe();return false;">关 闭</button>
+	  </div>
+	</nav>
+</form>
+<%}; %>
+
+<% layout("/pages/template/_layout.html",{head:headContent,body:bodyContent}){ %>
+<%}
+DIRECTIVE SAFE_OUTPUT_CLOSE; 
+%>
