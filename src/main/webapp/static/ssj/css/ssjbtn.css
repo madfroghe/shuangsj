@@ -1,4 +1,6 @@
-.btn{
+
+.ssj-btn{
+	cursor:pointer;
     width:115px;
     height:40px;
     border-radius: 25px 12px 12px 25px;
@@ -15,14 +17,20 @@
     background: -webkit-linear-gradient(top, rgb(206,206,206) 0%, rgb(175,175,175) 50%, rgb(147, 147, 147) 100%);
     background: linear-gradient(to bottom, rgb(206,206,206) 0%, rgb(175,175,175) 50%, rgb(147, 147, 147) 100%);
 }
-.btn img{
+.ssj-btn img{
     vertical-align: middle;
     margin-left:8px;
     float:left;
 }
-.btn p{
+.ssj-btn p{
     width: 75px;
     line-height:30px;
     float: right;
     text-align: center;
+}
+
+.ssj-btn-active{
+    background: -moz-linear-gradient(top, rgb(0,189,253) 0%, rgb(0,166,266) 50%, rgb(2, 149, 201) 100%);
+    background: -webkit-linear-gradient(top, rgb(0,189,253) 0%, rgb(0,166,266) 50%, rgb(2, 149, 201) 100%);
+    background: linear-gradient(to bottom, rgb(0,189,253) 0%, rgb(0,166,266) 50%, rgb(2, 149, 201) 100%);
 }

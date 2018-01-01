@@ -14,6 +14,7 @@ import com.jflyfox.modules.admin.lingdui.model.TbZdyld;
 import com.jflyfox.modules.admin.site.TbSite;
 import com.jflyfox.system.config.ConfigCache;
 import com.jflyfox.system.file.util.FileUploadUtils;
+import com.jflyfox.util.DateUtils;
 import com.jfinal.plugin.activerecord.Page;
 import com.jfinal.upload.UploadFile;
 
@@ -34,11 +35,19 @@ public class DaoyouController extends BaseProjectController {
 		if (model.getAttrValues().length != 0) {
 			sql.setAlias("t");
 			// 查询条件
+			sql.whereLike("name", model.getStr("name"));
 		}
+		sql.whereEquals("dy_lingdui", "109");
 
 		Page<TbZdyld> page = TbZdyld.dao.paginate(getPaginator(), "select t.* ", //
 				sql.toString().toString());
-
+		
+		
+		String nowTime = DateUtils.getNow(DateUtils.DEFAULT_REGEX_YYYY_MM_DD_HH_MIN_SS);
+		setAttr("nowTime", nowTime);
+		String xingQi = DateUtils.getCurrenDayXingQi();
+		setAttr("xingQi", xingQi);
+		
 		// 下拉框
 		setAttr("page", page);
 		setAttr("attr", model);

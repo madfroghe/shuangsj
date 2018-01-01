@@ -66,15 +66,18 @@ input:-webkit-autofill {
 }
 
 :-moz-placeholder {
-    opacity: 1!important;
+    color:#999;
+ 	opacity:1
 }
 
 ::-moz-placeholder {
-    opacity: 1!important;
+     color:#999;
+ 	 opacity:1	
 }
 
 :-ms-input-placeholder {
-    opacity: 1!important;
+    color:#999;
+ 	opacity:1
 }
 .clear:after {
     display: block;

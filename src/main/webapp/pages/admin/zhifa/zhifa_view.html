@@ -13,49 +13,37 @@ var bodyContent = {
 				<td>姓名</td>
 				<td>${model.name}</td>
 			</tr>
+			<tr>
+				<td>性别</td>
+				<td>${flyfox.dictValue(model.sex)  }</td>
+			</tr>
 						<tr>
 				<td>所属区域</td>
-				<td>${model.quyu}</td>
+				<td>${flyfox.dictValue(model.quyu)  }</td>
 			</tr>
 						<tr>
 				<td>所属部门</td>
-				<td>${model.bumen}</td>
+				<td>${flyfox.dictValue(model.bumen)  }</td>
 			</tr>
 						<tr>
 				<td>职务</td>
-				<td>${model.zhiwu}</td>
+				<td>${flyfox.dictValue(model.zhiwu)  }</td>
 			</tr>
 						<tr>
-				<td>职务</td>
+				<td>身份证号</td>
 				<td>${model.sfzheng}</td>
 			</tr>
 						<tr>
-				<td>职务</td>
+				<td>执法证号</td>
 				<td>${model.zfzheng}</td>
 			</tr>
 						<tr>
-				<td>职务</td>
+				<td>手机号码</td>
 				<td>${model.phone}</td>
 			</tr>
 						<tr>
-				<td>职务</td>
+				<td>备注</td>
 				<td>${model.beizhu}</td>
-			</tr>
-						<tr>
-				<td>更新时间</td>
-				<td>${model.update_time}</td>
-			</tr>
-						<tr>
-				<td>更新人</td>
-				<td>${model.update_id}</td>
-			</tr>
-						<tr>
-				<td>创建时间</td>
-				<td>${model.create_time}</td>
-			</tr>
-						<tr>
-				<td>创建者</td>
-				<td>${model.create_id}</td>
 			</tr>
 		
 	</table>

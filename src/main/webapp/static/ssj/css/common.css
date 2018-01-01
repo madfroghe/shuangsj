@@ -49,57 +49,31 @@ a{
 
 .left-body .sidebar .sidebar-menu ul li{
     list-style: none;
-    /*height:62px;*/        /**二级菜单改动*/
 }
 .left-body .sidebar .sidebar-menu ul li a{
     text-decoration: none;
     color:#ffffff;
-    padding: 17px 37px 17px 52px;
+    padding: 10px 37px 10px 52px;
     display: block;
     position: relative;
-    height: 66px;
+    height: 46px;
     line-height: 34px;
     text-align: center;
 }
 
-
-/**二级菜单改动*/
-.left-body .sidebar .sidebar-menu ul ul{
-    width: 100%;
-    overflow: hidden;
-    transition: all .8s;
-    -moz-transition: all .8s; /* Firefox 4 */
-    -webkit-transition: all .8s; /* Safari 和 Chrome */
-    -o-transition: all .8s; /* Opera */
-}
-.left-body .sidebar .sidebar-menu ul ul a{
-    padding-left: 72px;
-}
-.left-body .sidebar .sidebar-menu ul ul a i{
-    left: 36px;
-}
-.left-body .sidebar .sidebar-menu ul ul.hide{
-    height: 0!important;
-    transition: all .8s;
-    -moz-transition: all .8s; /* Firefox 4 */
-    -webkit-transition: all .8s; /* Safari 和 Chrome */
-    -o-transition: all .8s; /* Opera */
-}
-/**二级菜单改动*/
-
-
-.left-body .sidebar .sidebar-menu .active{
+.left-body .sidebar .sidebar-menu ul li .active{
     color: #fff;
-}
-.left-body .sidebar .sidebar-menu a{
     border-left: 3px solid transparent;
-}
-.left-body .sidebar .sidebar-menu li ul .active>a{
-    /*border-left: none!important;*/
-}
-.left-body .sidebar .sidebar-menu .active>a{
-    background: #302a2a;
     border-left-color: #3c8dbc;
+    background: #302a2a;
+}
+
+
+.left-body .sidebar .sidebar-menu ul li ul .active{
+    color: #fff;
+    border-left: 3px solid transparent;
+    border-left-color: #3c8dbc;
+    background: #302a2a;
 }
 .fa{
     font: normal normal normal 14px/1 FontAwesome;
@@ -110,7 +84,7 @@ a{
     vertical-align: middle;
     position: absolute;
     left: 20px;
-    top: 17px;
+    top: 10px;
     height: 32px;
     display: table-cell!important;
 }
@@ -144,18 +118,17 @@ a{
 
 .head_one .navbar-custom-menu{
     z-index: 1000;
-    width:175px;
+    width:200px;
     float:right;
     height:31px;
     padding:11px 0px 10px 0px;
 }
 .head_one .navbar-custom-menu .nav-left{
-    width:105px;
+    width:120px;
     height: 31px;
     float:left;
-    background: url("../images/down.png") no-repeat right;
     display: block;
-    margin-right:20px;
+    margin-right:2px;
     overflow:hidden;
 }
 .nav-down{
@@ -167,9 +140,7 @@ a{
     background: red;
     top:50px;
 }
-.head_one .navbar-custom-menu .nav-left:hover{
-    background: url("../images/up.png") no-repeat right;
-}
+
 .head_one .navbar-custom-menu .nav-right{
     width:50px;
     height:31px;
@@ -267,39 +238,8 @@ a{
     margin-right:40px;
     font-weight: bold;
 }
-.btn{
-    width:115px;
-    height:40px;
-    border-radius: 25px 12px 12px 25px;
-    float:left;
-    /*background: #b4b4b4;*/
-    font-size:16px;
-    text-shadow: 5px 2px 6px #8a8a8a;
-    color:#ffffff;
-    display: block;
-    padding:5px 0;
-    margin-top:5px;
-    margin-right:10px;
-    background: -moz-linear-gradient(top, rgb(206,206,206) 0%, rgb(175,175,175) 50%, rgb(147, 147, 147) 100%);
-    background: -webkit-linear-gradient(top, rgb(206,206,206) 0%, rgb(175,175,175) 50%, rgb(147, 147, 147) 100%);
-    background: linear-gradient(to bottom, rgb(206,206,206) 0%, rgb(175,175,175) 50%, rgb(147, 147, 147) 100%);
-}
-.btn img{
-    vertical-align: middle;
-    margin-left:8px;
-    float:left;
-}
-.btn p{
-    width: 75px;
-    line-height:30px;
-    float: right;
-    text-align: center;
-}
-.btn-active{
-    background: -moz-linear-gradient(top, rgb(0,189,253) 0%, rgb(0,166,266) 50%, rgb(2, 149, 201) 100%);
-    background: -webkit-linear-gradient(top, rgb(0,189,253) 0%, rgb(0,166,266) 50%, rgb(2, 149, 201) 100%);
-    background: linear-gradient(to bottom, rgb(0,189,253) 0%, rgb(0,166,266) 50%, rgb(2, 149, 201) 100%);
-}
+
+
 .content-body-head .search-right{
     width:330px;
     float:right;
@@ -427,9 +367,9 @@ a{
 .box-body .table tr:last-child td{
     border-bottom: 0;
 }
-.box-body .table tr td a{
+/*.box-body .table tr td a{
      color:#00beff;
-}
+}*/
 .box-body .table tr td.error_active{
     color:#00beff;
 }

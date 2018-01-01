@@ -1,15 +1,12 @@
 package com.jflyfox.modules.admin.lvxingshe.controller;
 
 import java.io.File;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 import org.wuwz.poi.ExcelKit;
 import org.wuwz.poi.hanlder.ReadHandler;
 
 import com.jflyfox.component.base.BaseProjectController;
-import com.jflyfox.jfinal.base.BaseController;
 import com.jflyfox.jfinal.component.annotation.ControllerBind;
 import com.jflyfox.jfinal.component.db.SQLUtils;
 import com.jflyfox.modules.admin.lvxingshe.model.TbZlvxingshe;
@@ -37,6 +34,8 @@ public class LvxingsheController extends BaseProjectController {
 		if (model.getAttrValues().length != 0) {
 			sql.setAlias("t");
 			// 查询条件
+			sql.whereLike("name", model.getStr("name"));
+
 		}
 
 		Page<TbZlvxingshe> page = TbZlvxingshe.dao.paginate(getPaginator(), "select t.* ", //

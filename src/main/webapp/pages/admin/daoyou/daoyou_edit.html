@@ -38,7 +38,7 @@ var bodyContent = {
 					<td>
 					<select name="model.sex" class="form-control" valid="vselect" validname='性别'>
 					<option value="-1">请选择性别</option>
-					${flyfox.dictSelect('ssj_xb' , model.lxs_type!'')  }
+					${flyfox.dictSelect('ssj_xb' , model.sex!'')  }
 					</select>
 											</td>
 				</tr>
@@ -47,7 +47,7 @@ var bodyContent = {
 					<td>
 					<select name="model.language" class="form-control" valid="vselect" validname='语种'>
 					<option value="-1">请选择语种</option>
-					${flyfox.dictSelect('ssj_yz' , model.lxs_type!'')  }
+					${flyfox.dictSelect('ssj_yz' , model.language!'')  }
 					</select>
 											</td>
 				</tr>
@@ -62,7 +62,7 @@ var bodyContent = {
 					<td>
 					<select name="model.dy_level" class="form-control" valid="vselect" validname='级别'>
 					<option value="-1">请选择级别</option>
-					${flyfox.dictSelect('ssj_dyjb' , model.lxs_type!'')  }
+					${flyfox.dictSelect('ssj_dyjb' , model.dy_level!'')  }
 					</select>
 											</td>
 				</tr>
@@ -71,7 +71,7 @@ var bodyContent = {
 					<td>
 					<select name="model.dy_lingdui" class="form-control" valid="vselect" validname='是否备案领队'>
 					<option value="-1">请选择是否备案领队</option>
-					${flyfox.dictSelect('ssj_sfba' , model.lxs_type!'')  }
+					${flyfox.dictSelect('ssj_sfba' , model.dy_lingdui!'')  }
 					</select>
 											</td>
 				</tr>
@@ -80,7 +80,7 @@ var bodyContent = {
 					<td>
 					<select name="model.ld_type" class="form-control" valid="vselect" validname='领队类别'>
 					<option value="-1">请选择领队类别</option>
-					${flyfox.dictSelect('ssj_ldlb' , model.lxs_type!'')  }
+					${flyfox.dictSelect('ssj_ldlb' , model.ld_type!'')  }
 					</select>
 											</td>
 				</tr>

@@ -1,10 +1,21 @@
 package com.jflyfox.modules.admin.zhifa.controller;
 
-import com.jflyfox.jfinal.base.BaseController;
+import java.io.File;
+import java.util.List;
+
+import org.wuwz.poi.ExcelKit;
+import org.wuwz.poi.hanlder.ReadHandler;
+
+import com.jflyfox.component.base.BaseProjectController;
 import com.jflyfox.jfinal.component.annotation.ControllerBind;
 import com.jflyfox.jfinal.component.db.SQLUtils;
+import com.jflyfox.modules.admin.site.TbSite;
 import com.jflyfox.modules.admin.zhifa.model.TbZzhifa;
+import com.jflyfox.system.config.ConfigCache;
+import com.jflyfox.system.file.util.FileUploadUtils;
+import com.jflyfox.util.DateUtils;
 import com.jfinal.plugin.activerecord.Page;
+import com.jfinal.upload.UploadFile;
 
 /**
  * 
@@ -12,7 +23,7 @@ import com.jfinal.plugin.activerecord.Page;
  * @author hechao 2017-12-20
  */
 @ControllerBind(controllerKey = "/admin/zhifa")
-public class ZhifaController extends BaseController {
+public class ZhifaController extends BaseProjectController {
 
 	private static final String path = "/pages/admin/zhifa/zhifa_";
 
@@ -23,11 +34,17 @@ public class ZhifaController extends BaseController {
 		if (model.getAttrValues().length != 0) {
 			sql.setAlias("t");
 			// 查询条件
+			sql.whereLike("name", model.getStr("name"));
 		}
 
 		Page<TbZzhifa> page = TbZzhifa.dao.paginate(getPaginator(), "select t.* ", //
 				sql.toString().toString());
-
+		
+		String nowTime = DateUtils.getNow(DateUtils.DEFAULT_REGEX_YYYY_MM_DD_HH_MIN_SS);
+		setAttr("nowTime", nowTime);
+		String xingQi = DateUtils.getCurrenDayXingQi();
+		setAttr("xingQi", xingQi);
+		
 		// 下拉框
 		setAttr("page", page);
 		setAttr("attr", model);
@@ -68,4 +85,38 @@ public class ZhifaController extends BaseController {
 		}
 		renderMessage("保存成功");
 	}
+	
+	public void zhifaEximport() {
+		
+		TbSite site = getBackSite();
+		UploadFile uploadExcel = getFile("uploadFile", FileUploadUtils.getUploadTmpPath(site), FileUploadUtils.UPLOAD_MAX);
+		String fileUrl = uploadHandler(site, uploadExcel.getFile(), "excel");
+		
+		String backupPath = ConfigCache.getValue("backup.filemanger.path");
+		
+		File storeFile = new File(backupPath+"\\"+fileUrl);
+		
+		// 执行excel文件导入
+        ExcelKit.$Import().readExcel(storeFile, new ReadHandler() {
+			
+			@Override
+			public void handler(int sheetIndex, int rowIndex, List<String> row) {
+				if(rowIndex != 0) { //排除第一行
+//					User user = new User()
+//							.setUid(Integer.parseInt(row.get(0)))
+//							.setUsername(row.get(1))
+//							.setPassword(row.get(2))
+//							.setSex(Integer.parseInt(row.get(3)))
+//							.setGradeId(Integer.parseInt(row.get(4)));
+//					Db.addUser(user);
+				}
+				
+			}
+		});
+        if(storeFile.exists()) {
+        	storeFile.delete();
+        }
+        renderMessage("导入成功");
+	}
+
 }

@@ -20,7 +20,7 @@
 			view : function(id) {
 				var url = 'admin/zhifa/view/'+id;
 				var title = '查看';
-				Iframe(url, this.width, this.height, title, false, false, false, EmptyFunc);
+				Iframe(url, this.width, this.height, title);
 			},
 			add : function() {
 				var url = 'admin/zhifa/add';
@@ -56,7 +56,10 @@
 
 var bodyContent = {
 %>
-	<form name="form1" action="" method="post"  class="form-inline" role="form">
+<form name="form1" action="" method="post"  class="form-inline" role="form">
+		<input type="hidden" name="form.orderColumn" value="${form.orderColumn!''}" />
+		<input type="hidden" name="form.orderAsc" value="${form.orderAsc!''}" />
+			
 		<!-- 菜单 -->
 		<% include("/pages/template/menu.html"){} %>
 
@@ -88,61 +91,84 @@ var bodyContent = {
 
     <!--右侧部分下部分布局开始-->
     <div class="main">
-		<div class="tableSearch">
-			<%  //查询列表 %>
-			
-			<button type="button" class="btn btn-default" onclick="oper.list();" name="search">
-			 		<span class="glyphicon glyphicon-search"></span> 查 询
-			</button>
-			<button type="button" class="btn btn-default" onclick="resetForm();">
-			 		<span class="glyphicon glyphicon-refresh"></span> 重 置
-			</button>
-			<button type="button" class="btn btn-default" onclick="oper.add();">
-			 		<span class="glyphicon glyphicon-plus"></span> 新 增
-			</button>
-		</div>
 		
-		<!-- 数据列表 -->
-		<table class="table table-striped table-bordered table-hover">
-			<thead>
-				<tr>
-					<th>序号</th>
-					<%  // 列表头部 %>
-					<th>姓名</th>
-					<th>性别</th>
-					<th>身份证号</th>
-					<th>执法证号</th>
-					<th>就职部门</th>
-					<th>联系电话</th> 
- 					<th>操作</th>
-				</tr>
-			</thead>
-			<tbody>
-			<% for(item in page.list){ %>
-				<tr>
-				<td>${itemLP.index }</td>
-					<%  // 列表内容 %>
-					<td>${item.name}</td> 
- 					<td>${item.sex}</td>
-					<td>${item.sfzheng}</td> 
-					<td>${item.zfzheng}</td>
-					<td>${item.bumen}</td>  
-					<td>${item.phone}</td> 
-				<td>
-				<a href="javascript:void(0);" class="btn btn-sm btn-success" onclick="oper.view(${item.id});">查看</a> 
-				<a href="javascript:void(0);" class="btn btn-sm btn-primary" onclick="oper.edit(${item.id});">修改</a> 
-				<a href="javascript:void(0);" class="btn btn-sm btn-danger" onclick="oper.del(${item.id});">删除</a>
-				</td>
-				</tr>
-			<% } %>
-			</tbody>
-		</table>
-		<%include("/pages/includes/paginator.html"){} %>
+		<div class="nav">
+            <div class="nav-left">
+                <img src="static/ssj/images/position.png">当前位置 : 执法人员管理
+            </div>
+            <div class="nav-right">${nowTime} ${xingQi}</div>
+        </div>
+		
+		<!--详细内容列表-->
+        <div class="content tableSearch">
+            <div class="content-body">
+                <div class="content-body-head">
+                    <span>执法人员管理</span>
+                    <div class="ssj-btn ssj-btn-active" onclick="oper.add();"><img src="static/ssj/images/add_one.png"><p>新增</p></div>
+                    <!-- <div class="ssj-btn"><img src="static/ssj/images/del_btn_one.png"><p>删除</p></div> -->
+                    <div class="search-right">
+                        <div class="search">
+                            <input type="text" name="attr.name" value="${attr.name!''}" placeholder="请输入执法人员名称" />
+                            <div class="search-btn" onclick="oper.list();"></div>
+                            <button class="search-btn" onclick="oper.list();" name="search" hidden="hidden"></button>
+                        </div>
+                        <div class="book_add"></div>
+                    </div>
+
+                </div>
+                <div class="box-body">
+                
+                    <table class="table table-striped table-bordered table-hover">
+                            <thead>
+								<tr>
+									<th>序号</th>
+									<%  // 列表头部 %>
+									<th>姓名</th>
+									<th>性别</th>
+									<th>身份证号</th>
+									<th>执法证号</th>
+									<th>就职部门</th>
+									<th>联系电话</th> 
+				 					<th>操作</th>
+								</tr>
+							</thead>
+                            <tbody>
+							<% for(item in page.list){ %>
+								<tr>
+									<td>${itemLP.index }</td>
+									<%  // 列表内容 %>
+									<td>${item.name}</td> 
+				 					<td>${flyfox.dictValue(item.sex)  }</td>
+									<td>${item.sfzheng}</td> 
+									<td>${item.zfzheng}</td>
+									<td>${flyfox.dictValue(item.quyu)  }-${flyfox.dictValue(item.bumen)  }</td>  
+									<td>${item.phone}</td> 
+								<td>
+								<a href="javascript:void(0);" class="btn btn-sm btn-success" onclick="oper.view(${item.id});">查看</a> 
+								<a href="javascript:void(0);" class="btn btn-sm btn-primary" onclick="oper.edit(${item.id});">修改</a> 
+								<a href="javascript:void(0);" class="btn btn-sm btn-danger" onclick="oper.del(${item.id});">删除</a>
+								</td>
+								</tr>
+							<% } %>
+							</tbody>
+                            
+                    </table>
+                    <%include("/pages/includes/paginator.html"){} %>
+                   
+                </div>
+
+                <!--分页-->
+                
+            </div>
+
+        </div>
+		
 
 	</div>
     <!--右侧部分下部分布局结束-->
-</div>
-	</form>
+</div>		
+</form> 		
+	
 <%}; %>
 
 
