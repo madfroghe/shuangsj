@@ -29,6 +29,14 @@ public class BeeltFunctions extends TemplateFunctions {
 	public static String dictSelect(String type, String selected_value) {
 		return dictSelect(type, NumberUtils.parseInt(selected_value));
 	}
+	
+	public static String dictSelectsj(String type, int selected_value) {
+		return DictCache.getSelectsj(type, selected_value);
+	}
+
+	public static String dictSelectsj(String type, String selected_value) {
+		return dictSelectsj(type, NumberUtils.parseInt(selected_value));
+	}
 
 	public static String dictValue(int key) {
 		return DictCache.getValue(key);
@@ -37,6 +45,11 @@ public class BeeltFunctions extends TemplateFunctions {
 	public static String dictValue(String key) {
 		return dictValue(NumberUtils.parseInt(key));
 	}
+	
+	public static String dictValuesj(String key) {
+		return DictCache.getValuesj(key);
+	}
+
 
 	public static String dictCode(int key) {
 		return DictCache.getCode(key);

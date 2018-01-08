@@ -39,6 +39,11 @@
 					form1.action = url;
 					form1.submit();
 				});
+			},
+			dimport : function() {
+				var url = 'admin/zhifa/dimport';
+				var title = '数据导入';
+				Iframe(url, this.width, this.height, title);
 			}
 		};
 		//显示Menu索引
@@ -112,7 +117,7 @@ var bodyContent = {
                             <div class="search-btn" onclick="oper.list();"></div>
                             <button class="search-btn" onclick="oper.list();" name="search" hidden="hidden"></button>
                         </div>
-                        <div class="book_add"></div>
+                        <div class="book_add" onclick="oper.dimport();"></div>
                     </div>
 
                 </div>
@@ -138,10 +143,10 @@ var bodyContent = {
 									<td>${itemLP.index }</td>
 									<%  // 列表内容 %>
 									<td>${item.name}</td> 
-				 					<td>${flyfox.dictValue(item.sex)  }</td>
+				 					<td>${flyfox.dictValuesj(item.sex)  }</td>
 									<td>${item.sfzheng}</td> 
 									<td>${item.zfzheng}</td>
-									<td>${flyfox.dictValue(item.quyu)  }-${flyfox.dictValue(item.bumen)  }</td>  
+									<td>${flyfox.dictValuesj(item.quyu)  }-${flyfox.dictValuesj(item.bumen)  }</td>  
 									<td>${item.phone}</td> 
 								<td>
 								<a href="javascript:void(0);" class="btn btn-sm btn-success" onclick="oper.view(${item.id});">查看</a> 

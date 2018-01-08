@@ -3,15 +3,14 @@ package com.jflyfox.modules.admin.lvxingshe.controller;
 import java.io.File;
 import java.util.List;
 
-import org.wuwz.poi.ExcelKit;
-import org.wuwz.poi.hanlder.ReadHandler;
-
+import com.beetl.functions.ExcelUtilsImprove;
 import com.jflyfox.component.base.BaseProjectController;
 import com.jflyfox.jfinal.component.annotation.ControllerBind;
 import com.jflyfox.jfinal.component.db.SQLUtils;
 import com.jflyfox.modules.admin.lvxingshe.model.TbZlvxingshe;
 import com.jflyfox.modules.admin.lvxingshe.model.TbZyichang;
 import com.jflyfox.modules.admin.site.TbSite;
+import com.jflyfox.modules.admin.zhifa.model.TbZzhifa;
 import com.jflyfox.system.config.ConfigCache;
 import com.jflyfox.system.file.util.FileUploadUtils;
 import com.jflyfox.util.DateUtils;
@@ -119,31 +118,21 @@ public class LvxingsheController extends BaseProjectController {
 		TbSite site = getBackSite();
 		UploadFile uploadExcel = getFile("uploadFile", FileUploadUtils.getUploadTmpPath(site), FileUploadUtils.UPLOAD_MAX);
 		String fileUrl = uploadHandler(site, uploadExcel.getFile(), "excel");
-		
 		String backupPath = ConfigCache.getValue("backup.filemanger.path");
 		
-		File storeFile = new File(backupPath+"\\"+fileUrl);
-		
-		// 执行excel文件导入
-        ExcelKit.$Import().readExcel(storeFile, new ReadHandler() {
-			
-			@Override
-			public void handler(int sheetIndex, int rowIndex, List<String> row) {
-				if(rowIndex != 0) { //排除第一行
-//					User user = new User()
-//							.setUid(Integer.parseInt(row.get(0)))
-//							.setUsername(row.get(1))
-//							.setPassword(row.get(2))
-//							.setSex(Integer.parseInt(row.get(3)))
-//							.setGradeId(Integer.parseInt(row.get(4)));
-//					Db.addUser(user);
-				}
-				
-			}
-		});
-        if(storeFile.exists()) {
-        	storeFile.delete();
-        }
+		try {
+			List<List<String>> lists = ExcelUtilsImprove.getInstance().readExcel2List(backupPath+"\\"+fileUrl, 1, 99999, 0);
+	        for (List<String> list : lists) {
+	            System.out.println(list);
+	            TbZlvxingshe lvxingshe_model = getModel(TbZlvxingshe.class);
+				lvxingshe_model.remove("id");		
+				lvxingshe_model.save();
+	        }
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
         renderMessage("导入成功");
 	}
 	

@@ -1,11 +1,8 @@
 package com.jflyfox.modules.admin.zhifa.controller;
 
-import java.io.File;
 import java.util.List;
 
-import org.wuwz.poi.ExcelKit;
-import org.wuwz.poi.hanlder.ReadHandler;
-
+import com.beetl.functions.ExcelUtilsImprove;
 import com.jflyfox.component.base.BaseProjectController;
 import com.jflyfox.jfinal.component.annotation.ControllerBind;
 import com.jflyfox.jfinal.component.db.SQLUtils;
@@ -86,37 +83,50 @@ public class ZhifaController extends BaseProjectController {
 		renderMessage("保存成功");
 	}
 	
-	public void zhifaEximport() {
+	public void dimport() {
+		render(path + "import.html");
+	}
+	
+	public void zfEximport() {
 		
 		TbSite site = getBackSite();
 		UploadFile uploadExcel = getFile("uploadFile", FileUploadUtils.getUploadTmpPath(site), FileUploadUtils.UPLOAD_MAX);
 		String fileUrl = uploadHandler(site, uploadExcel.getFile(), "excel");
-		
 		String backupPath = ConfigCache.getValue("backup.filemanger.path");
 		
-		File storeFile = new File(backupPath+"\\"+fileUrl);
-		
-		// 执行excel文件导入
-        ExcelKit.$Import().readExcel(storeFile, new ReadHandler() {
-			
-			@Override
-			public void handler(int sheetIndex, int rowIndex, List<String> row) {
-				if(rowIndex != 0) { //排除第一行
-//					User user = new User()
-//							.setUid(Integer.parseInt(row.get(0)))
-//							.setUsername(row.get(1))
-//							.setPassword(row.get(2))
-//							.setSex(Integer.parseInt(row.get(3)))
-//							.setGradeId(Integer.parseInt(row.get(4)));
-//					Db.addUser(user);
-				}
-				
-			}
-		});
-        if(storeFile.exists()) {
-        	storeFile.delete();
-        }
+		try {
+			List<List<String>> lists = ExcelUtilsImprove.getInstance().readExcel2List(backupPath+"\\"+fileUrl, 1, 99999, 0);
+	        for (List<String> list : lists) {
+	            System.out.println(list);
+	            TbZzhifa zhifa_model = getModel(TbZzhifa.class);
+				zhifa_model.remove("id");
+				zhifa_model.setGonghao(list.get(0));
+				zhifa_model.setName(list.get(1));
+				zhifa_model.setSex(list.get(2));
+				zhifa_model.setSfzheng(list.get(3));
+				zhifa_model.setPhone(list.get(4));
+				zhifa_model.setXueli(list.get(5));
+				zhifa_model.setZhuanye(list.get(6));
+				zhifa_model.setCongshiriqi(list.get(7));
+				zhifa_model.setFawei(list.get(8));
+				zhifa_model.setDangwei(list.get(9));
+				zhifa_model.setQuyu(list.get(10));
+				zhifa_model.setCengji(list.get(11));
+				zhifa_model.setBumen(list.get(12));
+				zhifa_model.setZhiwu(list.get(13));
+				zhifa_model.setZhiwuDetail(list.get(14));
+				zhifa_model.setZfzheng(list.get(15));
+				zhifa_model.setYouxiaoqi(list.get(16));
+				zhifa_model.setFazjiguan(list.get(17));			
+				zhifa_model.save();
+	        }
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
         renderMessage("导入成功");
 	}
+	
 
 }

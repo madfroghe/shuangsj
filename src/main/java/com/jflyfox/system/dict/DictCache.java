@@ -42,17 +42,24 @@ public class DictCache {
 	 */
 	public static void initDict() {
 		Map<Integer, SysDictDetail> dictMap = new LinkedHashMap<Integer, SysDictDetail>();
+		Map<String, SysDictDetail> dictMapsj = new LinkedHashMap<String, SysDictDetail>();
 		List<SysDictDetail> listDetail = new ArrayList<SysDictDetail>();
 		// detailSort
 		listDetail = SysDictDetail.dao.findByWhere(" order by detail_sort,detail_id");
 		for (SysDictDetail detail : listDetail) {
 			dictMap.put(detail.getInt("detail_id"), detail);
+			dictMapsj.put(detail.getStr("detail_name"), detail);
 		}
 		cache.add("map", dictMap);
+		cache.add("mapsj", dictMapsj);
 	}
 
 	public static Map<Integer, SysDictDetail> getCacheMap() {
 		return cache.get("map");
+	}
+	
+	public static Map<String, SysDictDetail> getCacheMapsj() {
+		return cache.get("mapsj");
 	}
 
 	//////////////////////////jstl 标签/////////////////////////////
@@ -86,6 +93,36 @@ public class DictCache {
 		}
 		return sb.toString();
 	}
+	
+	/**
+	 * 获取下拉菜单
+	 * 
+	 * 2014年1月22日 下午10:08:38 flyfox 369191470@qq.com
+	 * 
+	 * @param type
+	 * @param selected_value
+	 * @return
+	 */
+	public static String getSelectsj(String type, Integer selected_value) {
+		Map<Integer, SysDictDetail> map = DictCache.getCacheMap();
+		if (map == null || map.size() <= 0) {
+			return null;
+		}
+		StringBuffer sb = new StringBuffer();
+		for (Integer key : map.keySet()) {
+			SysDictDetail dict = map.get(key);
+			if (dict.getStr("dict_type").equals(type)) {
+				sb.append("<option value=\"");
+				sb.append(dict.getStr("detail_name"));
+				sb.append("\" ");
+				sb.append(key.equals(selected_value) ? "selected" : "");
+				sb.append(">");
+				sb.append(dict.getStr("detail_name"));
+				sb.append("</option>");
+			}
+		}
+		return sb.toString();
+	}
 
 	/**
 	 * 获取Value值
@@ -102,6 +139,23 @@ public class DictCache {
 		SysDictDetail dict = getCacheMap().get(key);
 		return dict == null ? null : dict.getStr("detail_name");
 	}
+	
+	/**
+	 * 获取Value值
+	 * 
+	 * 2014年1月22日 下午10:10:26 flyfox 369191470@qq.com
+	 * 
+	 * @param key
+	 * @return
+	 */
+	public static String getValuesj(String key) {
+		if (key == null) {
+			return null;
+		}
+		SysDictDetail dict = getCacheMapsj().get(key);
+		return dict == null ? null : dict.getStr("detail_name");
+	}
+	
 
 	/**
 	 * 获取Code值
