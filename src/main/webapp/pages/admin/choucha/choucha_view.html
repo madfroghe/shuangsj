@@ -23,11 +23,15 @@ var bodyContent = {
 			</tr>
 						<tr>
 				<td>抽取方式</td>
-				<td>${flyfox.dictValue(model.choucha_type)  }</td>
+				<td>${flyfox.dictValuesj(model.choucha_type)  }</td>
 			</tr>
 						<tr>
 				<td>任务状态</td>
-				<td>${flyfox.dictValue(model.choucha_status)  }</td>
+				<td>${flyfox.dictValuesj(model.choucha_status)  }</td>
+			</tr>
+			<tr>
+				<td>检查结果</td>
+				<td>${model.result}</td>
 			</tr>
 		
 	</table>

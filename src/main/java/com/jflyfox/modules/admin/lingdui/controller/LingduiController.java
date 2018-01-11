@@ -37,7 +37,7 @@ public class LingduiController extends BaseProjectController {
 			// 查询条件
 			sql.whereLike("name", model.getStr("name"));
 		}
-		sql.whereEquals("dy_lingdui", "108");
+		sql.whereEquals("dy_lingdui", "是");
 
 		Page<TbZdyld> page = TbZdyld.dao.paginate(getPaginator(), "select t.* ", //
 				sql.toString().toString());

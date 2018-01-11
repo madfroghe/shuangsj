@@ -25,6 +25,15 @@ public class ChouchaController extends BaseProjectController {
 		String xingQi = DateUtils.getCurrenDayXingQi();
 		setAttr("xingQi", xingQi);
 		
+		TbZchoucha model;
+		if(getParaToInt()!=null){
+			 model = TbZchoucha.dao.findById(getParaToInt());
+		}else{
+			 model = TbZchoucha.dao.findById(0);
+		}
+		
+		setAttr("model", model);
+		
 		render(path + "choucha.html");
 	}
 	
@@ -87,11 +96,88 @@ public class ChouchaController extends BaseProjectController {
 		renderMessage("保存成功");
 	}
 	
+	public void jichusave() {
+		Integer pid = getParaToInt();
+		TbZchoucha model = getModel(TbZchoucha.class);
+		
+		String nowTime = DateUtils.getNow(DateUtils.DEFAULT_REGEX_YYYY_MM_DD_HH_MIN_SS);
+		setAttr("nowTime", nowTime);
+		String xingQi = DateUtils.getCurrenDayXingQi();
+		setAttr("xingQi", xingQi);
+		
+		if (pid != null && pid > 0) { // 更新
+			model.update();
+		} else { // 新增
+			model.remove("id");
+			model.put("create_id", getSessionUser().getUserid());
+			model.put("create_time", getNow());
+			model.save();
+			setAttr("id", model.getId());
+		}
+		
+		if(getParaToInt()!=null){
+			 model = TbZchoucha.dao.findById(getParaToInt());
+		}else{
+			 model = TbZchoucha.dao.findById(0);
+		}
+		
+		render(path + "duixiang.html");
+	}
+	
+	public void duixiang_sx() {
+		Integer pid = getParaToInt();
+		TbZchoucha model = getModel(TbZchoucha.class);
+		
+		String nowTime = DateUtils.getNow(DateUtils.DEFAULT_REGEX_YYYY_MM_DD_HH_MIN_SS);
+		setAttr("nowTime", nowTime);
+		String xingQi = DateUtils.getCurrenDayXingQi();
+		setAttr("xingQi", xingQi);
+		
+		if (pid != null && pid > 0) { // 更新
+			model.update();
+		}
+		
+		if(getParaToInt()!=null){
+			 model = TbZchoucha.dao.findById(getParaToInt());
+		}else{
+			 model = TbZchoucha.dao.findById(0);
+		}
+		
+		setAttr("model", model);
+		
+		render(path + "duixiang.html");
+	}
+	
+	
+	public void renyuan_sx() {
+		Integer pid = getParaToInt();
+		TbZchoucha model = getModel(TbZchoucha.class);
+		
+		String nowTime = DateUtils.getNow(DateUtils.DEFAULT_REGEX_YYYY_MM_DD_HH_MIN_SS);
+		setAttr("nowTime", nowTime);
+		String xingQi = DateUtils.getCurrenDayXingQi();
+		setAttr("xingQi", xingQi);
+		
+		if (pid != null && pid > 0) { // 更新
+			model.update();
+		}
+		
+		render(path + "renyuan.html");
+	}
+	
+	
 	public void duixiang() {
 		String nowTime = DateUtils.getNow(DateUtils.DEFAULT_REGEX_YYYY_MM_DD_HH_MIN_SS);
 		setAttr("nowTime", nowTime);
 		String xingQi = DateUtils.getCurrenDayXingQi();
 		setAttr("xingQi", xingQi);
+		
+		TbZchoucha model;
+		if(getParaToInt()!=null){
+			 model = TbZchoucha.dao.findById(getParaToInt());
+		}else{
+			 model = TbZchoucha.dao.findById(0);
+		}
 		
 		render(path + "duixiang.html");
 	}

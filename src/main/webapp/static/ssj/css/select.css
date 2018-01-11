@@ -1,6 +1,7 @@
 .change-box{
     height: 50px;
     padding: 10px 0;
+    width: 500px;
     /*line-height: 30px;*/
 }
 .change-box:after{

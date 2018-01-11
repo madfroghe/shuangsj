@@ -1,13 +1,53 @@
 <% 
+	DIRECTIVE SAFE_OUTPUT_OPEN;
 	var headContent = {
 	include("/pages/template/head.html"){}
 %>
-
+<% include("/pages/includes/my97.html"){} %>
 <script type="text/javascript">
 		
 	var oper;
 	jQuery(function($) {
 		// 页面方法
+		oper = {
+			width : 400,
+			height : 500,
+			form : document.form1,
+			resetData:function() {
+				this.form.reset();
+			},
+			jichu:function(id){
+				id = id || '0';
+				var url = 'admin/choucha/'+id;
+				form1.action = url;
+				form1.submit();
+				return true;
+			},
+			duixiang:function(id){
+				id = id || '0';
+				var url = 'admin/choucha/duixiang/'+id;
+				form1.action = url;
+				form1.submit();
+				return true;
+			},
+			renyuan:function(id){
+				id = id || '0';
+				var url = 'admin/choucha/renyuan/'+id;
+				form1.action = url;
+				form1.submit();
+				return true;
+			},
+			renyuan_sx:function(id){
+				if(!validForm()) {
+					return false;
+				}
+				id = id || '0';
+				var url = 'admin/choucha/renyuan_sx/'+id;
+				form1.action = url;
+				form1.submit();
+				return true;
+			}	
+		};
 		//显示Menu索引
 		showMenu('page_zchoucha');
 	});
@@ -62,25 +102,92 @@ var bodyContent = {
             </div>
             <div class="nav-right">${nowTime} ${xingQi}</div>
         </div>
-		
+
+		<input type="hidden" name="model.id" value="${model.id}" />	
 		<!--详细内容列表-->
 		<div class="content">
             <div class="content-body">
                 <div class="content-body-head">
                     <span>新增抽查任务-执法人员</span>
                     <ul class="task_right">
-                        <li><span class="task_right_before task_right-active"></span><span class="task_right task_right-active">基本信息</span></li>
-                        <li><span class="task_right_before task_right-active"></span><span class="task_right task_right-active">被查对象</span></li>
-                        <li><span class="task_right_before task_right-active"></span><span class="task_right task_right-active">执法人员</span></li>
+                        <li>
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#"  onclick="oper.jichu(${id!'0'});return false;">
+                        <span class="task_right_before task_right-active"></span><span class="task_right task_right-active">基本信息</span>
+                        </a>
+                        </li>
+                        <li>
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#"  onclick="oper.duixiang(${id!'0'});return false;">
+                        <span class="task_right_before task_right-active"></span><span class="task_right task_right-active">被查对象</span>
+                        </a>
+                        </li>
+                        <li>
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#"  onclick="oper.renyuan(${id!'0'});return false;">
+                        <span class="task_right_before task_right-active"></span><span class="task_right task_right-active">执法人员</span>
+                        </a>
+                        </li>
                         <li><span class="task_right_before"></span><span class="task_right">生成任务</span></li>
                     </ul>
                 </div>
 
                 <div class="task-form">
-                    
+                    <table class="table">
+                		
+                		<tr>
+							<td>所属区域</td>
+							<td>
+								<select name="model.jc_fanwei" class="form-control" valid="vselect" validname='所属区域'>
+								<option value="-1">请选择所属区域</option>
+								${flyfox.dictSelectsj('ssj_zcdssqy' , model.jc_fanwei!'')  }
+								</select>	                        
+							</td>
+						</tr>
+                		<tr>
+							<td>部门</td>
+							<td>
+								<select name="model.jc_bumen" class="form-control" valid="vselect" validname='部门'>
+								<option value="-1">请选择部门</option>
+								${flyfox.dictSelectsj('ssj_ssbm' , model.jc_bumen!'')  }
+								</select>	                        
+							</td>
+						</tr>
+                		<tr>
+							<td>性别</td>
+							<td>
+								<select name="model.jc_sex" class="form-control" valid="vselect" validname='性别'>
+								<option value="-1">请选择性别</option>
+								${flyfox.dictSelectsj('ssj_xb' , model.jc_sex!'')  }
+								</select>	                        
+							</td>
+						</tr>
+						
+						<tr>
+							<td>职务</td>
+							<td>
+								<select name="model.jc_zhiwu" class="form-control" valid="vselect" validname='职务'>
+								<option value="-1">请选择职务</option>
+								${flyfox.dictSelectsj('ssj_zw' , model.jc_zhiwu!'')  }
+								</select>	                        
+							</td>
+						</tr>
+                		
+                		<tr>
+							<td>检查组数</td>
+							<td>
+								<input class="form-control" type="text" name="model.jc_zushu" value="${model.jc_zushu }"  valid='vtext' validname='检查组数'  />	                        
+							</td>
+						</tr>
+						<tr>
+							<td>每组检查人数</td>
+							<td>
+								<input class="form-control" type="text" name="model.jc_dxzs" value="${model.jc_dxzs }"  valid='vtext' validname='每组检查人数'  />	                        
+							</td>
+						</tr>
+						
+                	</table>
                     <div class="change-btn">
                         <ul class="task_right_reset">
-                            <li><a href="admin/choucha/zhixing"><span>下一步</span></a></li>
+                            <li><a class="dropdown-toggle" data-toggle="dropdown" href="#"  onclick="oper.renyuan_sx(${model.id!'0'});return false;"><span>筛选</span></a></li>
+                            <li><a class="dropdown-toggle" data-toggle="dropdown" href="#"  onclick="oper.zhixing(${model.id!'0'});return false;"><span>下一步</span></a></li>
                         </ul>
                     </div>
                 </div>
@@ -98,4 +205,6 @@ var bodyContent = {
 
 
 <% layout("/pages/template/_layout.html",{head:headContent,body:bodyContent}){ %>
-<%} %>
+<%}
+DIRECTIVE SAFE_OUTPUT_CLOSE; 
+%>

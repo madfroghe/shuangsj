@@ -1,10 +1,11 @@
 package com.jflyfox.modules.admin.lvxingshe.model;
 
+import com.jflyfox.component.base.BaseProjectModel;
 import com.jflyfox.jfinal.base.BaseModel;
 import com.jflyfox.jfinal.component.annotation.ModelBind;
 
 @ModelBind(table = "tb_zyichang")
-public class TbZyichang extends BaseModel<TbZyichang> {
+public class TbZyichang extends BaseProjectModel<TbZyichang> {
 
 	private static final long serialVersionUID = 1L;
 	public static final TbZyichang dao = new TbZyichang();

@@ -38,18 +38,18 @@ public class FrontInterceptor implements Interceptor {
 		Map<String, List<TbFolder>> folders = new FolderService().getFolderMenus(site.getSiteId());
 		controller.setAttr("folders", folders);
 
-		// 推荐文章列表，缓存
-		Page<TbArticle> recommendArticles = new FrontCacheService().getRecommendArticle(new Paginator(1, 8),
-				site.getSiteId());
-		controller.setAttr("recommendArticles", recommendArticles);
-
-		// 友情链接，缓存
-		List<TbFriendlylink> friendlylinkList = FriendlylinkCache.getFriendlylinkList(site.getSiteId());
-		controller.setAttr("friendlylinkList", friendlylinkList);
-
-		// 底部关于，缓存
-		List<TbFriendlylink> aboutList = FriendlylinkCache.getAboutList(site.getSiteId());
-		controller.setAttr("aboutList", aboutList);
+//		// 推荐文章列表，缓存
+//		Page<TbArticle> recommendArticles = new FrontCacheService().getRecommendArticle(new Paginator(1, 8),
+//				site.getSiteId());
+//		controller.setAttr("recommendArticles", recommendArticles);
+//
+//		// 友情链接，缓存
+//		List<TbFriendlylink> friendlylinkList = FriendlylinkCache.getFriendlylinkList(site.getSiteId());
+//		controller.setAttr("friendlylinkList", friendlylinkList);
+//
+//		// 底部关于，缓存
+//		List<TbFriendlylink> aboutList = FriendlylinkCache.getAboutList(site.getSiteId());
+//		controller.setAttr("aboutList", aboutList);
 
 		ai.invoke();
 	}

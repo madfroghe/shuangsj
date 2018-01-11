@@ -38,7 +38,7 @@ var bodyContent = {
 					<td>
 					<select name="model.sex" class="form-control" valid="vselect" validname='性别'>
 					<option value="-1">请选择性别</option>
-					${flyfox.dictSelect('ssj_xb' , model.sex!'')  }
+					${flyfox.dictSelectsj('ssj_xb' , model.sex!'')  }
 					</select>
 											</td>
 				</tr>
@@ -47,7 +47,7 @@ var bodyContent = {
 					<td>
 					<select name="model.language" class="form-control" valid="vselect" validname='语种'>
 					<option value="-1">请选择语种</option>
-					${flyfox.dictSelect('ssj_yz' , model.language!'')  }
+					${flyfox.dictSelectsj('ssj_yz' , model.language!'')  }
 					</select>
 											</td>
 				</tr>
@@ -62,7 +62,7 @@ var bodyContent = {
 					<td>
 					<select name="model.dy_level" class="form-control" valid="vselect" validname='级别'>
 					<option value="-1">请选择级别</option>
-					${flyfox.dictSelect('ssj_dyjb' , model.dy_level!'')  }
+					${flyfox.dictSelectsj('ssj_dyjb' , model.dy_level!'')  }
 					</select>
 											</td>
 				</tr>
@@ -71,7 +71,7 @@ var bodyContent = {
 					<td>
 					<select name="model.dy_lingdui" class="form-control" valid="vselect" validname='是否备案领队'>
 					<option value="-1">请选择是否备案领队</option>
-					${flyfox.dictSelect('ssj_sfba' , model.dy_lingdui!'')  }
+					${flyfox.dictSelectsj('ssj_sfba' , model.dy_lingdui!'')  }
 					</select>
 											</td>
 				</tr>
@@ -80,7 +80,7 @@ var bodyContent = {
 					<td>
 					<select name="model.ld_type" class="form-control" valid="vselect" validname='领队类别'>
 					<option value="-1">请选择领队类别</option>
-					${flyfox.dictSelect('ssj_ldlb' , model.ld_type!'')  }
+					${flyfox.dictSelectsj('ssj_ldlb' , model.ld_type!'')  }
 					</select>
 											</td>
 				</tr>
@@ -113,7 +113,7 @@ var bodyContent = {
 	<div style="height: 50px;clear: both;">&nbsp;</div>
 	<nav class="navbar navbar-default navbar-fixed-bottom">
 	  <div class="container" style="padding: 5px 0px 5px 0px;text-align: center;">
-		<button class="btn btn-primary" onclick="return oper.save(${model.id});">保 存</button>
+		<button class="btn btn-primary" onclick="oper.save(${model.id!'0'});return false;">保 存</button>
 		<button class="btn btn-default" onclick="closeIframe();return false;">关 闭</button>
 	  </div>
 	</nav>

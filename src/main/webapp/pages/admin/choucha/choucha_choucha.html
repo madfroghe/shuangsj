@@ -1,13 +1,52 @@
 <% 
+	DIRECTIVE SAFE_OUTPUT_OPEN;
 	var headContent = {
 	include("/pages/template/head.html"){}
 %>
-
+<% include("/pages/includes/my97.html"){} %>
 <script type="text/javascript">
 		
 	var oper;
 	jQuery(function($) {
-		// 页面方法
+		oper = {
+			width : 400,
+			height : 500,
+			form : document.form1,
+			resetData:function() {
+				this.form.reset();
+			},
+			jichu:function(id){
+				id = id || '0';
+				var url = 'admin/choucha/'+id;
+				form1.action = url;
+				form1.submit();
+				return true;
+			},
+			duixiang:function(id){
+				id = id || '0';
+				var url = 'admin/choucha/duixiang/'+id;
+				form1.action = url;
+				form1.submit();
+				return true;
+			},
+			renyuan:function(id){
+				id = id || '0';
+				var url = 'admin/choucha/renyuan/'+id;
+				form1.action = url;
+				form1.submit();
+				return true;
+			},
+			jichusave:function(id){
+				if(!validForm()) {
+					return false;
+				}
+				id = id || '0';
+				var url = 'admin/choucha/jichusave/'+id;
+				form1.action = url;
+				form1.submit();
+				return true;
+			}	
+		};
 		//显示Menu索引
 		showMenu('page_zchoucha');
 	});
@@ -62,25 +101,76 @@ var bodyContent = {
             </div>
             <div class="nav-right">${nowTime} ${xingQi}</div>
         </div>
-		
+
+		<input type="hidden" name="model.id" value="${model.id}" />	
 		<!--详细内容列表-->
-		<div class="content">
+		<div class="content form-group">
             <div class="content-body">
                 <div class="content-body-head">
                     <span>新增抽查任务-基本信息</span>
                     <ul class="task_right">
-                        <li><span class="task_right_before task_right-active"></span><span class="task_right task_right-active">基本信息</span></li>
-                        <li><span class="task_right_before"></span><span class="task_right">被查对象</span></li>
-                        <li><span class="task_right_before"></span><span class="task_right">执法人员</span></li>
+                        <li>
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#"  onclick="oper.jichu(${id!'0'});return false;">
+                        <span class="task_right_before task_right-active"></span><span class="task_right task_right-active">基本信息</span>
+                        </a>
+                        </li>
+                        <li>
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#"  onclick="oper.duixiang(${id!'0'});return false;">
+                        <span class="task_right_before"></span><span class="task_right">被查对象</span>
+                        </a>
+                        </li>
+                        <li>
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#"  onclick="oper.renyuan(${id!'0'});return false;">
+                        <span class="task_right_before"></span><span class="task_right">执法人员</span>
+                        </a>
+                        </li>
                         <li><span class="task_right_before"></span><span class="task_right">生成任务</span></li>
                     </ul>
                 </div>
 
                 <div class="task-form">
+                
+                	<table class="table">
+                		<tr>
+							<td>任务日期</td>
+							<td>
+							<input class="form-control" type="text" name="model.choucha_begin" value="${model.choucha_begin }"  onfocus="WdatePicker({dateFmt:'yyyy-MM-dd'})" />
+		                    -
+		                    <input class="form-control" type="text" name="model.choucha_end" value="${model.choucha_end  }"  onfocus="WdatePicker({dateFmt:'yyyy-MM-dd'})" />    
+							</td>
+						</tr>
+                	
+                		<tr>
+							<td>任务名称</td>
+							<td>
+								<input class="form-control" type="text" name="model.name" value="${model.name }"  valid='vtext' validname='任务名称'  />	                        
+							</td>
+						</tr>
+						<tr>
+							<td>任务简介</td>
+							<td>
+								<textarea class="form-control"  name="model.jianjie" >${model.jianjie }</textarea>
+							</td>
+						</tr>
+						<tr>
+							<td>抽查组数</td>
+							<td>
+								<input class="form-control" type="text" name="model.zushu" value="${model.zushu }"  valid='vtext' validname='抽查组数'  />	                        
+							</td>
+						</tr>
+						<tr>
+							<td>抽查对象总数</td>
+							<td>
+								<input class="form-control" type="text" name="model.dxzs" value="${model.dxzs }"  valid='vtext' validname='抽查对象总数'  />	                        
+							</td>
+						</tr>
+                	</table>
                     
                     <div class="change-btn">
                         <ul class="task_right_reset">
-                            <li><a href="admin/choucha/duixiang"><span>下一步</span></a></li>
+                        	<li><a class="dropdown-toggle" data-toggle="dropdown" href="#"  onclick="oper.resetData();"><span>重置</span></a></li>
+                        	<li><a class="dropdown-toggle" data-toggle="dropdown" href="#"  onclick="oper.jichusave(${model.id!'0'});return false;"><span>保存</span></a></li>
+                            <li><a class="dropdown-toggle" data-toggle="dropdown" href="#"  onclick="oper.duixiang(${model.id!'0'});return false;"><span>下一步</span></a></li>
                         </ul>
                     </div>
                 </div>
@@ -98,4 +188,6 @@ var bodyContent = {
 
 
 <% layout("/pages/template/_layout.html",{head:headContent,body:bodyContent}){ %>
-<%} %>
+<%}
+DIRECTIVE SAFE_OUTPUT_CLOSE; 
+%>

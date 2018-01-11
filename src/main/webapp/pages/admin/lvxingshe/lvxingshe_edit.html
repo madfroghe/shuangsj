@@ -51,7 +51,7 @@ var bodyContent = {
 					<td>
 					<select name="model.lxs_type" class="form-control" valid="vselect" validname='单位类型'>
 					<option value="-1">请选择单位类型</option>
-					${flyfox.dictSelect('ssj_dwlx' , model.lxs_type!'')  }
+					${flyfox.dictSelectsj('ssj_dwlx' , model.lxs_type!'')  }
 					</select>
 											</td>
 				</tr>
@@ -60,7 +60,7 @@ var bodyContent = {
 					<td>
 					<select name="model.lxs_level" class="form-control" valid="vselect" validname='旅行社等级'>
 					<option value="-1">请选择旅行社等级</option>
-					${flyfox.dictSelect('ssj_lxsdj' , model.lxs_level!'')  }
+					${flyfox.dictSelectsj('ssj_lxsdj' , model.lxs_level!'')  }
 					</select>
 											</td>
 				</tr>
@@ -69,7 +69,7 @@ var bodyContent = {
 					<td>
 					<select name="model.lxs_business" class="form-control" valid="vselect" validname='经营类别'>
 					<option value="-1">请选择经营类别</option>
-					${flyfox.dictSelect('ssj_jylb' , model.lxs_business!'')  }
+					${flyfox.dictSelectsj('ssj_jylb' , model.lxs_business!'')  }
 					</select>
 											</td>
 				</tr>
@@ -115,7 +115,7 @@ var bodyContent = {
 					<td>
 					<select name="model.money_type" class="form-control" valid="vselect" validname='出资类型'>
 					<option value="-1">请选择出资类型</option>
-					${flyfox.dictSelect('ssj_czlx' , model.money_type!'')  }
+					${flyfox.dictSelectsj('ssj_czlx' , model.money_type!'')  }
 					</select>
 											</td>
 				</tr>
@@ -124,7 +124,7 @@ var bodyContent = {
 					<td>
 					<select name="model.qiye_type" class="form-control" valid="vselect" validname='企业类型'>
 					<option value="-1">请选择企业类型</option>
-					${flyfox.dictSelect('ssj_qylx' , model.qiye_type!'')  }
+					${flyfox.dictSelectsj('ssj_qylx' , model.qiye_type!'')  }
 					</select>
 											</td>
 				</tr>
@@ -175,7 +175,7 @@ var bodyContent = {
 					<td>
 					<select name="model.qiye_quyu" class="form-control" valid="vselect" validname='注册地所属区域'>
 					<option value="-1">请选择注册地所属区域</option>
-					${flyfox.dictSelect('ssj_zcdssqy' , model.qiye_quyu!'')  }
+					${flyfox.dictSelectsj('ssj_zcdssqy' , model.qiye_quyu!'')  }
 					</select>
 											</td>
 				</tr>
@@ -190,7 +190,7 @@ var bodyContent = {
 					<td>
 					<select name="model.qiye_bgquyu" class="form-control" valid="vselect" validname='办公地所属区域'>
 					<option value="-1">请选择办公地所属区域</option>
-					${flyfox.dictSelect('ssj_zcdssqy' , model.qiye_bgquyu!'')  }
+					${flyfox.dictSelectsj('ssj_zcdssqy' , model.qiye_bgquyu!'')  }
 					</select>
 											</td>
 				</tr>
@@ -260,7 +260,7 @@ var bodyContent = {
 	<div style="height: 50px;clear: both;">&nbsp;</div>
 	<nav class="navbar navbar-default navbar-fixed-bottom">
 	  <div class="container" style="padding: 5px 0px 5px 0px;text-align: center;">
-		<button class="btn btn-primary" onclick="return oper.save(${model.id});">保 存</button>
+		<button class="btn btn-primary" onclick="oper.save(${model.id!'0'});return false;">保 存</button>
 		<button class="btn btn-default" onclick="closeIframe();return false;">关 闭</button>
 	  </div>
 	</nav>

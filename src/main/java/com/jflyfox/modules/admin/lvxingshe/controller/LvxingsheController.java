@@ -1,6 +1,5 @@
 package com.jflyfox.modules.admin.lvxingshe.controller;
 
-import java.io.File;
 import java.util.List;
 
 import com.beetl.functions.ExcelUtilsImprove;
@@ -10,7 +9,6 @@ import com.jflyfox.jfinal.component.db.SQLUtils;
 import com.jflyfox.modules.admin.lvxingshe.model.TbZlvxingshe;
 import com.jflyfox.modules.admin.lvxingshe.model.TbZyichang;
 import com.jflyfox.modules.admin.site.TbSite;
-import com.jflyfox.modules.admin.zhifa.model.TbZzhifa;
 import com.jflyfox.system.config.ConfigCache;
 import com.jflyfox.system.file.util.FileUploadUtils;
 import com.jflyfox.util.DateUtils;
@@ -125,7 +123,16 @@ public class LvxingsheController extends BaseProjectController {
 	        for (List<String> list : lists) {
 	            System.out.println(list);
 	            TbZlvxingshe lvxingshe_model = getModel(TbZlvxingshe.class);
-				lvxingshe_model.remove("id");		
+				lvxingshe_model.remove("id");
+				lvxingshe_model.setName(list.get(1));
+				lvxingshe_model.setEnName(list.get(2));
+				lvxingshe_model.setCode(list.get(3));
+				lvxingshe_model.setFaren(list.get(4));
+				lvxingshe_model.setQiyeDizhi(list.get(5));
+				lvxingshe_model.setPhoneF(list.get(6));
+				lvxingshe_model.setPhoneS(list.get(7));
+				lvxingshe_model.setQiyeChuanzhen(list.get(8));
+				lvxingshe_model.setQiyeEmail(list.get(9));
 				lvxingshe_model.save();
 	        }
 		} catch (Exception e) {
@@ -134,6 +141,7 @@ public class LvxingsheController extends BaseProjectController {
 		}
 
         renderMessage("导入成功");
+        
 	}
 	
 }

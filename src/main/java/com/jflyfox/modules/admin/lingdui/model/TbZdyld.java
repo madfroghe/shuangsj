@@ -1,10 +1,11 @@
 package com.jflyfox.modules.admin.lingdui.model;
 
+import com.jflyfox.component.base.BaseProjectModel;
 import com.jflyfox.jfinal.base.BaseModel;
 import com.jflyfox.jfinal.component.annotation.ModelBind;
 
 @ModelBind(table = "tb_zdyld")
-public class TbZdyld extends BaseModel<TbZdyld> {
+public class TbZdyld extends BaseProjectModel<TbZdyld> {
 
 	private static final long serialVersionUID = 1L;
 	public static final TbZdyld dao = new TbZdyld();

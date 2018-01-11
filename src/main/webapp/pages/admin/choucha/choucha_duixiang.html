@@ -1,13 +1,53 @@
 <% 
+	DIRECTIVE SAFE_OUTPUT_OPEN;
 	var headContent = {
 	include("/pages/template/head.html"){}
 %>
-
+<% include("/pages/includes/my97.html"){} %>
 <script type="text/javascript">
 		
 	var oper;
 	jQuery(function($) {
 		// 页面方法
+		oper = {
+			width : 400,
+			height : 500,
+			form : document.form1,
+			resetData:function() {
+				this.form.reset();
+			},
+			jichu:function(id){
+				id = id || '0';
+				var url = 'admin/choucha/'+id;
+				form1.action = url;
+				form1.submit();
+				return true;
+			},
+			duixiang:function(id){
+				id = id || '0';
+				var url = 'admin/choucha/duixiang/'+id;
+				form1.action = url;
+				form1.submit();
+				return true;
+			},
+			renyuan:function(id){
+				id = id || '0';
+				var url = 'admin/choucha/renyuan/'+id;
+				form1.action = url;
+				form1.submit();
+				return true;
+			},
+			duixiang_sx:function(id){
+				if(!validForm()) {
+					return false;
+				}
+				id = id || '0';
+				var url = 'admin/choucha/duixiang_sx/'+id;
+				form1.action = url;
+				form1.submit();
+				return true;
+			}	
+		};
 		//显示Menu索引
 		showMenu('page_zchoucha');
 	});
@@ -63,24 +103,144 @@ var bodyContent = {
             <div class="nav-right">${nowTime} ${xingQi}</div>
         </div>
 		
+		<input type="hidden" name="model.id" value="${model.id}" />	
 		<!--详细内容列表-->
 		<div class="content">
             <div class="content-body">
                 <div class="content-body-head">
                     <span>新增抽查任务-被查对象</span>
                     <ul class="task_right">
-                        <li><span class="task_right_before task_right-active"></span><span class="task_right task_right-active">基本信息</span></li>
-                        <li><span class="task_right_before task_right-active"></span><span class="task_right task_right-active">被查对象</span></li>
-                        <li><span class="task_right_before"></span><span class="task_right">执法人员</span></li>
+                        <li>
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#"  onclick="oper.jichu(${id!'0'});return false;">
+                        <span class="task_right_before task_right-active"></span><span class="task_right task_right-active">基本信息</span>
+                        </a>
+                        </li>
+                        <li>
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#"  onclick="oper.duixiang(${id!'0'});return false;">
+                        <span class="task_right_before task_right-active"></span><span class="task_right task_right-active">被查对象</span>
+                        </a>
+                        </li>
+                        <li>
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#"  onclick="oper.renyuan(${id!'0'});return false;">
+                        <span class="task_right_before"></span><span class="task_right">执法人员</span>
+                        </a>
+                        </li>
                         <li><span class="task_right_before"></span><span class="task_right">生成任务</span></li>
                     </ul>
                 </div>
 
                 <div class="task-form">
+                	<table class="table">
+                		<tr>
+							<td>抽查类型</td>
+							<td>
+							<input class="form-control" name="model.choucha_type" type="radio" value="不定向抽查" ${model.choucha_type=='不定向抽查'?"checked":"" }/>不定向抽查
+							&nbsp;&nbsp;
+		                    <input class="form-control" name="model.choucha_type" type="radio" value="定向抽查" ${model.choucha_type=='定向抽查'?"checked":"" }/>定向抽查
+							</td>
+						</tr>
+						<tr>
+							<td>抽取被查对象</td>
+							<td>
+							<input class="form-control" name="model.choucha_duixiang" type="checkbox" value="旅行社" ${model.choucha_duixiang=='旅行社'?"checked":"" }/>旅行社
+							&nbsp;&nbsp;
+		                    <input class="form-control" name="model.choucha_duixiang" type="checkbox" value="导游" ${model.choucha_duixiang=='导游'?"checked":"" }/>导游
+		                    &nbsp;&nbsp;
+		                    <input class="form-control" name="model.choucha_duixiang" type="checkbox" value="领队" ${model.choucha_duixiang=='领队'?"checked":"" }/>领队
+							</td>
+						</tr>
+						<tr>
+							<td>成立时间</td>
+							<td>                        
+								<input class="form-control" type="text" name="model.chengli_di" value="${model.chengli_di }"  onfocus="WdatePicker({dateFmt:'yyyy-MM-dd'})" />
+		                    	-
+		                    	<input class="form-control" type="text" name="model.chengli_gao" value="${model.chengli_gao  }"  onfocus="WdatePicker({dateFmt:'yyyy-MM-dd'})" />    
+							</td>
+						</tr>
+                		<tr>
+							<td>注册资本</td>
+							<td>
+								<input class="form-control" type="text" name="model.ziben_di" value="${model.ziben_di }"  valid='vtext' validname='注册资本'  />
+								-	
+								<input class="form-control" type="text" name="model.ziben_gao" value="${model.ziben_gao }"  valid='vtext' validname='注册资本'  />                        
+							</td>
+						</tr>
+						<tr>
+							<td>企业规模</td>
+							<td>
+								<input class="form-control" type="text" name="model.guimo_di" value="${model.guimo_di }"  valid='vtext' validname='企业规模'  />
+								-	
+								<input class="form-control" type="text" name="model.guimo_gao" value="${model.guimo_gao }"  valid='vtext' validname='企业规模'  />	                        
+							</td>
+						</tr>
+						<tr>
+							<td>经营类别</td>
+							<td>
+								<select name="model.fanwei" class="form-control" valid="vselect" validname='经营类别'>
+								<option value="-1">请选择经营类别</option>
+								${flyfox.dictSelectsj('ssj_jylb' , model.fanwei!'')  }
+								</select>	                        
+							</td>
+						</tr>
+						<tr>
+							<td>企业类型</td>
+							<td>
+								<select name="model.leixing" class="form-control" valid="vselect" validname='企业类型'>
+								<option value="-1">请选择企业类型</option>
+								${flyfox.dictSelectsj('ssj_qylx' , model.leixing!'')  }
+								</select>	                        
+							</td>
+						</tr>
+						<tr>
+							<td>注册地所在</td>
+							<td>
+								<select name="model.zhucedi" class="form-control" valid="vselect" validname='注册地所在'>
+								<option value="-1">请选择注册地所在</option>
+								${flyfox.dictSelectsj('ssj_zcdssqy' , model.zhucedi!'')  }
+								</select>	                        
+							</td>
+						</tr>
+						<tr>
+							<td>办公地所在</td>
+							<td>
+								<select name="model.bangong" class="form-control" valid="vselect" validname='办公地所在'>
+								<option value="-1">请选择办公地所在</option>
+								${flyfox.dictSelectsj('ssj_zcdssqy' , model.bangong!'')  }
+								</select>	                        
+							</td>
+						</tr>
+						<tr>
+							<td>前三年检查次数</td>
+							<td>
+								<input class="form-control" type="text" name="model.jieshoujc_di" value="${model.jieshoujc_di }"    />
+								-	
+								<input class="form-control" type="text" name="model.jieshoujc_gao" value="${model.jieshoujc_gao }"  />	                        	                        
+							</td>
+						</tr>
+						<tr>
+							<td>异常情况</td>
+							<td>
+								<input class="form-control" name="model.yichang" type="radio" value="否" ${model.yichang=='否'?"checked":"" }/>否
+								&nbsp;&nbsp;
+		                    	<input class="form-control" name="model.yichang" type="radio" value="是" ${model.yichang=='是'?"checked":"" }/>是	                        
+							</td>
+						</tr>
+						<tr>
+							<td>处理日期</td>
+							<td>
+								<input class="form-control" type="text" name="model.chuli_di" value="${model.chuli_di }"  onfocus="WdatePicker({dateFmt:'yyyy-MM-dd'})" />
+		                    	-
+		                    	<input class="form-control" type="text" name="model.chuli_gao" value="${model.chuli_gao  }"  onfocus="WdatePicker({dateFmt:'yyyy-MM-dd'})" />    
+							</td>
+						</tr>
+                	</table>
+                    
                     
                     <div class="change-btn">
                         <ul class="task_right_reset">
-                            <li><a href="admin/choucha/renyuan"><span>下一步</span></a></li>
+                        	<li><span onclick="resetForm();">重置</span></li>
+                            <li><a class="dropdown-toggle" data-toggle="dropdown" href="#"  onclick="oper.duixiang_sx(${model.id!'0'});return false;"><span>筛选</span></a></li>
+                            <li><a class="dropdown-toggle" data-toggle="dropdown" href="#"  onclick="oper.renyuan(${model.id!'0'});return false;"><span>下一步</span></a></li>
                         </ul>
                     </div>
                 </div>
@@ -98,4 +258,6 @@ var bodyContent = {
 
 
 <% layout("/pages/template/_layout.html",{head:headContent,body:bodyContent}){ %>
-<%} %>
+<%}
+DIRECTIVE SAFE_OUTPUT_CLOSE; 
+%>
