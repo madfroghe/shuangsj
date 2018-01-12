@@ -43,6 +43,7 @@ public class BasePathHandler extends Handler {
 		String path = request.getContextPath();
 		String basePath = request.getScheme() + "://" + request.getServerName() //
 				+ ":" + request.getServerPort() + path + "/";
+		basePath="http://www.madfroghe.com:8080/shuangsj/";
 		request.setAttribute(basePathName, basePath);
 		request.setAttribute("ctx", basePath);
 		next.handle(target, request, response, isHandled);
