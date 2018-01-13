@@ -10,7 +10,7 @@ public class TbFolder extends BaseProjectModel<TbFolder> {
 	/**
 	 * 根结点，首页
 	 */
-	public static final int ROOT = 1;
+	public static final int ROOT = 307;
 
 	public static final TbFolder dao = new TbFolder();
 

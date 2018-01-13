@@ -58,7 +58,8 @@ public class CommonController extends BaseProjectController {
 		}
 		// 活动目录
 		setAttr("folders_selected", folderId);
-
+		
+		System.out.println(folderId+"********************************");
 		TbFolder folder = new FolderService().getFolder(folderId);
 		setAttr("folder", folder);
 
@@ -67,7 +68,8 @@ public class CommonController extends BaseProjectController {
 		// seo：title优化
 		String folderName = (folder == null ? "" : folder.getStr("name") + " - ");
 		setAttr(JFlyFoxUtils.TITLE_ATTR, folderName + getAttr(JFlyFoxUtils.TITLE_ATTR));
-
+		
+		
 		// 栏目跳转规则
 		String jumpUrl = folder.getJumpUrl();
 		String path = folder.getPath();

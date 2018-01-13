@@ -35,6 +35,7 @@ import com.jfinal.plugin.activerecord.CaseInsensitiveContainerFactory;
 import com.jfinal.plugin.activerecord.SqlReporter;
 import com.jfinal.plugin.activerecord.dialect.OracleDialect;
 import com.jfinal.plugin.activerecord.dialect.PostgreSqlDialect;
+import com.jfinal.plugin.activerecord.dialect.SqlServerDialect;
 import com.jfinal.plugin.activerecord.dialect.Sqlite3Dialect;
 import com.jfinal.plugin.c3p0.C3p0Plugin;
 import com.jfinal.render.ViewType;
@@ -152,6 +153,8 @@ public class BaseConfig extends JFinalConfig {
 		} else if (db_type.startsWith("oracle")) {
 			arp.setDialect(new OracleDialect());
 			arp.setContainerFactory(new CaseInsensitiveContainerFactory(true));
+		} else if (db_type.startsWith("sqlserver")) {
+			arp.setDialect(new SqlServerDialect());
 		}
 
 		new AutoBindModels(arp);
