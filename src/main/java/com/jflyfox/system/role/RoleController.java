@@ -38,12 +38,12 @@ public class RoleController extends BaseProjectController {
 		}
 		
 		// 排序
-		String orderBy = getBaseForm().getOrderBy();
-		if (StrUtils.isEmpty(orderBy)) {
-			sql.append(" order by sort,id desc");
-		} else {
-			sql.append(" order by ").append(orderBy);
-		}
+//		String orderBy = getBaseForm().getOrderBy();
+//		if (StrUtils.isEmpty(orderBy)) {
+//			sql.append(" order by sort,id desc");
+//		} else {
+//			sql.append(" order by ").append(orderBy);
+//		}
 
 		String sqlSelect = "select t.* "
 				+ ",(select group_concat(m.name) from sys_role_menu rm left JOIN  sys_menu m ON rm.menuid = m.id where rm.roleid = t.id ) as menus ";

@@ -36,12 +36,12 @@ public class FolderrollpictureController extends BaseProjectController {
 		sql.append(" and site_id = " + getSessionUser().getBackSiteId());
 
 		// 排序
-		String orderBy = getBaseForm().getOrderBy();
-		if (StrUtils.isEmpty(orderBy)) {
-			sql.append(" order by t.folder_id,t.sort,t.id desc ");
-		} else {
-			sql.append(" order by ").append(orderBy);
-		}
+//		String orderBy = getBaseForm().getOrderBy();
+//		if (StrUtils.isEmpty(orderBy)) {
+//			sql.append(" order by t.folder_id,t.sort,t.id desc ");
+//		} else {
+//			sql.append(" order by ").append(orderBy);
+//		}
 
 		Page<TbFolderRollPicture> page = TbFolderRollPicture.dao.paginate(getPaginator(),
 				"select t.*,f.name as folderName ", //

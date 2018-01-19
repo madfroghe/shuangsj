@@ -27,12 +27,12 @@ public class ContactController extends BaseProjectController {
 		}
 		
 		// 排序
-		String orderBy = getBaseForm().getOrderBy();
-		if (StrUtils.isEmpty(orderBy)) {
-			sql.append(" order by id desc ");
-		} else {
-			sql.append(" order by ").append(orderBy);
-		}
+//		String orderBy = getBaseForm().getOrderBy();
+//		if (StrUtils.isEmpty(orderBy)) {
+//			sql.append(" order by id desc ");
+//		} else {
+//			sql.append(" order by ").append(orderBy);
+//		}
 
 		Page<TbContact> page = TbContact.dao.paginate(getPaginator(), "select t.* ", //
 				sql.toString().toString());

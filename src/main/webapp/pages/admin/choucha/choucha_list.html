@@ -17,10 +17,12 @@
 				this.form.action = url;
 				this.form.submit();
 			},
-			view : function(id) {
-				var url = 'admin/choucha/view/'+id;
-				var title = '查看';
-				Iframe(url, this.width, this.height, title, false, false, false, EmptyFunc);
+			view : function(id) {	
+				id = id || '0';
+				var url = 'admin/choucha/'+id;
+				form1.action = url;
+				form1.submit();
+				return true;
 			}
 		};
 		//显示Menu索引

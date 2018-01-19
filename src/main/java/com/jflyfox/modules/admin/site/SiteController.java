@@ -33,12 +33,12 @@ public class SiteController extends BaseProjectController {
 			sql.whereLike("name", model.getStr("name"));
 		}
 		// 排序
-		String orderBy = getBaseForm().getOrderBy();
-		if (StrUtils.isEmpty(orderBy)) {
-			sql.append(" order by t.sort,t.id ");
-		} else {
-			sql.append(" order by ").append(orderBy);
-		}
+//		String orderBy = getBaseForm().getOrderBy();
+//		if (StrUtils.isEmpty(orderBy)) {
+//			sql.append(" order by t.sort,t.id ");
+//		} else {
+//			sql.append(" order by ").append(orderBy);
+//		}
 
 		Page<TbSite> page = TbSite.dao.paginate(getPaginator(), "select t.* ", //
 				sql.toString().toString());

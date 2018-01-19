@@ -42,12 +42,12 @@ public class UserController extends BaseProjectController {
 		}
 
 		// 排序
-		String orderBy = getBaseForm().getOrderBy();
-		if (StrUtils.isEmpty(orderBy)) {
-			sql.append(" order by userid desc");
-		} else {
-			sql.append(" order by ").append(orderBy);
-		}
+//		String orderBy = getBaseForm().getOrderBy();
+//		if (StrUtils.isEmpty(orderBy)) {
+//			sql.append(" order by userid desc");
+//		} else {
+//			sql.append(" order by ").append(orderBy);
+//		}
 		
 		Page<SysUser> page = SysUser.dao.paginate(getPaginator(), "select t.*,d.name as departname ", sql.toString()
 				.toString());

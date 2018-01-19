@@ -179,8 +179,7 @@ public abstract class BaseProjectController extends BaseController {
 			String tableName = user.getTable().getName();
 			Integer updateId = user.getInt("update_id");
 			String updateTime = user.getStr("update_time");
-			String sql = "INSERT INTO `sys_log` ( `log_type`, `oper_object`, `oper_table`," //
-					+ " `oper_id`, `oper_type`, `oper_remark`, `create_time`, `create_id`) " //
+			String sql = "INSERT INTO [sys_log] " //
 					+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 			Db.update(sql, SysLog.TYPE_SYSTEM, SysLog.getTableRemark(tableName), tableName, //
 					updateId, operType, "", updateTime, updateId);

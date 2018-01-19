@@ -15,13 +15,12 @@
 <meta http-equiv="description" content="欢迎登录">
 <!-- jquery -->
 <script type="text/javascript"
-	src="static/component/jquery/jquery-1.8.2.min.js"></script>
+	src="${BASE_PATH }static/component/jquery/jquery-1.8.2.min.js"></script>
 
-<link charset="utf-8" rel="stylesheet" href="static/login/login.css"
-	media="all">
+<link charset="utf-8" rel="stylesheet" href="static/login/login.css" media="all">
 
-<script type="text/javascript" src="static/oauth2/oauth2.js"></script>
-<script type="text/javascript" src="resources/js/encrypt/md5.js"></script>
+<script type="text/javascript" src="${BASE_PATH }static/oauth2/oauth2.js"></script>
+<script type="text/javascript" src="${BASE_PATH }resources/js/encrypt/md5.js"></script>
 
 <script type="text/javascript">
 	function login() {
@@ -48,7 +47,7 @@
 		
 		$('[name="password"]').val(hex_md5(pwd));
 		
-		form1.action = "admin/login";
+		form1.action = "${BASE_PATH }admin/login";
 		form1.submit();
 		// submit_js("login_login.action", "loginform");
 	}

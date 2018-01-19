@@ -30,12 +30,12 @@ public class LogController extends BaseProjectController {
 			sql.whereEquals("log_type", model.getLogType());
 		}
 		// 排序
-		String orderBy = getBaseForm().getOrderBy();
-		if (StrUtils.isEmpty(orderBy)) {
-			sql.append(" order by id desc");
-		} else {
-			sql.append(" order by ").append(orderBy);
-		}
+//		String orderBy = getBaseForm().getOrderBy();
+//		if (StrUtils.isEmpty(orderBy)) {
+//			sql.append(" order by id desc");
+//		} else {
+//			sql.append(" order by ").append(orderBy);
+//		}
 
 		Page<SysLog> page = SysLog.dao.paginate(getPaginator(), "select t.* ", //
 				sql.toString().toString());

@@ -35,12 +35,12 @@ public class VideoController extends BaseProjectController {
 		}
 
 		// 排序
-		String orderBy = getBaseForm().getOrderBy();
-		if (StrUtils.isEmpty(orderBy)) {
-			sql.append(" order by sort,id desc");
-		} else {
-			sql.append(" order by ").append(orderBy);
-		}
+//		String orderBy = getBaseForm().getOrderBy();
+//		if (StrUtils.isEmpty(orderBy)) {
+//			sql.append(" order by sort,id desc");
+//		} else {
+//			sql.append(" order by ").append(orderBy);
+//		}
 
 		Page<TbVideo> page = TbVideo.dao.paginate(getPaginator(), "select t.* ", //
 				sql.toString().toString());

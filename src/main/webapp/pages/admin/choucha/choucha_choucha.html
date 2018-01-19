@@ -13,10 +13,14 @@
 			height : 500,
 			form : document.form1,
 			resetData:function() {
-				this.form.reset();
+				form1.reset();
 			},
 			jichu:function(id){
 				id = id || '0';
+				if(id==0){
+					Alert('请先保存基础信息！');
+					return false;
+				}
 				var url = 'admin/choucha/'+id;
 				form1.action = url;
 				form1.submit();
@@ -24,6 +28,10 @@
 			},
 			duixiang:function(id){
 				id = id || '0';
+				if(id==0){
+					Alert('请先保存基础信息！');
+					return false;
+				}
 				var url = 'admin/choucha/duixiang/'+id;
 				form1.action = url;
 				form1.submit();
@@ -31,15 +39,25 @@
 			},
 			renyuan:function(id){
 				id = id || '0';
+				if(id==0){
+					Alert('请先保存基础信息！');
+					return false;
+				}
 				var url = 'admin/choucha/renyuan/'+id;
 				form1.action = url;
 				form1.submit();
 				return true;
 			},
-			jichusave:function(id){
+			jichusave:function(id,choucha){
+				choucha = choucha || 'WU';
+				if(choucha=="任务完成"){
+					Alert('任务已完成，无法修改！');
+					return false;
+				}
 				if(!validForm()) {
 					return false;
 				}
+				loading1();
 				id = id || '0';
 				var url = 'admin/choucha/jichusave/'+id;
 				form1.action = url;
@@ -55,6 +73,8 @@
 	var paginator = function(page) {
 		oper.list();
 	};
+	
+
 </script>
 
 <%
@@ -103,6 +123,7 @@ var bodyContent = {
         </div>
 
 		<input type="hidden" name="model.id" value="${model.id}" />	
+		<input type="hidden" name="model.choucha_status" value="${model.choucha_status}" />	
 		<!--详细内容列表-->
 		<div class="content form-group">
             <div class="content-body">
@@ -110,17 +131,17 @@ var bodyContent = {
                     <span>新增抽查任务-基本信息</span>
                     <ul class="task_right">
                         <li>
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#"  onclick="oper.jichu(${id!'0'});return false;">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#"  onclick="oper.jichu(${model.id!'0'});return false;">
                         <span class="task_right_before task_right-active"></span><span class="task_right task_right-active">基本信息</span>
                         </a>
                         </li>
                         <li>
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#"  onclick="oper.duixiang(${id!'0'});return false;">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#"  onclick="oper.duixiang(${model.id!'0'});return false;">
                         <span class="task_right_before"></span><span class="task_right">被查对象</span>
                         </a>
                         </li>
                         <li>
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#"  onclick="oper.renyuan(${id!'0'});return false;">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#"  onclick="oper.renyuan(${model.id!'0'});return false;">
                         <span class="task_right_before"></span><span class="task_right">执法人员</span>
                         </a>
                         </li>
@@ -149,19 +170,26 @@ var bodyContent = {
 						<tr>
 							<td>任务简介</td>
 							<td>
-								<textarea class="form-control"  name="model.jianjie" >${model.jianjie }</textarea>
+								<textarea class="form-control"  name="model.jianjie" rows="6" cols="46">${model.jianjie }</textarea>
+							</td>
+						</tr>
+						
+						<tr>
+							<td>抽查类型</td>
+							<td>
+							<input class="form-control" name="model.choucha_type" type="radio" value="不定向抽查" ${model.choucha_type=='不定向抽查'?"checked":"" }/>不定向抽查
+							&nbsp;&nbsp;
+		                    <input class="form-control" name="model.choucha_type" type="radio" value="定向抽查" ${model.choucha_type=='定向抽查'?"checked":"" }/>定向抽查
 							</td>
 						</tr>
 						<tr>
-							<td>抽查组数</td>
+							<td>抽取被查对象</td>
 							<td>
-								<input class="form-control" type="text" name="model.zushu" value="${model.zushu }"  valid='vtext' validname='抽查组数'  />	                        
-							</td>
-						</tr>
-						<tr>
-							<td>抽查对象总数</td>
-							<td>
-								<input class="form-control" type="text" name="model.dxzs" value="${model.dxzs }"  valid='vtext' validname='抽查对象总数'  />	                        
+							<input class="form-control" name="model.choucha_duixiang" type="radio" value="旅行社" ${model.choucha_duixiang=='旅行社'?"checked":"" } />旅行社
+							&nbsp;&nbsp;
+		                    <input class="form-control" name="model.choucha_duixiang" type="radio" value="导游" ${model.choucha_duixiang=='导游'?"checked":"" } disabled="disabled"/>导游
+		                    &nbsp;&nbsp;
+		                    <input class="form-control" name="model.choucha_duixiang" type="radio" value="领队" ${model.choucha_duixiang=='领队'?"checked":"" } disabled="disabled"/>领队
 							</td>
 						</tr>
                 	</table>
@@ -169,7 +197,7 @@ var bodyContent = {
                     <div class="change-btn">
                         <ul class="task_right_reset">
                         	<li><a class="dropdown-toggle" data-toggle="dropdown" href="#"  onclick="oper.resetData();"><span>重置</span></a></li>
-                        	<li><a class="dropdown-toggle" data-toggle="dropdown" href="#"  onclick="oper.jichusave(${model.id!'0'});return false;"><span>保存</span></a></li>
+                        	<li><a class="dropdown-toggle" data-toggle="dropdown" href="#"  onclick="oper.jichusave(${model.id!'0'},'${model.choucha_status!'WU'}');return false;"><span>保存</span></a></li>
                             <li><a class="dropdown-toggle" data-toggle="dropdown" href="#"  onclick="oper.duixiang(${model.id!'0'});return false;"><span>下一步</span></a></li>
                         </ul>
                     </div>

@@ -103,13 +103,13 @@ public class DictCache {
 	 * @param selected_value
 	 * @return
 	 */
-	public static String getSelectsj(String type, Integer selected_value) {
-		Map<Integer, SysDictDetail> map = DictCache.getCacheMap();
+	public static String getSelectsj(String type, String selected_value) {
+		Map<String, SysDictDetail> map = DictCache.getCacheMapsj();
 		if (map == null || map.size() <= 0) {
 			return null;
 		}
 		StringBuffer sb = new StringBuffer();
-		for (Integer key : map.keySet()) {
+		for (String key : map.keySet()) {
 			SysDictDetail dict = map.get(key);
 			if (dict.getStr("dict_type").equals(type)) {
 				sb.append("<option value=\"");

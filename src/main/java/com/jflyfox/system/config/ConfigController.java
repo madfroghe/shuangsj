@@ -40,12 +40,12 @@ public class ConfigController extends BaseController {
 		}
 
 		// 排序
-		String orderBy = getBaseForm().getOrderBy();
-		if (StrUtils.isEmpty(orderBy)) {
-			sql.append(" order by t.sort,t.id desc ");
-		} else {
-			sql.append(" order by ").append(orderBy);
-		}
+//		String orderBy = getBaseForm().getOrderBy();
+//		if (StrUtils.isEmpty(orderBy)) {
+//			sql.append(" order by t.sort,t.id desc ");
+//		} else {
+//			sql.append(" order by ").append(orderBy);
+//		}
 
 		Page<SysConfig> page = SysConfig.dao.paginate(getPaginator(), "select t.*,t2.name as typeName ", //
 				sql.toString().toString());

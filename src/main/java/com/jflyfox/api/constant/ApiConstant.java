@@ -67,4 +67,6 @@ public class ApiConstant {
 	public static final String MSG_SERVER_MAINTAIN = "API服务维护中";
 	public static final String MSG_LOGIN_VALID_ERROR = "登陆验证失败";
 	public static final String MSG_CHECKSUM_VALID_ERROR = "协议校验失败";
+	
+	
 }

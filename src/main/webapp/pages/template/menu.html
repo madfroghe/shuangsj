@@ -19,6 +19,28 @@ body { padding-top: 51px; }
 		$('body').css('padding-top',$('nav.navbar.navbar-fixed-top').height()+'px');
 	});
 	
+	function loading1() {
+		$('body').loading({
+			loadingWidth:240,
+			title:'请稍候!',
+			name:'test',
+			discription:'操作中.....',
+			direction:'column',
+			type:'origin',
+			// originBg:'#71EA71',
+			originDivWidth:40,
+			originDivHeight:40,
+			originWidth:6,
+			originHeight:6,
+			smallLoading:false,
+			loadingMaskBg:'rgba(0,0,0,0.2)'
+		});
+
+		setTimeout(function(){
+			removeLoading('test');
+		},3000);
+	}
+	
 </script>
 
 
@@ -28,7 +50,10 @@ body { padding-top: 51px; }
 <link rel="stylesheet" type="text/css" href="static/ssj/css/task.css">
 <link rel="stylesheet" type="text/css" href="static/ssj/css/select.css">
 <link rel="stylesheet" type="text/css" href="static/ssj/css/ssjbtn.css">    
-    
+
+<link rel="stylesheet" href="static/ssj/loading/css/global.css">
+<link rel="stylesheet" href="static/ssj/loading/css/loading.css">
+<script src="static/ssj/loading/js/loading.js"></script>
 <!--左侧菜单布局开始-->
 <div class="left-body">
     <section class="sidebar">

@@ -32,12 +32,12 @@ public class MenuController extends BaseProjectController {
 		}
 		
 		// 排序
-		String orderBy = getBaseForm().getOrderBy();
-		if (StrUtils.isEmpty(orderBy)) {
-			sql.append(" order by t.sort,t.id desc");
-		} else {
-			sql.append(" order by t.").append(orderBy);
-		}
+//		String orderBy = getBaseForm().getOrderBy();
+//		if (StrUtils.isEmpty(orderBy)) {
+//			sql.append(" order by t.sort,t.id desc");
+//		} else {
+//			sql.append(" order by t.").append(orderBy);
+//		}
 
 		Page<SysMenu> page = SysMenu.dao.paginate(getPaginator(), "select t.*,ifnull(d.name,'根目录') as parentname ", //
 				sql.toString().toString());

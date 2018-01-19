@@ -34,12 +34,12 @@ public class DepartmentController extends BaseProjectController {
 		}
 
 		// 排序
-		String orderBy = getBaseForm().getOrderBy();
-		if (StrUtils.isEmpty(orderBy)) {
-			sql.append(" order by t.sort,t.id desc ");
-		} else {
-			sql.append(" order by ").append(orderBy);
-		}
+//		String orderBy = getBaseForm().getOrderBy();
+//		if (StrUtils.isEmpty(orderBy)) {
+//			sql.append(" order by t.sort,t.id desc ");
+//		} else {
+//			sql.append(" order by ").append(orderBy);
+//		}
 
 		Page<SysDepartment> page = SysDepartment.dao.paginate(getPaginator(), "select t.*,p.name as parentName ", //
 				sql.toString().toString());

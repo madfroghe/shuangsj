@@ -48,12 +48,12 @@ public class ArticleController extends BaseProjectController {
 		sql.append(" and site_id = " + siteId);
 
 		// 排序
-		String orderBy = getBaseForm().getOrderBy();
-		if (StrUtils.isEmpty(orderBy)) {
-			sql.append(" order by t.folder_id,t.sort,t.create_time desc ");
-		} else {
-			sql.append(" order by t.").append(orderBy);
-		}
+//		String orderBy = getBaseForm().getOrderBy();
+//		if (StrUtils.isEmpty(orderBy)) {
+//			sql.append(" order by t.folder_id,t.sort,t.create_time desc ");
+//		} else {
+//			sql.append(" order by t.").append(orderBy);
+//		}
 
 		Page<TbArticle> page = TbArticle.dao.paginate(getPaginator(), "select t.*,f.name as folderName ", //
 				sql.toString().toString());

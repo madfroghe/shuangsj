@@ -22,6 +22,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.jfinal.handler.Handler;
 import com.jfinal.kit.StrKit;
+import com.jflyfox.api.constant.ApiConstant;
+import com.jflyfox.util.Config;
 
 public class BasePathHandler extends Handler {
 	private String basePathName;
@@ -43,7 +45,7 @@ public class BasePathHandler extends Handler {
 		String path = request.getContextPath();
 		String basePath = request.getScheme() + "://" + request.getServerName() //
 				+ ":" + request.getServerPort() + path + "/";
-		basePath="http://localhost:8080/shuangsj/";
+		basePath=Config.getStr("base_path");
 		request.setAttribute(basePathName, basePath);
 		request.setAttribute("ctx", basePath);
 		next.handle(target, request, response, isHandled);

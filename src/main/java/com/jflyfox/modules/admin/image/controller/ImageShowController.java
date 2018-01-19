@@ -32,12 +32,12 @@ public class ImageShowController extends BaseController {
 		}
 
 		// 排序
-		String orderBy = getBaseForm().getOrderBy();
-		if (StrUtils.isEmpty(orderBy)) {
-			sql.append(" order by sort,id desc");
-		} else {
-			sql.append(" order by ").append(orderBy);
-		}
+//		String orderBy = getBaseForm().getOrderBy();
+//		if (StrUtils.isEmpty(orderBy)) {
+//			sql.append(" order by sort,id desc");
+//		} else {
+//			sql.append(" order by ").append(orderBy);
+//		}
 
 		String sqlSelect = "select t.*,(select ifnull(im.image_net_url,im.image_url) " //
 				+ " from tb_image im where im.album_id = t.id order by sort,id desc limit 1 ) as imageUrl ";

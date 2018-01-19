@@ -30,12 +30,9 @@ public class BeeltFunctions extends TemplateFunctions {
 		return dictSelect(type, NumberUtils.parseInt(selected_value));
 	}
 	
-	public static String dictSelectsj(String type, int selected_value) {
-		return DictCache.getSelectsj(type, selected_value);
-	}
 
 	public static String dictSelectsj(String type, String selected_value) {
-		return dictSelectsj(type, NumberUtils.parseInt(selected_value));
+		return DictCache.getSelectsj(type, selected_value);
 	}
 
 	public static String dictValue(int key) {

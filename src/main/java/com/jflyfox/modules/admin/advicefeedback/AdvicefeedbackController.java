@@ -30,12 +30,12 @@ public class AdvicefeedbackController extends BaseProjectController {
 		}
 
 		// 排序
-		String orderBy = getBaseForm().getOrderBy();
-		if (StrUtils.isEmpty(orderBy)) {
-			sql.append(" order by t.id desc ");
-		} else {
-			sql.append(" order by ").append(orderBy);
-		}
+//		String orderBy = getBaseForm().getOrderBy();
+//		if (StrUtils.isEmpty(orderBy)) {
+//			sql.append(" order by t.id desc ");
+//		} else {
+//			sql.append(" order by ").append(orderBy);
+//		}
 
 		Page<TbAdviceFeedback> page = TbAdviceFeedback.dao.paginate(getPaginator(), "select t.* ", //
 				sql.toString().toString());

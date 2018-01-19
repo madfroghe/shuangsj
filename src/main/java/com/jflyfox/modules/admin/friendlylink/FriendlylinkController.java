@@ -27,12 +27,12 @@ public class FriendlylinkController extends BaseProjectController {
 		}
 		
 		// 排序
-		String orderBy = getBaseForm().getOrderBy();
-		if (StrUtils.isEmpty(orderBy)) {
-			sql.append(" order by t.sort,t.id ");
-		} else {
-			sql.append(" order by ").append(orderBy);
-		}
+//		String orderBy = getBaseForm().getOrderBy();
+//		if (StrUtils.isEmpty(orderBy)) {
+//			sql.append(" order by t.sort,t.id ");
+//		} else {
+//			sql.append(" order by ").append(orderBy);
+//		}
 
 		Page<TbFriendlylink> page = TbFriendlylink.dao.paginate(getPaginator(), "select t.*,s.name as siteName ", //
 				sql.toString().toString());

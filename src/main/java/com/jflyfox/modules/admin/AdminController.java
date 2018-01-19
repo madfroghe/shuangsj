@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import com.jflyfox.api.constant.ApiConstant;
 import com.jflyfox.component.base.BaseProjectController;
 import com.jflyfox.component.util.ImageCode;
 import com.jflyfox.component.util.JFlyFoxUtils;
@@ -103,7 +104,7 @@ public class AdminController extends BaseProjectController {
 		setSessionUser(user);
 
 		// 第一个页面跳转
-		String tmpMainPage = "/admin/home";
+		String tmpMainPage = Config.getStr("base_path")+"admin/home";
 
 		if (tmpMainPage == null) {
 			setAttr("msg", "没有权限，请联系管理员。");

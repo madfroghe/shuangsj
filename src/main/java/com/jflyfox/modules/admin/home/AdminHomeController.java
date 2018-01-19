@@ -8,6 +8,7 @@ import com.jflyfox.modules.CommonController;
 import com.jflyfox.modules.admin.article.TbArticle;
 import com.jflyfox.modules.admin.comment.TbComment;
 import com.jflyfox.modules.admin.pageview.TbPageView;
+import com.jflyfox.system.log.SysLog;
 import com.jflyfox.system.user.SysUser;
 
 @ControllerBind(controllerKey = "/admin/home")
@@ -23,6 +24,9 @@ public class AdminHomeController extends BaseProjectController {
 		}
 		setAttr("nowUser", user);
 		
+		user.put("update_id", user.getUserid());
+		user.put("update_time", getNow());
+		saveLog(user, SysLog.SYSTEM_LOGOUT);
 		
 		render(path + "home.html");
 	}
