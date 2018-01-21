@@ -38,15 +38,16 @@ public class DaoyouController extends BaseProjectController {
 		}
 		sql.whereEquals("dy_lingdui", "否");
 
-		Page<TbZdyld> page = TbZdyld.dao.paginate(getPaginator(), "select t.* ", //
+		Page<TbZdyld> page = TbZdyld.dao.paginate(getPaginator(),
+				"select t.* ", //
 				sql.toString().toString());
-		
-		
-		String nowTime = DateUtils.getNow(DateUtils.DEFAULT_REGEX_YYYY_MM_DD_HH_MIN_SS);
+
+		String nowTime = DateUtils
+				.getNow(DateUtils.DEFAULT_REGEX_YYYY_MM_DD_HH_MIN_SS);
 		setAttr("nowTime", nowTime);
 		String xingQi = DateUtils.getCurrenDayXingQi();
 		setAttr("xingQi", xingQi);
-		
+
 		// 下拉框
 		setAttr("page", page);
 		setAttr("attr", model);
@@ -87,17 +88,17 @@ public class DaoyouController extends BaseProjectController {
 		}
 		renderMessage("保存成功");
 	}
-	
+
 	public void yichang() {
-		Integer yichang=getParaToInt();
-		setAttr("yichang", "DA_"+yichang);
+		Integer yichang = getParaToInt();
+		setAttr("yichang", "DA_" + yichang);
 		render(path + "yichang.html");
 	}
-	
+
 	public void dimport() {
 		render(path + "import.html");
 	}
-	
+
 	public void ycsave() {
 		Integer pid = getParaToInt();
 		TbZyichang model = getModel(TbZyichang.class);
@@ -111,29 +112,71 @@ public class DaoyouController extends BaseProjectController {
 		}
 		renderMessage("保存成功");
 	}
-	
+
 	public void dyEximport() {
-		
+
 		TbSite site = getBackSite();
-		UploadFile uploadExcel = getFile("uploadFile", FileUploadUtils.getUploadTmpPath(site), FileUploadUtils.UPLOAD_MAX);
+		UploadFile uploadExcel = getFile("uploadFile",
+				FileUploadUtils.getUploadTmpPath(site),
+				FileUploadUtils.UPLOAD_MAX);
 		String fileUrl = uploadHandler(site, uploadExcel.getFile(), "excel");
-		
+
 		String backupPath = ConfigCache.getValue("backup.filemanger.path");
-		
+
 		try {
-			List<List<String>> lists = ExcelUtilsImprove.getInstance().readExcel2List(backupPath+"\\"+fileUrl, 1, 99999, 0);
-	        for (List<String> list : lists) {
-	            System.out.println(list);
-	            TbZdyld dyld_model = getModel(TbZdyld.class);
-	            dyld_model.remove("id");		
-	            dyld_model.save();
-	        }
+			List<List<String>> lists = ExcelUtilsImprove.getInstance()
+					.readExcel2List(backupPath + "\\" + fileUrl, 1, 99999, 0);
+			for (List<String> list : lists) {
+				System.out.println(list);
+				TbZdyld dyld_model = getModel(TbZdyld.class);
+				dyld_model.remove("id");
+				dyld_model.save();
+			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-        renderMessage("导入成功");
+		renderMessage("导入成功");
+	}
+
+	// /////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	// ////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+	public void yichanglist() {
+		Integer pid = getParaToInt();
+
+		TbZyichang model = getModel(TbZyichang.class);
+
+		SQLUtils sql = new SQLUtils(" from tb_zyichang t where 1=1 ");
+		if (model.getAttrValues().length != 0) {
+			sql.setAlias("t");
+			// 查询条件
+		}
+		sql.whereEquals("yichang_id_type", "DA_" + pid);
+
+		Page<TbZyichang> page = TbZyichang.dao.paginate(getPaginator(),
+				"select t.* ", //
+				sql.toString().toString());
+
+		String nowTime = DateUtils
+				.getNow(DateUtils.DEFAULT_REGEX_YYYY_MM_DD_HH_MIN_SS);
+		setAttr("nowTime", nowTime);
+		String xingQi = DateUtils.getCurrenDayXingQi();
+		setAttr("xingQi", xingQi);
+
+		setAttr("zhuti", pid);
+
+		// 下拉框
+		setAttr("page", page);
+		setAttr("attr", model);
+		
+		render(path + "yichanglist.html");
 	}
 	
-	
+	public void yichangview() {
+		TbZyichang model = TbZyichang.dao.findById(getParaToInt());
+		setAttr("model", model);
+		render(path + "yichangview.html");
+	}
+
 }

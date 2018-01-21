@@ -156,5 +156,47 @@ public class LvxingsheController extends BaseProjectController {
         renderMessage("导入成功");
         
 	}
+
+	
+	// /////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	// ////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+	public void yichanglist() {
+		Integer pid = getParaToInt();
+
+		TbZyichang model = getModel(TbZyichang.class);
+
+		SQLUtils sql = new SQLUtils(" from tb_zyichang t where 1=1 ");
+		if (model.getAttrValues().length != 0) {
+			sql.setAlias("t");
+			// 查询条件
+		}
+		sql.whereEquals("yichang_id_type", "LV_" + pid);
+
+		Page<TbZyichang> page = TbZyichang.dao.paginate(getPaginator(),
+				"select t.* ", //
+				sql.toString().toString());
+
+		String nowTime = DateUtils
+				.getNow(DateUtils.DEFAULT_REGEX_YYYY_MM_DD_HH_MIN_SS);
+		setAttr("nowTime", nowTime);
+		String xingQi = DateUtils.getCurrenDayXingQi();
+		setAttr("xingQi", xingQi);
+
+		setAttr("zhuti", pid);
+
+		// 下拉框
+		setAttr("page", page);
+		setAttr("attr", model);
+		
+		render(path + "yichanglist.html");
+	}
+	
+	public void yichangview() {
+		TbZyichang model = TbZyichang.dao.findById(getParaToInt());
+		setAttr("model", model);
+		render(path + "yichangview.html");
+	}
+	
 	
 }

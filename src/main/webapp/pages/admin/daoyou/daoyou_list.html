@@ -41,9 +41,9 @@
 				});
 			},
 			yichang : function(id) {
-				var url = 'admin/daoyou/yichang/'+id;
-				var title = '异常记录增加';
-				Iframe(url, this.width, this.height, title);
+				var url = 'admin/daoyou/yichanglist/'+id;
+				this.form.action = url;
+				this.form.submit();			
 			},
 			dimport : function() {
 				var url = 'admin/daoyou/dimport';

@@ -13,46 +13,23 @@
 			height : 500,
 			form : document.form1,
 			list : function() {
-				var url = 'admin/lingdui/list';
+				var url = 'admin/daoyou/yichanglist/'+${zhuti};
 				this.form.action = url;
 				this.form.submit();
 			},
 			view : function(id) {
-				var url = 'admin/lingdui/view/'+id;
+				var url = 'admin/daoyou/yichangview/'+id;
 				var title = '查看';
 				Iframe(url, this.width, this.height, title);
 			},
 			add : function() {
-				var url = 'admin/lingdui/add';
+				var url = 'admin/daoyou/yichang/'+${zhuti};
 				var title = '添加';
-				Iframe(url, this.width, this.height, title);
-			},
-			edit : function(id) {
-				var url = 'admin/lingdui/edit/'+id;
-				var title = '修改';
-				Iframe(url, this.width, this.height, title);
-			},
-			del : function(id) {
-				var url = 'admin/lingdui/delete/'+id;
-				var title = '确认要删除该信息？';
-				Confirm(title, function() {
-					form1.action = url;
-					form1.submit();
-				});
-			},
-			yichang : function(id) {
-				var url = 'admin/daoyou/yichanglist/'+id;
-				this.form.action = url;
-				this.form.submit();			
-			},
-			dimport : function() {
-				var url = 'admin/lingdui/dimport';
-				var title = '数据导入';
 				Iframe(url, this.width, this.height, title);
 			}
 		};
 		//显示Menu索引
-		showMenu('page_ssj_lingdui');
+		showMenu('page_ssj_daoyou');
 	});
 	
 	//分页
@@ -113,19 +90,11 @@ var bodyContent = {
         <div class="content tableSearch">
             <div class="content-body">
                 <div class="content-body-head">
-                    <span>领队管理</span>
+                    <span>异常管理</span>
                     <div class="ssj-btn ssj-btn-active" onclick="oper.add();"><img src="static/ssj/images/add_one.png"><p>新增</p></div>
                     <!-- <div class="ssj-btn"><img src="static/ssj/images/del_btn_one.png"><p>删除</p></div> -->
                     <!-- <div class="ssj-btn ssj-btn-active"><img src="static/ssj/images/error_btn_one.png"><p>异常记录</p></div> -->
-                    <div class="search-right">
-                        <div class="search">
-                            <input type="text" name="attr.name" value="${attr.name!''}" placeholder="请输入领队名称" />
-                            <div class="search-btn" onclick="oper.list();"></div>
-                            <button class="search-btn" onclick="oper.list();" name="search" hidden="hidden"></button>
-                        </div>
-                        <div class="book_add" onclick="oper.dimport();"></div>
-                    </div>
-
+					<button class="search-btn" onclick="oper.list();" name="search" hidden="hidden"></button>
                 </div>
                 <div class="box-body">
                 
@@ -134,14 +103,11 @@ var bodyContent = {
 								<tr>
 									<th>序号</th>
 									<%  // 列表头部 %>
-									<th>姓名</th> 
-									<th>性别</th> 
-									<th>语种</th> 
-									<th>等级</th>
-									<th>电子导游证号</th>
-									<th>所在旅行社</th>
-									<th>是否异常</th>
-				 					<th>操作</th>
+									<th>异常类型</th> 
+									<th>处理时间</th> 
+									<th>处理部门</th> 
+									<th>处理内容</th>
+									<th>操作</th>
 								</tr>
 							</thead>
                             <tbody>
@@ -149,18 +115,13 @@ var bodyContent = {
 								<tr>
 									<td>${itemLP.index }</td>
 									<%  // 列表内容 %>
-									<td>${item.name}</td> 
-									<td>${flyfox.dictValuesj(item.sex)  }</td> 
-									<td>${flyfox.dictValuesj(item.language)  }</td> 
-									<td>${flyfox.dictValuesj(item.dy_level)  }</td>
-									<td>${item.dy_code}</td>
-									<td>${item.dy_lxs}</td> 
-									<td>否</td>
+									<td>${item.yichang_type}</td> 
+									<td>${item.yichang_time}</td> 
+									<td>${item.yichang_bumen}</td>
+									<td>${item.yichang_neirong}</td> 
 								<td>
 								<a href="javascript:void(0);" class="btn btn-sm btn-success" onclick="oper.view(${item.id});">查看</a> 
-								<a href="javascript:void(0);" class="btn btn-sm btn-primary" onclick="oper.edit(${item.id});">修改</a> 
-								<a href="javascript:void(0);" class="btn btn-sm btn-danger" onclick="oper.del(${item.id});">删除</a>
-								<a href="javascript:void(0);" class="btn btn-sm btn-danger" onclick="oper.yichang(${item.id});">异常记录</a>
+								<!-- <a href="javascript:void(0);" class="btn btn-sm btn-danger" onclick="oper.del(${item.id});">删除</a> -->
 								</td>
 								</tr>
 							<% } %>
