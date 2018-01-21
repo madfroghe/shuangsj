@@ -84,7 +84,8 @@ var bodyContent = {
 									<th>序号</th>
 									<th>主体名称</th> 
 									<th>主体地址</th>
-									<th>执法人员</th> 
+									<th>执法人员</th>
+									<th>检查方式</th> 
 								</tr>
 							</thead>
                             <tbody>
@@ -93,7 +94,8 @@ var bodyContent = {
 								<td>${itemLP.index }</td>
 								<td>${item.zhuti_name}</td> 
 								<td>${item.zhuti_address}</td>
-								<td>${item.zhifa_name}</td> 
+								<td>${item.zhifa_name}</td>
+								<td>${model.jc_fangshi}</td> 
 								</tr>
 							<% } %>
 							</tbody>

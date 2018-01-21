@@ -124,15 +124,28 @@ public class LvxingsheController extends BaseProjectController {
 	            System.out.println(list);
 	            TbZlvxingshe lvxingshe_model = getModel(TbZlvxingshe.class);
 				lvxingshe_model.remove("id");
-				lvxingshe_model.setName(list.get(1));
-				lvxingshe_model.setEnName(list.get(2));
-				lvxingshe_model.setCode(list.get(3));
-				lvxingshe_model.setFaren(list.get(4));
-				lvxingshe_model.setQiyeDizhi(list.get(5));
-				lvxingshe_model.setPhoneF(list.get(6));
-				lvxingshe_model.setPhoneS(list.get(7));
-				lvxingshe_model.setQiyeChuanzhen(list.get(8));
-				lvxingshe_model.setQiyeEmail(list.get(9));
+				lvxingshe_model.setName(list.get(0));
+				lvxingshe_model.setCode(list.get(1));
+				lvxingshe_model.setLxsType(list.get(2));
+				lvxingshe_model.setLxsLevel(list.get(3));
+				lvxingshe_model.setLxsBusiness(list.get(4));
+				lvxingshe_model.setFaren(list.get(5));
+				lvxingshe_model.setShenfz(list.get(6));
+				lvxingshe_model.setPhoneF(list.get(7));
+				lvxingshe_model.setPhoneS(list.get(8));
+				lvxingshe_model.setClTime(list.get(9));
+				lvxingshe_model.setClMoney(list.get(10));
+				lvxingshe_model.setMoneyType(list.get(11));
+				lvxingshe_model.setQiyeType(list.get(12));
+				lvxingshe_model.setQiyeCode(list.get(13));
+				lvxingshe_model.setQiyeGongshang(list.get(14));
+				lvxingshe_model.setQiyeZuzhi(list.get(15));
+				lvxingshe_model.setQiyeDizhi(list.get(16));
+				lvxingshe_model.setQiyeQuyu(list.get(17));
+				lvxingshe_model.setQiyeBgdizhi(list.get(18));
+				lvxingshe_model.setQiyeBgquyu(list.get(19));
+				lvxingshe_model.setQiyeRenshu(list.get(20));
+				lvxingshe_model.setQiyeDyrenshu(list.get(21));
 				lvxingshe_model.save();
 	        }
 		} catch (Exception e) {

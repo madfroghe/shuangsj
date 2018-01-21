@@ -39,7 +39,7 @@ public class MenuController extends BaseProjectController {
 //			sql.append(" order by t.").append(orderBy);
 //		}
 
-		Page<SysMenu> page = SysMenu.dao.paginate(getPaginator(), "select t.*,ifnull(d.name,'根目录') as parentname ", //
+		Page<SysMenu> page = SysMenu.dao.paginate(getPaginator(), "select t.*,isnull(d.name,'根目录') as parentname ", //
 				sql.toString().toString());
 
 		// 下拉框

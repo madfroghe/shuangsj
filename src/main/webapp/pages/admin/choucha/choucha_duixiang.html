@@ -51,8 +51,8 @@
 			},
 			duixiang_sx:function(id,choucha){
 				choucha = choucha || 'WU';
-				if(choucha=="任务完成"){
-					Alert('任务已完成，无法修改！');
+				if(choucha=="任务完成" || choucha=="任务执行"){
+					Alert('任务已生成，无法修改！');
 					return false;
 				}
 				if(!validForm()) {

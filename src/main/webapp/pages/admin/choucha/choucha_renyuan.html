@@ -51,8 +51,8 @@
 			},
 			renyuan_sx:function(id,choucha){
 				choucha = choucha || 'WU';
-				if(choucha=="任务完成"){
-					Alert('任务已完成，无法修改！');
+				if(choucha=="任务完成" || choucha=="任务执行"){
+					Alert('任务已生成，无法修改！');
 					return false;
 				}
 				if(!validForm()) {
@@ -173,6 +173,16 @@ var bodyContent = {
 							<td>每组组员数</td>
 							<td>
 								<input class="form-control" type="text" name="model.jc_dxzs" value="${model.jc_dxzs }"  valid='vtext' validname='每组检查人数'  />	                        
+							</td>
+						</tr>
+						
+						<tr>
+							<td>检查方式</td>
+							<td>         
+								<select name="model.jc_fangshi" class="form-control" valid="vselect" validname='检查方式'>
+								<option value="-1">请选择所属区域</option>
+								${flyfox.dictSelectsj('ssj_jcfs' , model.jc_fangshi!'')  }
+								</select>
 							</td>
 						</tr>
 						

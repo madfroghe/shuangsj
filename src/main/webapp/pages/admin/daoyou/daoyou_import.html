@@ -9,6 +9,7 @@ var headContent = {
 			if(!validForm()) {
 				return false;
 			}
+			loading1();
 			id = id || '0';
 			var url = 'admin/daoyou/dyEximport/'+id;
 			form1.action = url;
