@@ -124,10 +124,15 @@ public class LingduiController extends BaseProjectController {
 		try {
 			List<List<String>> lists = ExcelUtilsImprove.getInstance().readExcel2List(backupPath+"\\"+fileUrl, 1, 99999, 0);
 	        for (List<String> list : lists) {
-	            System.out.println(list);
-	            TbZdyld dyld_model = getModel(TbZdyld.class);
-				dyld_model.remove("id");		
-				dyld_model.save();
+	        	SQLUtils sql = new SQLUtils(" from tb_zdyld t where 1=1 ");
+	        	sql.setAlias("t");
+	    		sql.whereEquals("dy_code", list.get(3));
+	            TbZdyld dyld_model = TbZdyld.dao.findFirst("select t.*"+sql.toString().toString());
+	            if(dyld_model != null && dyld_model.getId() > 0){
+	            	dyld_model.setDyLingdui("是");
+	            	dyld_model.setDyBeian(list.get(8));
+	            	dyld_model.update();
+	            }
 	        }
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

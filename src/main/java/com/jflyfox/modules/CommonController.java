@@ -96,6 +96,11 @@ public class CommonController extends BaseProjectController {
 		String checkCode = this.getPara("imageCode");
 
 		if (StrUtils.isEmpty(imageCode) || !imageCode.equalsIgnoreCase(checkCode)) {
+			renderAuto(loginPage);
+			return;
+		}
+		
+		if (!imageCode.equalsIgnoreCase(checkCode)) {
 			setAttr("msg", "验证码错误！");
 			renderAuto(loginPage);
 			return;

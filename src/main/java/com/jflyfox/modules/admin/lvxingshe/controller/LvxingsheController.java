@@ -121,7 +121,6 @@ public class LvxingsheController extends BaseProjectController {
 		try {
 			List<List<String>> lists = ExcelUtilsImprove.getInstance().readExcel2List(backupPath+"\\"+fileUrl, 1, 99999, 0);
 	        for (List<String> list : lists) {
-	            System.out.println(list);
 	            TbZlvxingshe lvxingshe_model = getModel(TbZlvxingshe.class);
 				lvxingshe_model.remove("id");
 				lvxingshe_model.setName(list.get(0));

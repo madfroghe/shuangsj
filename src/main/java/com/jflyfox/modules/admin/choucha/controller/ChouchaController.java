@@ -8,6 +8,7 @@ import com.jflyfox.component.base.BaseProjectController;
 import com.jflyfox.jfinal.component.annotation.ControllerBind;
 import com.jflyfox.jfinal.component.db.SQLUtils;
 import com.jflyfox.modules.admin.choucha.service.ChouchaService;
+import com.jflyfox.modules.admin.lingdui.model.TbZdyld;
 import com.jflyfox.modules.admin.lvxingshe.model.TbZcczu;
 import com.jflyfox.modules.admin.lvxingshe.model.TbZchoucha;
 import com.jflyfox.modules.admin.lvxingshe.model.TbZlvxingshe;
@@ -151,32 +152,85 @@ public class ChouchaController extends BaseProjectController {
 			model.put("choucha_zhuti", "YES");
 			model.update();
 		}
-		
-		List<TbZlvxingshe> lvxingshe_list = null;
-		////////////////筛选begin//////////////////////////////////////////////		
-		if(model.getChouchaType().equals("不定向抽查")){
-			lvxingshe_list=new ChouchaService().ZhutiBDx(model);
-		}else if(model.getChouchaType().equals("定向抽查")){
-			lvxingshe_list=new ChouchaService().ZhutiDx(model);
+		if(model.getChouchaDuixiang().equals("旅行社")){
+			List<TbZlvxingshe> lvxingshe_list = null;
+			////////////////筛选begin//////////////////////////////////////////////		
+			if(model.getChouchaType().equals("不定向抽查")){
+				lvxingshe_list=new ChouchaService().ZhutiBDx(model);
+			}else if(model.getChouchaType().equals("定向抽查")){
+				lvxingshe_list=new ChouchaService().ZhutiDx(model);
+			}
+			////////////////筛选end////////////////////////////////////////////////
+			
+			//////////////插入数据begin//////////////////////////////////////////////////
+			
+			Db.update(" delete from tb_zcczu where zhuti_order = ?", "ORDER"+pid);
+			
+			for(TbZlvxingshe tbZlvxingshe:lvxingshe_list){
+				TbZcczu model_tbzcczu = new TbZcczu();
+				model_tbzcczu.remove("id");
+				model_tbzcczu.put("zhuti_order", "ORDER"+pid);
+				model_tbzcczu.put("zhuti_name", tbZlvxingshe.getName());
+				model_tbzcczu.put("zhuti_address", tbZlvxingshe.getQiyeDizhi());
+				model_tbzcczu.put("zhuti_id", tbZlvxingshe.getId());
+				model_tbzcczu.put("create_id", getSessionUser().getUserid());
+				model_tbzcczu.put("create_time", getNow());
+				model_tbzcczu.save();
+			}
+			////////////////插入数据end////////////////////////////////////////////
+		}else if(model.getChouchaDuixiang().equals("导游")){
+			List<TbZdyld> daoyou_list = null;
+			////////////////筛选begin//////////////////////////////////////////////		
+			if(model.getChouchaType().equals("不定向抽查")){
+				daoyou_list=new ChouchaService().DaoyouBDx(model);
+			}else if(model.getChouchaType().equals("定向抽查")){
+				daoyou_list=new ChouchaService().DaoyouDx(model);
+			}
+			////////////////筛选end////////////////////////////////////////////////
+			
+			//////////////插入数据begin//////////////////////////////////////////////////
+			
+			Db.update(" delete from tb_zcczu where zhuti_order = ?", "ORDER"+pid);
+			
+			for(TbZdyld tbZdyld:daoyou_list){
+				TbZcczu model_tbzcczu = new TbZcczu();
+				model_tbzcczu.remove("id");
+				model_tbzcczu.put("zhuti_order", "ORDER"+pid);
+				model_tbzcczu.put("zhuti_name", tbZdyld.getName());
+				model_tbzcczu.put("zhuti_address", tbZdyld.getDyLxs());
+				model_tbzcczu.put("zhuti_id", tbZdyld.getId());
+				model_tbzcczu.put("create_id", getSessionUser().getUserid());
+				model_tbzcczu.put("create_time", getNow());
+				model_tbzcczu.save();
+			}
+			////////////////插入数据end////////////////////////////////////////////
+		}else if(model.getChouchaDuixiang().equals("领队")){
+			List<TbZdyld> lingdui_list = null;
+			////////////////筛选begin//////////////////////////////////////////////		
+			if(model.getChouchaType().equals("不定向抽查")){
+				lingdui_list=new ChouchaService().LingduiDx(model);
+			}else if(model.getChouchaType().equals("定向抽查")){
+				lingdui_list=new ChouchaService().LingduiDx(model);
+			}
+			////////////////筛选end////////////////////////////////////////////////
+			
+			//////////////插入数据begin//////////////////////////////////////////////////
+			
+			Db.update(" delete from tb_zcczu where zhuti_order = ?", "ORDER"+pid);
+			
+			for(TbZdyld tbZdyld:lingdui_list){
+				TbZcczu model_tbzcczu = new TbZcczu();
+				model_tbzcczu.remove("id");
+				model_tbzcczu.put("zhuti_order", "ORDER"+pid);
+				model_tbzcczu.put("zhuti_name", tbZdyld.getName());
+				model_tbzcczu.put("zhuti_address", tbZdyld.getDyLxs());
+				model_tbzcczu.put("zhuti_id", tbZdyld.getId());
+				model_tbzcczu.put("create_id", getSessionUser().getUserid());
+				model_tbzcczu.put("create_time", getNow());
+				model_tbzcczu.save();
+			}
+			////////////////插入数据end////////////////////////////////////////////
 		}
-		////////////////筛选end////////////////////////////////////////////////
-		
-		//////////////插入数据begin//////////////////////////////////////////////////
-		
-		Db.update(" delete from tb_zcczu where zhuti_order = ?", "ORDER"+pid);
-		
-		for(TbZlvxingshe tbZlvxingshe:lvxingshe_list){
-			TbZcczu model_tbzcczu = new TbZcczu();
-			model_tbzcczu.remove("id");
-			model_tbzcczu.put("zhuti_order", "ORDER"+pid);
-			model_tbzcczu.put("zhuti_name", tbZlvxingshe.getName());
-			model_tbzcczu.put("zhuti_address", tbZlvxingshe.getQiyeDizhi());
-			model_tbzcczu.put("zhuti_id", tbZlvxingshe.getId());
-			model_tbzcczu.put("create_id", getSessionUser().getUserid());
-			model_tbzcczu.put("create_time", getNow());
-			model_tbzcczu.save();
-		}
-		////////////////插入数据end////////////////////////////////////////////
 		
 		
 		TbZcczu model_tbZcczu = getModelByAttr(TbZcczu.class);

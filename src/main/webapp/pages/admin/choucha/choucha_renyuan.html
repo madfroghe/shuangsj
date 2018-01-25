@@ -136,6 +136,7 @@ var bodyContent = {
 		<input type="hidden" name="model.id" value="${model.id}" />	
 		<input type="hidden" name="model.choucha_status" value="${model.choucha_status}" />
 		<input type="hidden" name="model.choucha_type" value="${model.choucha_type}" />
+		<input type="hidden" name="model.choucha_duixiang" value="${model.choucha_duixiang}" />
 		<input type="hidden" name="model.choucha_zhuti" value="${model.choucha_zhuti}" />
 		<input type="hidden" name="model.choucha_zhifa" value="${model.choucha_zhifa}" />
 		
@@ -180,7 +181,7 @@ var bodyContent = {
 							<td>检查方式</td>
 							<td>         
 								<select name="model.jc_fangshi" class="form-control" valid="vselect" validname='检查方式'>
-								<option value="-1">请选择所属区域</option>
+								<option value="-1">请选择检查方式</option>
 								${flyfox.dictSelectsj('ssj_jcfs' , model.jc_fangshi!'')  }
 								</select>
 							</td>

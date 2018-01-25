@@ -1,11 +1,8 @@
 package com.jflyfox.modules.admin.daoyou.controller;
 
-import java.io.File;
 import java.util.List;
-
 import com.beetl.functions.ExcelUtilsImprove;
 import com.jflyfox.component.base.BaseProjectController;
-import com.jflyfox.jfinal.base.BaseController;
 import com.jflyfox.jfinal.component.annotation.ControllerBind;
 import com.jflyfox.jfinal.component.db.SQLUtils;
 import com.jflyfox.modules.admin.lingdui.model.TbZdyld;
@@ -127,9 +124,20 @@ public class DaoyouController extends BaseProjectController {
 			List<List<String>> lists = ExcelUtilsImprove.getInstance()
 					.readExcel2List(backupPath + "\\" + fileUrl, 1, 99999, 0);
 			for (List<String> list : lists) {
-				System.out.println(list);
 				TbZdyld dyld_model = getModel(TbZdyld.class);
 				dyld_model.remove("id");
+				dyld_model.setName(list.get(0));
+				dyld_model.setSex(list.get(1));
+				dyld_model.setDyShenfz(list.get(2));
+				dyld_model.setDyCode(list.get(3));
+				dyld_model.setDyZigezh(list.get(4));
+				dyld_model.setDyPhone(list.get(5));
+				dyld_model.setLanguage(list.get(6));
+				dyld_model.setLdType(list.get(7));
+				dyld_model.setDyShenqing(list.get(8));
+				dyld_model.setDyShenpi(list.get(9));
+				dyld_model.setDyLxs(list.get(10));
+				dyld_model.setDyLingdui("否");
 				dyld_model.save();
 			}
 		} catch (Exception e) {
@@ -155,8 +163,7 @@ public class DaoyouController extends BaseProjectController {
 		sql.whereEquals("yichang_id_type", "DA_" + pid);
 
 		Page<TbZyichang> page = TbZyichang.dao.paginate(getPaginator(),
-				"select t.* ", //
-				sql.toString().toString());
+				"select t.* ", sql.toString().toString());
 
 		String nowTime = DateUtils
 				.getNow(DateUtils.DEFAULT_REGEX_YYYY_MM_DD_HH_MIN_SS);

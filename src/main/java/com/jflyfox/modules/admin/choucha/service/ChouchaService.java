@@ -2,6 +2,7 @@ package com.jflyfox.modules.admin.choucha.service;
 
 import java.util.List;
 
+import com.jflyfox.modules.admin.lingdui.model.TbZdyld;
 import com.jflyfox.modules.admin.lvxingshe.model.TbZchoucha;
 import com.jflyfox.modules.admin.lvxingshe.model.TbZlvxingshe;
 import com.jflyfox.modules.admin.zhifa.model.TbZzhifa;
@@ -39,6 +40,71 @@ public class ChouchaService {
 		//}
 		return list;
 	}
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
+	/*
+	 * 定向抽查-导游
+	 */
+	public List<TbZdyld> DaoyouDx(TbZchoucha tbZchoucha) {
+		
+		//tbZchoucha.getZushu();
+		String num_total=tbZchoucha.getDxzs();
+		//SELECT id FROM t_innodb_random ORDER BY RAND() LIMIT 5
+		String sqlSelect = " SELECT top "+num_total+" *, NewID() as random FROM tb_zdyld ORDER BY random ";
+		List<TbZdyld> list = TbZdyld.dao.find(sqlSelect);
+		//for(TbZlvxingshe tbZlvxingshe : list){
+		//	TbZcczu model = getModel(TbZchoucha.class);
+		//}
+		return list;
+	}
+	
+	/*
+	 * 不定向抽查-导游
+	 */
+	public List<TbZdyld> DaoyouBDx(TbZchoucha tbZchoucha) {
+		//tbZchoucha.getZushu();
+		String num_total=tbZchoucha.getDxzs();
+		//SELECT id FROM t_innodb_random ORDER BY RAND() LIMIT 5
+		String sqlSelect = " SELECT top "+num_total+" *, NewID() as random FROM tb_zdyld ORDER BY random ";
+		List<TbZdyld> list = TbZdyld.dao.find(sqlSelect);
+		//for(TbZlvxingshe tbZlvxingshe : list){
+		//	TbZcczu model = getModel(TbZchoucha.class);
+		//}
+		return list;
+	}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
+	/*
+	 * 定向抽查-领队
+	 */
+	public List<TbZdyld> LingduiDx(TbZchoucha tbZchoucha) {
+		
+		//tbZchoucha.getZushu();
+		String num_total=tbZchoucha.getDxzs();
+		//SELECT id FROM t_innodb_random ORDER BY RAND() LIMIT 5
+		String sqlSelect = " SELECT top "+num_total+" *, NewID() as random FROM tb_zdyld where dy_lingdui='是' ORDER BY random ";
+		List<TbZdyld> list = TbZdyld.dao.find(sqlSelect);
+		//for(TbZlvxingshe tbZlvxingshe : list){
+		//	TbZcczu model = getModel(TbZchoucha.class);
+		//}
+		return list;
+	}
+	
+	/*
+	 * 不定向抽查-领队
+	 */
+	public List<TbZdyld> LingduiBDx(TbZchoucha tbZchoucha) {
+		String num_total=tbZchoucha.getDxzs();
+		String sqlSelect = " SELECT top "+num_total+" *, NewID() as random FROM tb_zdyld where dy_lingdui='是' ORDER BY random ";
+		List<TbZdyld> list = TbZdyld.dao.find(sqlSelect);
+		return list;
+	}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
 	/*
 	 * 定向抽查-人员
