@@ -1,11 +1,14 @@
 package com.jflyfox.system.dict;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.alibaba.fastjson.JSONObject;
 import com.jfinal.log.Log;
+import com.jflyfox.util.JSON;
 import com.jflyfox.util.StrUtils;
 import com.jflyfox.util.cache.Cache;
 import com.jflyfox.util.cache.CacheManager;
@@ -123,6 +126,30 @@ public class DictCache {
 		}
 		return sb.toString();
 	}
+	
+	public static String getSelectsjjson(String type, String selected_value) {
+		Map<String, SysDictDetail> map = DictCache.getCacheMapsj();
+		if (map == null || map.size() <= 0) {
+			return null;
+		}
+		ArrayList folders = new ArrayList();
+		for (String key : map.keySet()) {
+			SysDictDetail dict = map.get(key);
+			if (dict.getStr("dict_type").equals(type)) {
+				HashMap node = new HashMap();
+				node.put("id", dict.getStr("detail_name"));
+				node.put("text", dict.getStr("detail_name"));
+				if(selected_value.contains(key)){
+					node.put("checked", true);
+				}
+				folders.add(node);
+			}	
+		}
+		
+		String json = JSON.Encode(folders);
+		return json;
+	}
+	
 
 	/**
 	 * 获取Value值

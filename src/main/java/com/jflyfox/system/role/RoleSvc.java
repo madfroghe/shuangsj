@@ -1,5 +1,10 @@
 package com.jflyfox.system.role;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.apache.commons.lang.StringUtils;
+
 import com.jfinal.plugin.activerecord.Db;
 import com.jfinal.plugin.activerecord.Record;
 import com.jflyfox.jfinal.base.BaseService;
@@ -19,9 +24,13 @@ public class RoleSvc extends BaseService {
 	 * @return
 	 */
 	public String getMemus(int roleid) {
-		String sql = " select group_concat(menuid) as menus from sys_role_menu where roleid = ?";
-		Record record = Db.findFirst(sql, roleid);
-		String menus = record.getStr("menus");
+		String sql = " select menuid from sys_role_menu where roleid = ?";
+		List<Record> record_list = Db.find(sql, roleid);
+		List<String> list = new ArrayList<String>(); 
+		for(Record record:record_list){
+			list.add(record.getInt("menuid").toString());
+		}
+		String menus =  StringUtils.join(list, ",");
 		return menus;
 	}
 

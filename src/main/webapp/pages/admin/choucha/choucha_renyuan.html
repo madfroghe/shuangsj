@@ -4,6 +4,7 @@
 	include("/pages/template/head.html"){}
 %>
 <% include("/pages/includes/my97.html"){} %>
+<script src="static/ssj/scripts/boot.js" type="text/javascript"></script>
 <script type="text/javascript">
 		
 	var oper;
@@ -86,6 +87,9 @@
 	var paginator = function(page) {
 		oper.list();
 	};
+	
+
+	
 </script>
 
 <%
@@ -186,45 +190,52 @@ var bodyContent = {
 								</select>
 							</td>
 						</tr>
-						
                 		<% 
 						if(model.choucha_type=="定向抽查") {
 						%>
                 		<tr>
 							<td>所属区域</td>
 							<td>
-								<select name="model.jc_fanwei" class="form-control" valid="vselect" validname='所属区域'>
-								<option value="-1">请选择所属区域</option>
-								${flyfox.dictSelectsj('ssj_zcdssqy' , model.jc_fanwei!'')  }
-								</select>	                        
+							<input name="model.jc_fanwei" id="model.jc_fanwei" class="mini-treeselect" url="admin/choucha/renderJsonDict/?ssjvalue=ssj_zcdssqy&ssjvaluese=${model.jc_fanwei}" multiSelect="true" 
+        							textField="text" valueField="id" parentField="pid" checkRecursive="true" 
+        							showFolderCheckBox="false"  expandOnLoad="true" showClose="true" oncloseclick="onCloseClick"
+        							popupWidth="200" 
+        							value="${model.jc_fanwei }"
+    						/>
 							</td>
 						</tr>
                 		<tr>
 							<td>部门</td>
 							<td>
-								<select name="model.jc_bumen" class="form-control" valid="vselect" validname='部门'>
-								<option value="-1">请选择部门</option>
-								${flyfox.dictSelectsj('ssj_ssbm' , model.jc_bumen!'')  }
-								</select>	                        
+								<input name="model.jc_bumen" id="model.jc_bumen" class="mini-treeselect" url="admin/choucha/renderJsonDict/?ssjvalue=ssj_ssbm&ssjvaluese=${model.jc_bumen}" multiSelect="true" 
+        							textField="text" valueField="id" parentField="pid" checkRecursive="true" 
+        							showFolderCheckBox="false"  expandOnLoad="true" showClose="true" oncloseclick="onCloseClick"
+        							popupWidth="200" 
+        							value="${model.jc_bumen }"
+    						/>	                        
 							</td>
 						</tr>
                 		<tr>
 							<td>性别</td>
 							<td>
-								<select name="model.jc_sex" class="form-control" valid="vselect" validname='性别'>
-								<option value="-1">请选择性别</option>
-								${flyfox.dictSelectsj('ssj_xb' , model.jc_sex!'')  }
-								</select>	                        
+								<input name="model.jc_sex" id="model.jc_sex" class="mini-treeselect" url="admin/choucha/renderJsonDict/?ssjvalue=ssj_xb&ssjvaluese=${model.jc_sex}" multiSelect="true" 
+        							textField="text" valueField="id" parentField="pid" checkRecursive="true" 
+        							showFolderCheckBox="false"  expandOnLoad="true" showClose="true" oncloseclick="onCloseClick"
+        							popupWidth="200" 
+        							value="${model.jc_sex }"
+    						/>	                        
 							</td>
 						</tr>
 						
 						<tr>
 							<td>职务</td>
 							<td>
-								<select name="model.jc_zhiwu" class="form-control" valid="vselect" validname='职务'>
-								<option value="-1">请选择职务</option>
-								${flyfox.dictSelectsj('ssj_zw' , model.jc_zhiwu!'')  }
-								</select>	                        
+								<input name="model.jc_zhiwu" id="model.jc_zhiwu" class="mini-treeselect" url="admin/choucha/renderJsonDict/?ssjvalue=ssj_zw&ssjvaluese=${model.jc_zhiwu}" multiSelect="true" 
+        							textField="text" valueField="id" parentField="pid" checkRecursive="true" 
+        							showFolderCheckBox="false"  expandOnLoad="true" showClose="true" oncloseclick="onCloseClick"
+        							popupWidth="200" 
+        							value="${model.jc_zhiwu }"
+    						/>		                        
 							</td>
 						</tr>
 						<% 
@@ -278,3 +289,4 @@ var bodyContent = {
 <%}
 DIRECTIVE SAFE_OUTPUT_CLOSE; 
 %>
+

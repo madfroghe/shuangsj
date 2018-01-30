@@ -4,6 +4,7 @@
 	include("/pages/template/head.html"){}
 %>
 <% include("/pages/includes/my97.html"){} %>
+<script src="static/ssj/scripts/boot.js" type="text/javascript"></script>
 <script type="text/javascript">
 		
 	var oper;
@@ -202,37 +203,45 @@ var bodyContent = {
 						<tr>
 							<td>经营类别</td>
 							<td>
-								<select name="model.fanwei" class="form-control" >
-								<option value="-1">请选择经营类别</option>
-								${flyfox.dictSelectsj('ssj_jylb' , model.fanwei!'')  }
-								</select>	                        
+								<input name="model.fanwei" id="model.fanwei" class="mini-treeselect" url="admin/choucha/renderJsonDict/?ssjvalue=ssj_jylb&ssjvaluese=${model.fanwei}" multiSelect="true" 
+        							textField="text" valueField="id" parentField="pid" checkRecursive="true" 
+        							showFolderCheckBox="false"  expandOnLoad="true" showClose="true" oncloseclick="onCloseClick"
+        							popupWidth="200" 
+        							value="${model.fanwei }"
+    						/>	                        
 							</td>
 						</tr>
 						<tr>
 							<td>企业类型</td>
 							<td>
-								<select name="model.leixing" class="form-control" >
-								<option value="-1">请选择企业类型</option>
-								${flyfox.dictSelectsj('ssj_qylx' , model.leixing!'')  }
-								</select>	                        
+								<input name="model.leixing" id="model.leixing" class="mini-treeselect" url="admin/choucha/renderJsonDict/?ssjvalue=ssj_qylx&ssjvaluese=${model.leixing}" multiSelect="true" 
+        							textField="text" valueField="id" parentField="pid" checkRecursive="true" 
+        							showFolderCheckBox="false"  expandOnLoad="true" showClose="true" oncloseclick="onCloseClick"
+        							popupWidth="200" 
+        							value="${model.leixing }"
+    						/>	                        
 							</td>
 						</tr>
 						<tr>
 							<td>注册地所在</td>
 							<td>
-								<select name="model.zhucedi" class="form-control" >
-								<option value="-1">请选择注册地所在</option>
-								${flyfox.dictSelectsj('ssj_zcdssqy' , model.zhucedi!'')  }
-								</select>	                        
+								<input name="model.zhucedi" id="model.zhucedi" class="mini-treeselect" url="admin/choucha/renderJsonDict/?ssjvalue=ssj_zcdssqy&ssjvaluese=${model.zhucedi}" multiSelect="true" 
+        							textField="text" valueField="id" parentField="pid" checkRecursive="true" 
+        							showFolderCheckBox="false"  expandOnLoad="true" showClose="true" oncloseclick="onCloseClick"
+        							popupWidth="200" 
+        							value="${model.zhucedi }"
+    						/>	                        
 							</td>
 						</tr>
 						<tr>
 							<td>办公地所在</td>
 							<td>
-								<select name="model.bangong" class="form-control" >
-								<option value="-1">请选择办公地所在</option>
-								${flyfox.dictSelectsj('ssj_zcdssqy' , model.bangong!'')  }
-								</select>	                        
+								<input name="model.bangong" id="model.bangong" class="mini-treeselect" url="admin/choucha/renderJsonDict/?ssjvalue=ssj_zcdssqy&ssjvaluese=${model.bangong}" multiSelect="true" 
+        							textField="text" valueField="id" parentField="pid" checkRecursive="true" 
+        							showFolderCheckBox="false"  expandOnLoad="true" showClose="true" oncloseclick="onCloseClick"
+        							popupWidth="200" 
+        							value="${model.bangong }"
+    						/>	                        
 							</td>
 						</tr>
 						<tr>

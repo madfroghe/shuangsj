@@ -34,6 +34,10 @@ public class BeeltFunctions extends TemplateFunctions {
 	public static String dictSelectsj(String type, String selected_value) {
 		return DictCache.getSelectsj(type, selected_value);
 	}
+	
+	public static String dictSelectsjjson(String type, String selected_value) {
+		return DictCache.getSelectsjjson(type, selected_value);
+	}
 
 	public static String dictValue(int key) {
 		return DictCache.getValue(key);

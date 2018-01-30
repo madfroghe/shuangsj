@@ -15,14 +15,9 @@ public class ChouchaService {
 	 */
 	public List<TbZlvxingshe> ZhutiDx(TbZchoucha tbZchoucha) {
 		
-		//tbZchoucha.getZushu();
 		String num_total=tbZchoucha.getDxzs();
-		//SELECT id FROM t_innodb_random ORDER BY RAND() LIMIT 5
 		String sqlSelect = " SELECT top "+num_total+" *, NewID() as random FROM tb_zlvxingshe ORDER BY random ";
 		List<TbZlvxingshe> list = TbZlvxingshe.dao.find(sqlSelect);
-		//for(TbZlvxingshe tbZlvxingshe : list){
-		//	TbZcczu model = getModel(TbZchoucha.class);
-		//}
 		return list;
 	}
 	
@@ -30,14 +25,9 @@ public class ChouchaService {
 	 * 不定向抽查-旅行社主体
 	 */
 	public List<TbZlvxingshe> ZhutiBDx(TbZchoucha tbZchoucha) {
-		//tbZchoucha.getZushu();
 		String num_total=tbZchoucha.getDxzs();
-		//SELECT id FROM t_innodb_random ORDER BY RAND() LIMIT 5
 		String sqlSelect = " SELECT top "+num_total+" *, NewID() as random FROM tb_zlvxingshe ORDER BY random ";
 		List<TbZlvxingshe> list = TbZlvxingshe.dao.find(sqlSelect);
-		//for(TbZlvxingshe tbZlvxingshe : list){
-		//	TbZcczu model = getModel(TbZchoucha.class);
-		//}
 		return list;
 	}
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -48,14 +38,9 @@ public class ChouchaService {
 	 */
 	public List<TbZdyld> DaoyouDx(TbZchoucha tbZchoucha) {
 		
-		//tbZchoucha.getZushu();
 		String num_total=tbZchoucha.getDxzs();
-		//SELECT id FROM t_innodb_random ORDER BY RAND() LIMIT 5
 		String sqlSelect = " SELECT top "+num_total+" *, NewID() as random FROM tb_zdyld ORDER BY random ";
 		List<TbZdyld> list = TbZdyld.dao.find(sqlSelect);
-		//for(TbZlvxingshe tbZlvxingshe : list){
-		//	TbZcczu model = getModel(TbZchoucha.class);
-		//}
 		return list;
 	}
 	
@@ -63,14 +48,10 @@ public class ChouchaService {
 	 * 不定向抽查-导游
 	 */
 	public List<TbZdyld> DaoyouBDx(TbZchoucha tbZchoucha) {
-		//tbZchoucha.getZushu();
+
 		String num_total=tbZchoucha.getDxzs();
-		//SELECT id FROM t_innodb_random ORDER BY RAND() LIMIT 5
 		String sqlSelect = " SELECT top "+num_total+" *, NewID() as random FROM tb_zdyld ORDER BY random ";
 		List<TbZdyld> list = TbZdyld.dao.find(sqlSelect);
-		//for(TbZlvxingshe tbZlvxingshe : list){
-		//	TbZcczu model = getModel(TbZchoucha.class);
-		//}
 		return list;
 	}
 
@@ -82,14 +63,9 @@ public class ChouchaService {
 	 */
 	public List<TbZdyld> LingduiDx(TbZchoucha tbZchoucha) {
 		
-		//tbZchoucha.getZushu();
 		String num_total=tbZchoucha.getDxzs();
-		//SELECT id FROM t_innodb_random ORDER BY RAND() LIMIT 5
 		String sqlSelect = " SELECT top "+num_total+" *, NewID() as random FROM tb_zdyld where dy_lingdui='是' ORDER BY random ";
 		List<TbZdyld> list = TbZdyld.dao.find(sqlSelect);
-		//for(TbZlvxingshe tbZlvxingshe : list){
-		//	TbZcczu model = getModel(TbZchoucha.class);
-		//}
 		return list;
 	}
 	
@@ -111,14 +87,9 @@ public class ChouchaService {
 	 */
 	public List<TbZzhifa> RenyuanDx(TbZchoucha tbZchoucha) {
 
-		//tbZchoucha.getZushu();  jc_dxzs
 		int num_total=NumberUtils.parseInt(tbZchoucha.getJcDxzs())*NumberUtils.parseInt(tbZchoucha.getZushu());
-		//SELECT id FROM t_innodb_random ORDER BY RAND() LIMIT 5
 		String sqlSelect = " SELECT top "+num_total+" *, NewID() as random FROM tb_zzhifa ORDER BY random ";
 		List<TbZzhifa> list = TbZzhifa.dao.find(sqlSelect);
-		//for(TbZlvxingshe tbZlvxingshe : list){
-		//	TbZcczu model = getModel(TbZchoucha.class);
-		//}
 		return list;
 	}
 	
@@ -127,14 +98,9 @@ public class ChouchaService {
 	 */
 	public List<TbZzhifa> RenyuanBDx(TbZchoucha tbZchoucha) {
 
-		//tbZchoucha.getZushu();  jc_dxzs
 		int num_total=NumberUtils.parseInt(tbZchoucha.getJcDxzs())*NumberUtils.parseInt(tbZchoucha.getZushu());
-		//SELECT id FROM t_innodb_random ORDER BY RAND() LIMIT 5
 		String sqlSelect = " SELECT top "+num_total+" *, NewID() as random FROM tb_zzhifa ORDER BY random ";
 		List<TbZzhifa> list = TbZzhifa.dao.find(sqlSelect);
-		//for(TbZlvxingshe tbZlvxingshe : list){
-		//	TbZcczu model = getModel(TbZchoucha.class);
-		//}
 		return list;
 	}
 	

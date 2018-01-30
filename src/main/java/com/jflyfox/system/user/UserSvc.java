@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.lang.StringUtils;
+
 import com.jfinal.plugin.activerecord.Db;
 import com.jfinal.plugin.activerecord.Record;
 import com.jflyfox.jfinal.base.BaseService;
@@ -92,9 +94,13 @@ public class UserSvc extends BaseService {
 	 * @return
 	 */
 	public String getRoleids(int userid) {
-		String sql = " select group_concat(roleid) as roleids from sys_user_role where userid = ?";
-		Record record = Db.findFirst(sql, userid);
-		String roleids = record.getStr("roleids");
+		String sql = " select roleid from sys_user_role where userid = ?";
+		List<Record> record_list = Db.find(sql, userid);
+		List<String> list = new ArrayList<String>(); 
+		for(Record record:record_list){
+			list.add(record.getStr("roleid"));
+		}
+		String roleids =  StringUtils.join(list, ",");
 		return roleids;
 	}
 

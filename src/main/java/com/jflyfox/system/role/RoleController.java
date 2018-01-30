@@ -45,12 +45,15 @@ public class RoleController extends BaseProjectController {
 //			sql.append(" order by ").append(orderBy);
 //		}
 
-		String sqlSelect = "select t.* "
-				+ ",(select group_concat(m.name) from sys_role_menu rm left JOIN  sys_menu m ON rm.menuid = m.id where rm.roleid = t.id ) as menus ";
+		String sqlSelect = "select t.* ";
 
 		Page<SysRole> page = SysRole.dao.paginate(getPaginator(), sqlSelect, //
 				sql.toString().toString());
-
+		for(SysRole role_temp:page.getList()){
+			System.out.println("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&"+role_temp.getInt("id"));
+			String menus = new RoleSvc().getMemus(role_temp.getInt("id").intValue());
+			//role_temp.set("menus", menus);
+		}
 		// 下拉框
 		setAttr("page", page);
 		setAttr("attr", model);

@@ -23,13 +23,14 @@ import com.jflyfox.util.encrypt.Md5Utils;
 public class AdminController extends BaseProjectController {
 
 	public static final String loginPage = "/pages/admin/login.html";
-	public static final String homePage = "/admin/home";
+	public static final String homePage = "/admin/choucha/list";
 
 	public void index() {
 		if (getSessionUser() != null) {
 			// 如果session存在，不再验证
 			redirect(homePage);
 		} else {
+			setAttr("msg", "");
 			render(loginPage);
 		}
 
@@ -45,8 +46,15 @@ public class AdminController extends BaseProjectController {
 		String imageCode = getSessionAttr(ImageCode.class.getName());
 		String checkCode = this.getPara("imageCode");
 
-		if (StrUtils.isEmpty(imageCode) || !imageCode.equalsIgnoreCase(checkCode)) {
-			setAttr("msg", "验证码错误！");
+		if (StrUtils.isEmpty(imageCode)) {
+			System.out.println("************************************");
+			setAttr("msg", "");
+			render(loginPage);
+			return;
+		}
+		
+		if (!imageCode.equalsIgnoreCase(checkCode)) {
+			setAttr("msg", "提示：验证码错误！");
 			render(loginPage);
 			return;
 		}
@@ -56,11 +64,11 @@ public class AdminController extends BaseProjectController {
 		String password = getPara("password");
 
 		if (StrUtils.isEmpty(username)) {
-			setAttr("msg", "用户名不能为空");
+			setAttr("msg", "提示：用户名不能为空");
 			render(loginPage);
 			return;
 		} else if (StrUtils.isEmpty(password)) {
-			setAttr("msg", "密码不能为空");
+			setAttr("msg", "提示：密码不能为空");
 			render(loginPage);
 			return;
 		}
@@ -72,7 +80,7 @@ public class AdminController extends BaseProjectController {
 				+ " and usertype in ( " + JFlyFoxUtils.USER_TYPE_ADMIN + "," + JFlyFoxUtils.USER_TYPE_NORMAL + ")",
 				username);
 		if (user == null || user.getInt("userid") <= 0) {
-			setAttr("msg", "认证失败，请您重新输入。");
+			setAttr("msg", "提示：认证失败，请您重新输入。");
 			render(loginPage);
 			return;
 		}
@@ -84,19 +92,19 @@ public class AdminController extends BaseProjectController {
 			md5Password = new Md5Utils().getMD5(decryptPassword).toLowerCase();
 		} catch (Exception e) {
 			log.error("认证异常", e);
-			setAttr("msg", "认证异常，请您重新输入。");
+			setAttr("msg", "提示：认证异常，请您重新输入。");
 			render(loginPage);
 			return;
 		}
 		
 		if (!md5Password.equals(encryptPassword)) {
-			setAttr("msg", "认证错误，请您重新输入。");
+			setAttr("msg", "提示：认证错误，请您重新输入。");
 			render(loginPage);
 			return;
 		}
 
 		if (!(user.getInt("usertype") == 1 || user.getInt("usertype") == 2)) {
-			setAttr("msg", "您没有登录权限，请您重新输入。");
+			setAttr("msg", "提示：您没有登录权限，请您重新输入。");
 			render(loginPage);
 			return;
 		}
@@ -104,10 +112,10 @@ public class AdminController extends BaseProjectController {
 		setSessionUser(user);
 
 		// 第一个页面跳转
-		String tmpMainPage = Config.getStr("base_path")+"admin/home";
+		String tmpMainPage = "/admin/home";
 
 		if (tmpMainPage == null) {
-			setAttr("msg", "没有权限，请联系管理员。");
+			setAttr("msg", "提示：没有权限，请联系管理员。");
 			render(loginPage);
 			return;
 		}
@@ -187,7 +195,7 @@ public class AdminController extends BaseProjectController {
 			removeSessionUser();
 		}
 
-		setAttr("msg", "您已退出");
+		setAttr("msg", "提示：您已退出");
 		render(loginPage);
 	}
 

@@ -111,11 +111,11 @@ body {
 				 			 src="${BASE_PATH }front/image_code" title="更换一张验证码图片" onclick="loadPicimageCode()"/>
 			     	</div>
 				</div>
-			
+				<% if(strutil.isNotEmpty(msg!'')) { %>
 				<div  class="ui-form-text" style="color: #FFCC00;font-weight:bold ;">
-				提示：${msg!}
+				${msg!}
 				</div>
-
+				<% } %>
 				<div class="ui-form-item ui-form-item-30pd">
 					<input type="button" onclick="login();" value="登 录"
 						class="ui-button" tabindex="3">

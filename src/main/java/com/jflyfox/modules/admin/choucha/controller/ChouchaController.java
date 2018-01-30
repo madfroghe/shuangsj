@@ -1,10 +1,14 @@
 package com.jflyfox.modules.admin.choucha.controller;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
 import java.util.List;
 
 import com.jfinal.plugin.activerecord.Db;
 import com.jfinal.plugin.activerecord.Page;
 import com.jflyfox.component.base.BaseProjectController;
+import com.jflyfox.component.beelt.BeeltFunctions;
 import com.jflyfox.jfinal.component.annotation.ControllerBind;
 import com.jflyfox.jfinal.component.db.SQLUtils;
 import com.jflyfox.modules.admin.choucha.service.ChouchaService;
@@ -427,5 +431,15 @@ public class ChouchaController extends BaseProjectController {
 		
 		render(path + "zhixing.html");
 	}
+	
+	public void renderJsonDict(){
+		
+		String ssjvalue=getPara("ssjvalue");
+		String ssjvaluese=getPara("ssjvaluese");
+		String json=BeeltFunctions.dictSelectsjjson(ssjvalue,ssjvaluese);
+		renderJson(json);
+		
+	}
+	
 	
 }
