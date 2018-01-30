@@ -1,7 +1,6 @@
 package com.jflyfox.modules.admin.lvxingshe.model;
 
 import com.jflyfox.component.base.BaseProjectModel;
-import com.jflyfox.jfinal.base.BaseModel;
 import com.jflyfox.jfinal.component.annotation.ModelBind;
 
 @ModelBind(table = "tb_zlvxingshe")
