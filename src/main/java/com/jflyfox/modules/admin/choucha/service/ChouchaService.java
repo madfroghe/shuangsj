@@ -17,34 +17,34 @@ public class ChouchaService {
 
 		String SqlWhere="";
 		if(tbZchoucha.getChengliDi()!=null && !tbZchoucha.getChengliDi().equals("")){
-			SqlWhere+=" and cl_time >"+tbZchoucha.getChengliDi()+" ";
+			SqlWhere+=" and cl_time >'"+tbZchoucha.getChengliDi()+"' ";
 		}
 		if(tbZchoucha.getChengliGao()!=null && !tbZchoucha.getChengliGao().equals("")){
-			SqlWhere+=" and cl_time <"+tbZchoucha.getChengliGao()+" ";
+			SqlWhere+=" and cl_time <'"+tbZchoucha.getChengliGao()+"' ";
 		}
 		if(tbZchoucha.getZibenDi()!=null && !tbZchoucha.getZibenDi().equals("")){
-			SqlWhere+=" and cl_money >"+tbZchoucha.getZibenDi()+" ";
+			SqlWhere+=" and cl_money >'"+tbZchoucha.getZibenDi()+"' ";
 		}
 		if(tbZchoucha.getZibenGao()!=null && !tbZchoucha.getZibenGao().equals("")){
-			SqlWhere+=" and cl_money <"+tbZchoucha.getZibenGao()+" ";
+			SqlWhere+=" and cl_money <'"+tbZchoucha.getZibenGao()+"' ";
 		}
 		if(tbZchoucha.getGuimoDi()!=null && !tbZchoucha.getGuimoDi().equals("")){
-			SqlWhere+=" and jingyinggm >"+tbZchoucha.getGuimoDi()+" ";
+			SqlWhere+=" and jingyinggm >'"+tbZchoucha.getGuimoDi()+"' ";
 		}
 		if(tbZchoucha.getGuimoGao()!=null && !tbZchoucha.getGuimoGao().equals("")){
-			SqlWhere+=" and jingyinggm <"+tbZchoucha.getGuimoGao()+" ";
+			SqlWhere+=" and jingyinggm <'"+tbZchoucha.getGuimoGao()+"' ";
 		}
 		if(tbZchoucha.getFanwei()!=null && !tbZchoucha.getFanwei().equals("")){
-			SqlWhere+=" and lxs_business in("+tbZchoucha.getFanwei()+")";
+			SqlWhere+=" and lxs_business in('"+tbZchoucha.getFanwei()+"')";
 		}
 		if(tbZchoucha.getLeixing()!=null && !tbZchoucha.getLeixing().equals("")){
-			SqlWhere+=" and money_type in("+tbZchoucha.getLeixing()+")";
+			SqlWhere+=" and money_type in('"+tbZchoucha.getLeixing()+"')";
 		}
 		if(tbZchoucha.getZhucedi()!=null && !tbZchoucha.getZhucedi().equals("")){
-			SqlWhere+=" and qiye_quyu in("+tbZchoucha.getZhucedi()+")";
+			SqlWhere+=" and qiye_quyu in('"+tbZchoucha.getZhucedi()+"')";
 		}
 		if(tbZchoucha.getBangong()!=null && !tbZchoucha.getBangong().equals("")){
-			SqlWhere+=" and qiye_bgquyu in("+tbZchoucha.getBangong()+")";
+			SqlWhere+=" and qiye_bgquyu in('"+tbZchoucha.getBangong()+"')";
 		}
 		
 		String num_total=tbZchoucha.getDxzs();
@@ -72,34 +72,34 @@ public class ChouchaService {
 		
 		String SqlWhere="";
 		if(!tbZchoucha.getChengliDi().equals("")){
-			SqlWhere+=" and lxs.cl_time >"+tbZchoucha.getChengliDi()+" ";
+			SqlWhere+=" and lxs.cl_time >'"+tbZchoucha.getChengliDi()+"' ";
 		}
 		if(!tbZchoucha.getChengliGao().equals("")){
-			SqlWhere+=" and lxs.cl_time <"+tbZchoucha.getChengliGao()+" ";
+			SqlWhere+=" and lxs.cl_time <'"+tbZchoucha.getChengliGao()+"' ";
 		}
 		if(!tbZchoucha.getZibenDi().equals("")){
-			SqlWhere+=" and lxs.cl_money >"+tbZchoucha.getZibenDi()+" ";
+			SqlWhere+=" and lxs.cl_money >'"+tbZchoucha.getZibenDi()+"' ";
 		}
 		if(!tbZchoucha.getZibenGao().equals("")){
-			SqlWhere+=" and lxs.cl_money <"+tbZchoucha.getZibenGao()+" ";
+			SqlWhere+=" and lxs.cl_money <'"+tbZchoucha.getZibenGao()+"' ";
 		}
 		if(!tbZchoucha.getGuimoDi().equals("")){
-			SqlWhere+=" and lxs.jingyinggm >"+tbZchoucha.getGuimoDi()+" ";
+			SqlWhere+=" and lxs.jingyinggm >'"+tbZchoucha.getGuimoDi()+"' ";
 		}
 		if(!tbZchoucha.getGuimoGao().equals("")){
-			SqlWhere+=" and lxs.jingyinggm <"+tbZchoucha.getGuimoGao()+" ";
+			SqlWhere+=" and lxs.jingyinggm <'"+tbZchoucha.getGuimoGao()+"' ";
 		}
 		if(!tbZchoucha.getFanwei().equals("")){
-			SqlWhere+=" and lxs.lxs_business in("+tbZchoucha.getFanwei()+")";
+			SqlWhere+=" and lxs.lxs_business in('"+tbZchoucha.getFanwei()+"')";
 		}
 		if(!tbZchoucha.getLeixing().equals("")){
-			SqlWhere+=" and lxs.money_type in("+tbZchoucha.getLeixing()+")";
+			SqlWhere+=" and lxs.money_type in('"+tbZchoucha.getLeixing()+"')";
 		}
 		if(!tbZchoucha.getZhucedi().equals("")){
-			SqlWhere+=" and lxs.qiye_quyu in("+tbZchoucha.getZhucedi()+")";
+			SqlWhere+=" and lxs.qiye_quyu in('"+tbZchoucha.getZhucedi()+"')";
 		}
 		if(!tbZchoucha.getBangong().equals("")){
-			SqlWhere+=" and lxs.qiye_bgquyu in("+tbZchoucha.getBangong()+")";
+			SqlWhere+=" and lxs.qiye_bgquyu in('"+tbZchoucha.getBangong()+"')";
 		}
 		
 		String num_total=tbZchoucha.getDxzs();
@@ -113,39 +113,8 @@ public class ChouchaService {
 	 */
 	public List<TbZdyld> DaoyouBDx(TbZchoucha tbZchoucha) {
 		
-		String SqlWhere="";
-		if(!tbZchoucha.getChengliDi().equals("")){
-			SqlWhere+=" and lxs.cl_time >"+tbZchoucha.getChengliDi()+" ";
-		}
-		if(!tbZchoucha.getChengliGao().equals("")){
-			SqlWhere+=" and lxs.cl_time <"+tbZchoucha.getChengliGao()+" ";
-		}
-		if(!tbZchoucha.getZibenDi().equals("")){
-			SqlWhere+=" and lxs.cl_money >"+tbZchoucha.getZibenDi()+" ";
-		}
-		if(!tbZchoucha.getZibenGao().equals("")){
-			SqlWhere+=" and lxs.cl_money <"+tbZchoucha.getZibenGao()+" ";
-		}
-		if(!tbZchoucha.getGuimoDi().equals("")){
-			SqlWhere+=" and lxs.jingyinggm >"+tbZchoucha.getGuimoDi()+" ";
-		}
-		if(!tbZchoucha.getGuimoGao().equals("")){
-			SqlWhere+=" and lxs.jingyinggm <"+tbZchoucha.getGuimoGao()+" ";
-		}
-		if(!tbZchoucha.getFanwei().equals("")){
-			SqlWhere+=" and lxs.lxs_business in("+tbZchoucha.getFanwei()+")";
-		}
-		if(!tbZchoucha.getLeixing().equals("")){
-			SqlWhere+=" and lxs.money_type in("+tbZchoucha.getLeixing()+")";
-		}
-		if(!tbZchoucha.getZhucedi().equals("")){
-			SqlWhere+=" and lxs.qiye_quyu in("+tbZchoucha.getZhucedi()+")";
-		}
-		if(!tbZchoucha.getBangong().equals("")){
-			SqlWhere+=" and lxs.qiye_bgquyu in("+tbZchoucha.getBangong()+")";
-		}
 		String num_total=tbZchoucha.getDxzs();
-		String sqlSelect = " SELECT top "+num_total+" *, NewID() as random FROM tb_zdyld as dyld left join tb_zlvxingshe as lxs on dyld.dy_lxs=lxs.name  where 1=1 "+SqlWhere+" ORDER BY random ";
+		String sqlSelect = " SELECT top "+num_total+" *, NewID() as random FROM tb_zdyld  ORDER BY random ";
 		List<TbZdyld> list = TbZdyld.dao.find(sqlSelect);
 		return list;
 	}
@@ -158,8 +127,39 @@ public class ChouchaService {
 	 */
 	public List<TbZdyld> LingduiDx(TbZchoucha tbZchoucha) {
 		
+		String SqlWhere="";
+		if(!tbZchoucha.getChengliDi().equals("")){
+			SqlWhere+=" and lxs.cl_time >'"+tbZchoucha.getChengliDi()+"' ";
+		}
+		if(!tbZchoucha.getChengliGao().equals("")){
+			SqlWhere+=" and lxs.cl_time <'"+tbZchoucha.getChengliGao()+"' ";
+		}
+		if(!tbZchoucha.getZibenDi().equals("")){
+			SqlWhere+=" and lxs.cl_money >'"+tbZchoucha.getZibenDi()+"' ";
+		}
+		if(!tbZchoucha.getZibenGao().equals("")){
+			SqlWhere+=" and lxs.cl_money <'"+tbZchoucha.getZibenGao()+"' ";
+		}
+		if(!tbZchoucha.getGuimoDi().equals("")){
+			SqlWhere+=" and lxs.jingyinggm >'"+tbZchoucha.getGuimoDi()+"' ";
+		}
+		if(!tbZchoucha.getGuimoGao().equals("")){
+			SqlWhere+=" and lxs.jingyinggm <'"+tbZchoucha.getGuimoGao()+"' ";
+		}
+		if(!tbZchoucha.getFanwei().equals("")){
+			SqlWhere+=" and lxs.lxs_business in('"+tbZchoucha.getFanwei()+"')";
+		}
+		if(!tbZchoucha.getLeixing().equals("")){
+			SqlWhere+=" and lxs.money_type in('"+tbZchoucha.getLeixing()+"')";
+		}
+		if(!tbZchoucha.getZhucedi().equals("")){
+			SqlWhere+=" and lxs.qiye_quyu in('"+tbZchoucha.getZhucedi()+"')";
+		}
+		if(!tbZchoucha.getBangong().equals("")){
+			SqlWhere+=" and lxs.qiye_bgquyu in('"+tbZchoucha.getBangong()+"')";
+		}
 		String num_total=tbZchoucha.getDxzs();
-		String sqlSelect = " SELECT top "+num_total+" *, NewID() as random FROM tb_zdyld where dy_lingdui='是' ORDER BY random ";
+		String sqlSelect = " SELECT top "+num_total+" *, NewID() as random FROM tb_zdyld as dyld left join tb_zlvxingshe as lxs on dyld.dy_lxs=lxs.name where dyld.dy_lingdui='是' "+SqlWhere+" ORDER BY random ";
 		List<TbZdyld> list = TbZdyld.dao.find(sqlSelect);
 		return list;
 	}
@@ -169,7 +169,7 @@ public class ChouchaService {
 	 */
 	public List<TbZdyld> LingduiBDx(TbZchoucha tbZchoucha) {
 		String num_total=tbZchoucha.getDxzs();
-		String sqlSelect = " SELECT top "+num_total+" *, NewID() as random FROM tb_zdyld where dy_lingdui='是' ORDER BY random ";
+		String sqlSelect = " SELECT top "+num_total+" *, NewID() as random FROM tb_zdyld  where dy_lingdui='是' ORDER BY random ";
 		List<TbZdyld> list = TbZdyld.dao.find(sqlSelect);
 		return list;
 	}
@@ -187,16 +187,16 @@ public class ChouchaService {
 		//model.jc_zhiwu
 		String SqlWhere="";
 		if(!tbZchoucha.getJcFanwei().equals("")){
-			SqlWhere+=" and quyu in("+tbZchoucha.getJcFanwei()+")";
+			SqlWhere+=" and quyu in('"+tbZchoucha.getJcFanwei()+"')";
 		}
 		if(!tbZchoucha.getJcBumen().equals("")){
-			SqlWhere+=" and bumen in("+tbZchoucha.getJcBumen()+")";
+			SqlWhere+=" and bumen in('"+tbZchoucha.getJcBumen()+"')";
 		}
 		if(!tbZchoucha.getJcSex().equals("")){
-			SqlWhere+=" and sex in("+tbZchoucha.getJcSex()+")";
+			SqlWhere+=" and sex in('"+tbZchoucha.getJcSex()+"')";
 		}
 		if(!tbZchoucha.getJcZhiwu().equals("")){
-			SqlWhere+=" and zhiwu in("+tbZchoucha.getJcFanwei()+")";
+			SqlWhere+=" and zhiwu in('"+tbZchoucha.getJcFanwei()+"')";
 		}
 		int num_total=NumberUtils.parseInt(tbZchoucha.getJcDxzs())*NumberUtils.parseInt(tbZchoucha.getZushu());
 		String sqlSelect = " SELECT top "+num_total+" *, NewID() as random FROM tb_zzhifa where 1=1 "+SqlWhere+" ORDER BY random ";

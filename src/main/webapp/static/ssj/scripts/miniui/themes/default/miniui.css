@@ -67,7 +67,7 @@ html,body{_background-image:url(about:blank);_background-attachment:fixed;}
 }
 
 .mini-shadow{
-	position:absolute;
+	/*position:absolute;
 	overflow:hidden;
 	background:#ddd;
 	-moz-border-radius:5px;
@@ -75,7 +75,7 @@ html,body{_background-image:url(about:blank);_background-attachment:fixed;}
 	-moz-box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.3);
 	-webkit-box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.3);
 	filter: progid:DXImageTransform.Microsoft.Blur(pixelRadius=2,MakeShadow=false,ShadowOpacity=0.3);
-	z-index:99;
+	z-index:99;*/
 }
 
 .mini-popup
